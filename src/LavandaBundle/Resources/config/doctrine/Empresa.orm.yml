@@ -1,0 +1,80 @@
+LavandaBundle\Entity\Empresa:
+    type: entity
+    table: empresa
+    id:
+        idempresa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idEmpresa
+            generator:
+                strategy: IDENTITY
+    fields:
+        razonsocial:
+            type: string
+            nullable: false
+            length: 150
+            options:
+                fixed: false
+            column: razonSocial
+        direccionfiscal:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: direccionFiscal
+        representante:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        telefonorepresentante:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: telefonoRepresentante
+        rfc:
+            type: string
+            nullable: true
+            length: 13
+            options:
+                fixed: false
+        rutalogo:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: rutaLogo
+        nombrelogo:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: nombreLogo
+        mision:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        vision:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        valores:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

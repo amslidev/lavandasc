@@ -1,0 +1,54 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Servicios | Editar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <h1>Editar servicio {{ servicio.nombre }}</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-warning" type="submit" value="Editar" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a style="font-size: medium" href="{{ path('servicio_index') }}">Volver al listado</a>
+        </li>
+
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/froala_editor.pkgd.min.js') }}"></script>
+    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/languages/es.js') }}"></script>
+    <script>
+        $(function() {
+            $('div#froala-editor').froalaEditor({
+                // Set the language code.
+                language: 'es'
+            })
+        });
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

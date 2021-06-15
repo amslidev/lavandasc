@@ -1,0 +1,24 @@
+servicio_index:
+    path:     /servicio
+    defaults: { _controller: "LavandaBundle:Servicio:index" }
+    methods:  GET
+
+servicio_show:
+    path:     /servicio/{idservicio}/show
+    defaults: { _controller: "LavandaBundle:Servicio:show" }
+    methods:  GET
+
+servicio_new:
+    path:     /servicio/new
+    defaults: { _controller: "LavandaBundle:Servicio:new" }
+    methods:  [GET, POST]
+
+servicio_edit:
+    path:     /servicio/{idservicio}/edit
+    defaults: { _controller: "LavandaBundle:Servicio:edit" }
+    methods:  [GET, POST]
+
+servicio_delete:
+    path:     /servicio/{idservicio}/delete
+    defaults: { _controller: "LavandaBundle:Servicio:delete" }
+    methods:  DELETE

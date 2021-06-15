@@ -1,0 +1,11 @@
+empleado_index:
+    path: /empleados
+    defaults: { _controller: "LavandaBundle:Empleado:index"}
+
+empleado_new:
+    path: /empleados/new
+    defaults: { _controller: "LavandaBundle:Empleado:new"}
+
+empleado_edit:
+    path: /empleados/edit/{idempleado}
+    defaults: { _controller: "LavandaBundle:Empleado:edit"}

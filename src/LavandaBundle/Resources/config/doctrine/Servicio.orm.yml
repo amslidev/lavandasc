@@ -1,0 +1,37 @@
+LavandaBundle\Entity\Servicio:
+    type: entity
+    table: servicio
+    id:
+        idservicio:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idServicio
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        tiempo:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        precio:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        descripcion:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

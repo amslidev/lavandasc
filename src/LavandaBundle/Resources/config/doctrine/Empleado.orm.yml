@@ -1,0 +1,76 @@
+LavandaBundle\Entity\Empleado:
+    type: entity
+    table: empleado
+    id:
+        idempleado:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idEmpleado
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        apellido:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        direccion:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        telefono:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+        rfc:
+            type: string
+            nullable: true
+            length: 13
+            options:
+                fixed: false
+        curp:
+            type: string
+            nullable: true
+            length: 18
+            options:
+                fixed: false
+        fecharegistro:
+            type: date
+            nullable: false
+            column: fechaRegistro
+        fechabaja:
+            type: date
+            nullable: true
+            column: fechaBaja
+        activo:
+            type: boolean
+            nullable: true
+        rutaimagen:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: nombreImagen
+    lifecycleCallbacks: {  }

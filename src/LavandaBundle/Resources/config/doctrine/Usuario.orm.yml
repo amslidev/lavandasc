@@ -1,0 +1,41 @@
+LavandaBundle\Entity\Usuario:
+    type: entity
+    table: usuario
+    id:
+        idusuario:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idUsuario
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        role:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        createdAt:
+            type: date
+            nullable: false
+            column: created_at
+        isactive:
+            type: boolean
+            nullable: true
+            column: isActive
+    lifecycleCallbacks: {  }

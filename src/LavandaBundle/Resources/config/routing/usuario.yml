@@ -1,0 +1,17 @@
+lavanda_homepage:
+    path: /home
+    defaults: {_controller: LavandaBundle:Default:index}
+
+login:
+    path: /login
+    defaults: {_controller: LavandaBundle:Usuarios:login}
+
+lavanda_principal:
+    path: /
+    defaults: { _controller: LavandaBundle:Usuarios:login}
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

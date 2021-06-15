@@ -1,0 +1,3 @@
+empresa_index:
+    path: /empresa
+    defaults: { _controller: LavandaBundle:Empresa:index}

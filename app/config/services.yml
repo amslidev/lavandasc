@@ -1,0 +1,29 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    nombre_empresa.twig_extension:
+        class: LavandaBundle\Twig\Extension\NombreEmpresaExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']
+
+    empresa_registrada.twig_extension:
+        class: LavandaBundle\Twig\Extension\EmpresaRegistradaExtension
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']
+
+    ver_imagen.twig_extension:
+        class: LavandaBundle\Twig\Extension\VerImagenExtension
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']
