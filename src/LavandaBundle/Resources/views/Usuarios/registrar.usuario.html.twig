@@ -1,0 +1,106 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Usuarios | Nuevo
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <h1>Agregar Usuario</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <span id="msg"></span>
+    <ul>
+        <li>
+            <a style="font-size: medium" href="{{ path('users_index') }}">Volver al listado</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/froala_editor.pkgd.min.js') }}"></script>
+    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/languages/es.js') }}"></script>
+    <script>
+        $(function() {
+            $('div#froala-editor').froalaEditor({
+                // Set the language code.
+                language: 'es'
+            })
+        });
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_usuario_username").change(function () {
+            var username = $(this).val();
+            var datos = {};
+            datos.username = username;
+            $.ajax({
+               url: '{{ path('users_validar_username') }}',
+               type: 'GET',
+               data: datos,
+               success: function () {
+                   $("#lavandabundle_usuario_username").css("border-color","#33FF5A");
+               },
+               error: function () {
+                   toastr.error("El usuario ya está registrado","¡Error!");
+                   $("#lavandabundle_usuario_username").val("");
+               }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        var pw1 = $("[id=lavandabundle_usuario_password_first]");
+        var pw2 = $("[id=lavandabundle_usuario_password_second]");
+
+        function coinicidirPasswords() {
+            var pass1 = pw1.val();
+            var pass2 = pw2.val();
+            var msg = $("#msg");
+            msg.text("");
+
+            console.log(pass1);
+            console.log(pass2);
+
+            if(pass1.length < 8 && pass2.length < 8){
+                msg.text("Las contraseñas deben tener mínimo 8 caracteres");
+                msg.css("label label-danger");
+                $("#lavandabundle_usuario_Guardar").attr("disabled",true);
+            }else if(pass1 !== pass2){
+                msg.text("Las contraseñas no coinciden");
+                msg.css("label label-danger");
+                $("#lavandabundle_usuario_Guardar").attr("disabled",true);
+            }else if(pass1.length >= 8 && pass2.length >= 8 && pass1 === pass2){
+                $("#lavandabundle_usuario_Guardar").attr("disabled",false);
+                msg.text("");
+            }
+        }
+
+        pw2.keyup(function () {
+           coinicidirPasswords();
+        });
+
+    </script>
+
+{% endblock javascripts %}

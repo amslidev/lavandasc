@@ -1,11 +1,11 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ path('app_dashboard') }}" class="site_title">
+            <a class="site_title">
                 {% if ("" | empresa_registrada == false) %}
                     <i class="fa fa-certificate"></i>
                 {% else %}
-                    <img width="45px" height="45px" src="{{ "" | ver_imagen }}" class="img-circle">
+                    <img width="45px" height="45px" src="{{ asset('uploads/empresa/logo/logo.png') }}" class="img-circle">
                 {% endif %}
                 <span>{{ "" | nombre_empresa }}</span>
             </a>
@@ -42,6 +42,7 @@
                     <li><a href="{{ path('servicio_index') }}"><i class="fa fa-list"></i> Servicios</a></li>
                     <li><a href="{{ path('empleado_index') }}"><i class="fa fa-user"></i> Empleados</a></li>
                     <li><a href="{{ path('empresa_index') }}"><i class="fa fa-cog"></i> Configuración Empresa</a></li>
+                    <li><a href="{{ path('users_index') }}"><i class="fa fa-users"></i> Usuarios</a></li>
                 </ul>
             </div>
             

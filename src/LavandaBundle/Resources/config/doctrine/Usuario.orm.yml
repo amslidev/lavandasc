@@ -38,4 +38,18 @@ LavandaBundle\Entity\Usuario:
             type: boolean
             nullable: true
             column: isActive
+        rutaimagen:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: nombreImagen
     lifecycleCallbacks: {  }

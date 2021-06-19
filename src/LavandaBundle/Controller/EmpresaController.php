@@ -35,8 +35,8 @@ class EmpresaController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $basedir = "uploads/empresa/";
-            $path = $basedir.time()."/logo/";
+            $basedir = "uploads/empresa";
+            $path = $basedir."/logo/";
             if(!file_exists($path)){
                 mkdir($path,777, true);
             }
@@ -44,7 +44,7 @@ class EmpresaController extends Controller
             $file = $form["logo"]->getData();
             if(!empty($file) && $file != null){
                 $ext = $file->guessExtension();
-                $file_name = $empresa->getRazonsocial().".".$ext;
+                $file_name = "logo.".$ext;
                 $file->move($path, $file_name);
                 $empresa->setRutalogo($path);
                 $empresa->setNombrelogo($file_name);

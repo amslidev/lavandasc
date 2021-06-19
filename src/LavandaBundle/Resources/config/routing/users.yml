@@ -1,0 +1,13 @@
+users_index:
+    path: /users
+    defaults: { _controller: LavandaBundle:Usuarios:index}
+
+users_registrar_usuario:
+    path: /users/registrar_usuario
+    defaults: { _controller: LavandaBundle:Usuarios:registrarUsuario}
+
+users_validar_username:
+    path: /users/validar_username
+    defaults: { _controller: LavandaBundle:Usuarios:validarUsername}
+    condition: "request.isXmlHttpRequest()"
+

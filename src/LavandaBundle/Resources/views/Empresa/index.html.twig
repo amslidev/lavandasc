@@ -7,6 +7,8 @@
 
     <!-- NProgress -->
     <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
 {% endblock stylesheets %}
 
 {% block top_content_header %}
@@ -38,6 +40,19 @@
 {% block javascripts %}
 
     {{ parent() }}
+
+    <script type="text/javascript">
+        $("#lavandabundle_empresa_logo").change(function () {
+            var fileInput = $(this);
+            var filePath = fileInput.val();
+            var allowedExtensions = /(.png)$/i;
+            if(!allowedExtensions.exec(filePath)){
+                toastr.error("El archivo debe contener la extensión .png","¡Atención!");
+                fileInput.val('');
+                return false;
+            }
+        });
+    </script>
 
     <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/froala_editor.pkgd.min.js') }}"></script>
     <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/languages/es.js') }}"></script>

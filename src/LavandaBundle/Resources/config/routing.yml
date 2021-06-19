@@ -13,3 +13,7 @@ lavanda_empleado:
 lavanda_empresa:
     resource: "@LavandaBundle/Resources/config/routing/empresa.yml"
     prefix: /
+
+lavanda_users:
+    resource: "@LavandaBundle/Resources/config/routing/users.yml"
+    prefix: /

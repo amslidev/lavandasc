@@ -570,4 +570,62 @@ class Usuario implements UserInterface, AdvancedUserInterface, \Serializable
     }
 
 
+    /**
+     * @var string
+     */
+    private $rutaimagen;
+
+    /**
+     * @var string
+     */
+    private $nombreimagen;
+
+
+    /**
+     * Set rutaimagen
+     *
+     * @param string $rutaimagen
+     *
+     * @return Usuario
+     */
+    public function setRutaimagen($rutaimagen)
+    {
+        $this->rutaimagen = $rutaimagen;
+
+        return $this;
+    }
+
+    /**
+     * Get rutaimagen
+     *
+     * @return string
+     */
+    public function getRutaimagen()
+    {
+        return $this->rutaimagen;
+    }
+
+    /**
+     * Set nombreimagen
+     *
+     * @param string $nombreimagen
+     *
+     * @return Usuario
+     */
+    public function setNombreimagen($nombreimagen)
+    {
+        $this->nombreimagen = $nombreimagen;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreimagen
+     *
+     * @return string
+     */
+    public function getNombreimagen()
+    {
+        return $this->nombreimagen;
+    }
 }
