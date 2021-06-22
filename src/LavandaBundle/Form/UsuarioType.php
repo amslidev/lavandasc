@@ -35,7 +35,8 @@ class UsuarioType extends AbstractType
                 "second_options"=>array(
                     "label"=>"Confirmar contraseña",
                     "attr"=>array("class"=>"form-control")
-                )
+                ),
+                "required"=>false
             ))
             ->add('role', ChoiceType::class, array(
                 "label" => "Selecciona el perfil de usuario",
@@ -50,7 +51,8 @@ class UsuarioType extends AbstractType
                 "label" => "Seleccione la foto del usuario",
                 "attr" => array("class"=>"form-control"),
                 "data_class"=>null,
-                "mapped"=>false
+                "mapped"=>false,
+                "required"=>false
             ))
             ->add('Guardar', SubmitType::class, array(
                 "label"=>"Registrar",

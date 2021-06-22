@@ -111,4 +111,52 @@ class UsuariosController extends Controller
             return new Response("",500);
         }
     }
+
+    public function editarUsuarioAction(Request $request, $idusuario = null){
+        $em = $this->getDoctrine()->getManager();
+
+        $usuario = $em->getRepository('LavandaBundle:Usuario')->find($idusuario);
+        $form = $this->createForm(UsuarioType::class, $usuario);
+        //$form->remove('username');
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            if(!empty($form->get('password')->getData()) && $form->get('password')->getData() != null){
+                $factory = $this->get('security.encoder_factory');
+                $encoder = $factory->getEncoder($usuario);
+                $password = $encoder->encodePassword($form->get('password')->getData(), $usuario->getSalt());
+                $usuario->setPassword($password);
+            }
+
+
+            $base = "uploads/usuarios";
+            $path = $base."/".$usuario->getUsername()."/";
+
+            if(!file_exists($path)){
+                mkdir($path,'777', true);
+            }
+
+            $foto = $form["foto"]->getData();
+            if(!empty($foto) && $foto != null){
+                $ext = $foto->guessExtension();
+                $file_name = time().".".$ext;
+                $usuario->setRutaimagen($path);
+                $usuario->setNombreimagen($file_name);
+                $foto->move($path, $file_name);
+            }
+
+            $em->persist($usuario);
+            $em->flush();
+
+            $status = "Usuario editado correctamente";
+            $this->session->getFlashBag()->add("info","success");
+            $this->session->getFlashBag()->add("status",$status);
+            return $this->redirectToRoute("users_index");
+        }
+
+        return $this->render('LavandaBundle:Usuarios:editar.usuario.html.twig', array(
+            "form"=>$form->createView(),
+            "usuario"=>$usuario
+        ));
+    }
 }

@@ -16,7 +16,12 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="{{ asset('assets/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                {% if app.user.rutaimagen == null %}
+                    <img src="{{ asset('assets/images/imgdefault.png') }}" alt="..." class="img-circle profile_img">
+                {% else %}
+                    <img src="{{ asset(app.user.rutaimagen~app.user.nombreimagen) }}"  class="img-circle profile_img">
+                {% endif %}
+
             </div>
             <div class="profile_info">
                 <span>¡Hola!,</span>
@@ -36,6 +41,17 @@
                 </ul>
             </div>
 
+            {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER')%}
+            <div class="menu_section">
+                <h3>Negocio</h3>
+                <ul class="nav side-menu">
+                    <li><a href="#"><i class="fa fa-calendar-check-o"></i> Citas</a></li>
+                    <li><a href="#"><i class="fa fa-users"></i> Clientes</a></li>
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_ADMIN')%}
             <div class="menu_section">
                 <h3>Administración</h3>
                 <ul class="nav side-menu">
@@ -45,6 +61,7 @@
                     <li><a href="{{ path('users_index') }}"><i class="fa fa-users"></i> Usuarios</a></li>
                 </ul>
             </div>
+            {% endif %}
             
         </div>
         <!-- /sidebar menu -->

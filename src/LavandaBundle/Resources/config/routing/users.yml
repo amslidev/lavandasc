@@ -11,3 +11,6 @@ users_validar_username:
     defaults: { _controller: LavandaBundle:Usuarios:validarUsername}
     condition: "request.isXmlHttpRequest()"
 
+users_editar_usuario:
+    path: /users/editar_usuario/{idusuario}
+    defaults: { _controller: LavandaBundle:Usuarios:editarUsuario}

@@ -1,0 +1,9 @@
+api_empresa_info:
+    path: /empresa/info
+    defaults: {_controller: APIBundle:APIEmpresa:showInfo}
+    methods: [GET]
+
+api_empresa_logo:
+    path: /empresa/logo
+    defaults: {_controller: APIBundle:APIEmpresa:showLogo}
+    methods: [GET]

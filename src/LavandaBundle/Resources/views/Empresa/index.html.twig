@@ -18,22 +18,30 @@
 {% endblock top_content_header%}
 
 {% block page_content %}
-    <div class="col-lg-12">
-        {{ form_start(form) }}
-        <div class="panel panel-default">
-            <div class="panel header">
-                <h1>Datos de la empresa</h1>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Datos de la empresa</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </div>
-            <div class="panel-body">
+            <div class="x_content">
+                <div class="col-lg-12">
 
-                {{ form_widget(form) }}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
 
-            </div>
-            <div class="panel-footer">
-
+                </div>
             </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}
 

@@ -1,0 +1,9 @@
+api_homepage:
+    path: /index
+    defaults: { _controller: APIBundle:Default:index }
+    methods: [GET]
+
+api_gettokencliente:
+    path: /generate_token
+    defaults: { _controller: APIBundle:APIHome:tokenAssing}
+    methods: [GET]

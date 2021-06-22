@@ -1,0 +1,11 @@
+api_home:
+    resource: "@APIBundle/Resources/config/routing/home.yml"
+    prefix:   /
+
+api_empresa:
+    resource: "@APIBundle/Resources/config/routing/empresa.yml"
+    prefix:   /
+
+api_servicios:
+    resource: "@APIBundle/Resources/config/routing/servicio.yml"
+    prefix:    /

@@ -16,7 +16,7 @@
 {% endblock top_content_header%}
 
 {% block page_content %}
-    <h1>Agregar Usuario</h1>
+    <h1>Editar Usuario {{ usuario.username }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -33,18 +33,6 @@
 {% block javascripts %}
 
     {{ parent() }}
-
-    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/froala_editor.pkgd.min.js') }}"></script>
-    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/languages/es.js') }}"></script>
-    <script>
-        $(function() {
-            $('div#froala-editor').froalaEditor({
-                // Set the language code.
-                language: 'es'
-            })
-        });
-    </script>
-
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
     <!-- Custom Theme Scripts -->
@@ -68,13 +56,6 @@
                }
             });
         });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("[id=lavandabundle_usuario_password_first]").attr("required", true);
-            $("[id=lavandabundle_usuario_password_second]").attr("required", true);
-        })
     </script>
 
     <script type="text/javascript">

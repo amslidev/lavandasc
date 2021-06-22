@@ -27,3 +27,12 @@ services:
         tags:
         - { name: twig.extension }
         arguments: ['@doctrine.orm.entity_manager']
+
+    APIBundle\Services\Helpers:
+        public: true
+
+    APIBundle\Services\JwtAuth:
+        public: true
+        arguments:
+            $manager: '@doctrine.orm.entity_manager'
+            $encoder: '@security.user_password_encoder.generic'

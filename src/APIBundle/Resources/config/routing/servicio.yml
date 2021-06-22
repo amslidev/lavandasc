@@ -1,0 +1,4 @@
+api_servicios_listado:
+    path: /servicios/listado
+    defaults: { _controller: APIBundle:APIServicios:listarServiciosIndex }
+    methods: [GET]
