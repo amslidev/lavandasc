@@ -1,0 +1,38 @@
+<!-- Modal-->
+<div class="modal fade" id="modalReporte{{ proceso.idcita.idcita }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{ proceso.procedimiento  }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-top:5px; padding-left: 10px;">
+                    <h4 style="color: black">Fecha de realización: {{ proceso.fechaproceso | date('Y-m-d') }}</h4>
+                    <div class="clearfix"></div>
+                    <h4 style="color: black">Productos utilizados</h4>
+                    {{ proceso.productos | raw }}
+                    <div class="clearfix"></div>
+                    <h4 style="color: black;">Comentarios</h4>
+                    {{ proceso.comentarios | raw }}
+                    <div class="clearfix"></div>
+                    <hr/>
+                   <div class="col-lg-6">
+                       <h4 style="color: black">Foto antes del procedimiento</h4>
+                       <img src="{{ asset(proceso.rutafotoantes~proceso.nombrefotoantes) }}" width="200px" height="200px" aria-hidden="true">
+                   </div>
+                    <div class="col-lg-6">
+                        <h4 style="color: black">Foto después del procedimiento</h4>
+                        <img src="{{ asset(proceso.rutafotodesp~proceso.nombrefotodesp) }}" width="200px" height="200px" aria-hidden="true">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

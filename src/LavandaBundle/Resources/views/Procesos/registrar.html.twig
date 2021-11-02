@@ -1,0 +1,252 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Clientes | Proceso | Registro
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-12">
+        {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel header">
+                <h2>Registrar información del proceso <small>Cliente: {{ cita.idcliente.nombre }} {{ cita.idcliente.apellido }}. Fecha de la última cita: {{ cita.fechacita | date('Y-m-d') }} </small></h2>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.fechaproceso) }}
+                    {{ form_widget(form.fechaproceso) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.procedimiento) }}
+                    {{ form_widget(form.procedimiento) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.productos) }}
+                    {{ form_widget(form.productos) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.comentarios) }}
+                    {{ form_widget(form.comentarios) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.fotoantes) }}
+                    {{ form_widget(form.fotoantes) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.fotodespues) }}
+                    {{ form_widget(form.fotodespues) }}
+                </div>
+                <br/>
+                <div class="clearfix"></div>
+                <h2 class="center">Ingrese los datos de la próxima Cita</h2>
+                <div class="clearfix"></div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.servicio) }}
+                    {{ form_widget(form.servicio) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.idserviciolongitud) }}
+                    {{ form_widget(form.idserviciolongitud) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.sucursal) }}
+                    {{ form_widget(form.sucursal) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.empleado) }}
+                    {{ form_widget(form.empleado) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.fechacita) }}
+                    {{ form_widget(form.fechacita) }}
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    {{ form_label(form.horacita) }}
+                    {{ form_widget(form.horacita) }}
+                </div>
+                <div class="clearfix"></div>
+                <button type="button" id="btnagendarcita" class="btn btn-primary" onclick="agendarCita();" >Verificar disponibilidad</button>
+                <br/>
+                {{ form_widget(form.Guardar) }}
+            </div>
+            <div class="panel-footer">
+                <ul>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('producto_index') }}">Volver al listado</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {{ summernote_init() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lavandabundle_procesos_idserviciolongitud").html("");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+           var fecha = new Date();
+           var year = fecha.getFullYear();
+           var month = fecha.getMonth();
+           var day = fecha.getDate();
+
+           if(day >= "1" && day <= "9"){
+               day = "0" + day;
+           }
+
+           var fechaActual = year + "-" + (month  + 1) + "-" + day;
+            $("#lavandabundle_procesos_fechacita").attr('min', fechaActual);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_procesos_Guardar").attr("disabled", true);
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_procesos_fechacita").change(function () {
+            var fechaSel = $(this).val();
+            var date = new Date('"' + fechaSel + '"');
+
+            if(date.getDay() === 0){
+                toastr.error("El día domingo no está disponible para agendar cita", "¡Error!");
+                $(this).val("");
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_procesos_sucursal").change(function () {
+           var idsucursal = $(this).val();
+           var datos = {};
+           datos.idsucursal = idsucursal;
+           $.ajax({
+               type: 'GET',
+               url: '{{ path('empleado_sucursal') }}',
+               data: datos,
+               success: function (empleados) {
+                   $("#lavandabundle_procesos_empleado").html("");
+                   var emp = $("#lavandabundle_procesos_empleado");
+                   var total = empleados.length;
+                   if(total > 0){
+                       emp.append('<option value="">Seleccione al empleado que le atenderá</option>');
+                       for(var i=0;i<total;i++){
+                           emp.append('<option value="' + empleados[i].idempleado + '">' + empleados[i].nombre + '</option>');
+                       }
+                   }else{
+                       emp.append('<option value="">No se han registrado empleados para esta sucursal</option>');
+                   }
+               },
+               error: function (empleados) {
+
+               }
+           });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function agendarCita() {
+            var idservicio = $("#lavandabundle_procesos_servicio").val();
+            var idlongitud = $("#lavandabundle_procesos_idserviciolongitud").val();
+            var idsucursal = $("#lavandabundle_procesos_sucursal").val();
+            var idempleado = $("#lavandabundle_procesos_empleado").val();
+            var fecha = $("#lavandabundle_procesos_fechacita").val();
+            var hora = $("#lavandabundle_procesos_horacita").val();
+            var idcliente = '{{ cita.idcliente.idcliente }}';
+            var datos = {};
+
+            if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && hora !== ""){
+                datos.idservicio = idservicio;
+                datos.idlongitud = idlongitud;
+                datos.idsucursal = idsucursal;
+                datos.idempleado = idempleado;
+                datos.fecha = fecha;
+                datos.hora = hora;
+                datos.idcliente = idcliente;
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('citas_proceso')}}',
+                    data: datos,
+                    success: function () {
+                        toastr.success("Cita agendada correctamente", "¡Éxito!");
+                        $("#lavandabundle_procesos_Guardar").attr("disabled", false);
+                        $("#lavandabundle_procesos_servicio").attr("disabled", true);
+                        $("#lavandabundle_procesos_idserviciolongitud").attr("disabled",  true);
+                        $("#lavandabundle_procesos_sucursal").attr("disabled", true);
+                        $("#lavandabundle_procesos_empleado").attr("disabled", true);
+                        $("#lavandabundle_procesos_fechacita").attr("readonly", true);
+                        $("#lavandabundle_procesos_horacita").attr("readonly", true);
+                        $("#btnagendarcita").attr("disabled", true);
+
+                    },
+                    error: function () {
+                        toastr.error("No es posible agendar la cita para el día y hora seleccionado", "¡Error!");
+                    }
+                });
+
+            }else{
+                $("#lavandabundle_procesos_horacita").val("");
+                toastr.error("Para agendar la cita debe seleccionar el servicio, la sucursal, el empleado, la fecha y la hora de la cita", "¡Error!");
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_procesos_servicio").change(function () {
+            var idservicio = $(this).val();
+            var datos = {};
+            datos.idservicio = idservicio;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('serviciolongitud_listar_longitudes') }}',
+                data: datos,
+                success: function (longitudes) {
+                    $("#lavandabundle_procesos_idserviciolongitud").html("");
+                    var long = $("#lavandabundle_procesos_idserviciolongitud");
+                    var total = longitudes.length;
+                    if(total > 0){
+                        $("#lavandabundle_procesos_idserviciolongitud").attr("required", true);
+                        long.append('<option value="">Seleccione un elemento</option>');
+                        for (var i = 0; i<total; i++){
+                            long.append('<option value="'+longitudes[i].idserviciolongitud + '">'+ longitudes[i].longitud + ' cm' + '</option>');
+                        }
+                    }else{
+                        long.append('<option value="">Este servicio no está asociado a registros de longitudes</option>');
+                    }
+                },
+                error: function () {
+                    toastr.error("Error al intentar recuperar la lista de longitudes", "¡Error!");
+                }
+            });
+        });
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/servicio.js') }}"></script>
+
+{% endblock javascripts %}

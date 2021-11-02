@@ -1,0 +1,11 @@
+sucursal_index:
+    path: /sucursales
+    defaults: { _controller: LavandaBundle:Sucursal:index}
+
+sucursal_new:
+    path: /sucursales/new
+    defaults: { _controller: LavandaBundle:Sucursal:add}
+
+sucursal_edit:
+    path: /sucursales/edit/{id}
+    defaults: { _controller: LavandaBundle:Sucursal:edit}

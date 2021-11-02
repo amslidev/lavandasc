@@ -51,9 +51,10 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Tiempo (Minutos)</th>
-                    <th>Precio por Onza</th>
-                    <th>Descripción</th>
+                    <th>Tiempo (Min.)</th>
+                    <th>Precio</th>
+                    <th>Foto</th>
+                    <th>Cobro largo cabello</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -62,19 +63,55 @@
                     <tr>
                         <td>{{ servicio.nombre }}</td>
                         <td>{{ servicio.tiempo }}</td>
-                        <td>{{ servicio.precio }}</td>
-                        <td>{{ servicio.descripcion | raw }}</td>
+                        <td>${{ servicio.precio | number_format(2, ".",",") }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a style="font-size: medium" class="label label-warning" href="{{ path('servicio_edit', { 'idservicio': servicio.idservicio }) }}"> Modificar</a>
-                                </li>
-                            </ul>
+                            {% if servicio.rutaimagen != null %}
+                                <img src="{{ asset(servicio.rutaimagen~servicio.nombreimagen) }}" style="width: 80px;height: 80px" class="img-circle">
+                            {% else %}
+                                <p>Sin foto</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if servicio.cobraronza == 1 %}
+                                <i class="fa fa-check-square-o" style="color: green"></i>
+                            {% else %}
+                                <i class="fa fa-close" style="color: red"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{{ path('servicio_edit', { 'idservicio': servicio.idservicio }) }}"> Modificar</a>
+                            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#myModal{{ servicio.idservicio }}">
+                                Descripción
+                            </button>
+                            {% if servicio.cobraronza == 1 %}
+                                <a href="{{ path('serviciolongitud_index', {'idservicio': servicio.idservicio}) }}" class="btn btn-primary btn-sm"><i class="fa fa-cog"> Longitudes</i> </a>
+                            {% endif %}
                         </td>
                     </tr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal{{ servicio.idservicio }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">{{ servicio.nombre }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea class="summernote">
+                                        {{ servicio.descripcion }}
+                                    </textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
                 </tbody>
             </table>
+
+
         </div>
     </div>
 </div>
@@ -85,6 +122,7 @@
 
 {{ parent() }}
 
+    {{ summernote_init() }}
 
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>

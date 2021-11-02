@@ -5,6 +5,7 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Servicio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Servicio controller.
@@ -16,6 +17,14 @@ class ServicioController extends Controller
      * Lists all servicio entities.
      *
      */
+
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -38,9 +47,30 @@ class ServicioController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $base = "uploads/servicios/";
+            $path = $base.$servicio->getNombre()."/";
+
+            if(!file_exists($path)){
+                mkdir($path, 777, true);
+            }
+
+            $foto = $form["file"]->getData();
+            if(!empty($foto) && $foto != null){
+                $ext = $foto->guessExtension();
+                $file_name = time().".".$ext;
+                $servicio->setRutaimagen($path);
+                $servicio->setNombreimagen($file_name);
+                $foto->move($path, $file_name);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($servicio);
             $em->flush();
+
+            $status = "Servicio registrado correctamente";
+            $this->session->getFlashBag()->add("info","success");
+            $this->session->getFlashBag()->add("status",$status);
 
             return $this->redirectToRoute('servicio_index');
         }
@@ -76,7 +106,29 @@ class ServicioController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $base = "uploads/servicios/";
+            $path = $base.$servicio->getNombre()."/";
+
+            if(!file_exists($path)){
+                mkdir($path, 777, true);
+            }
+
+            $foto = $editForm["file"]->getData();
+            if(!empty($foto) && $foto != null){
+                $ext = $foto->guessExtension();
+                $file_name = time().".".$ext;
+                $servicio->setRutaimagen($path);
+                $servicio->setNombreimagen($file_name);
+                $foto->move($path, $file_name);
+            }
+
+            $this->getDoctrine()->getManager()->persist($servicio);
             $this->getDoctrine()->getManager()->flush();
+
+            $status = "Servicio editado correctamente";
+            $this->session->getFlashBag()->add("info","success");
+            $this->session->getFlashBag()->add("status",$status);
 
             return $this->redirectToRoute('servicio_index');
         }

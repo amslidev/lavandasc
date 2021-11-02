@@ -1,6 +1,10 @@
 LavandaBundle\Entity\Empleado:
     type: entity
     table: empleado
+    indexes:
+        sucursal_empleado_fk:
+            columns:
+                - idSucursal
     id:
         idempleado:
             type: integer
@@ -73,4 +77,15 @@ LavandaBundle\Entity\Empleado:
             options:
                 fixed: false
             column: nombreImagen
+    manyToOne:
+        idsucursal:
+            targetEntity: Sucursal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idSucursal:
+                    referencedColumnName: idSucursal
+            orphanRemoval: false
     lifecycleCallbacks: {  }

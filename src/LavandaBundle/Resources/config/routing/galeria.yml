@@ -1,0 +1,11 @@
+galeria_index:
+    path: /galeria_app
+    defaults: { _controller: LavandaBundle:Galeria:index }
+
+galeria_eliminar_foto:
+    path: /galeria_app/eliminar_foto/{idfoto}
+    defaults: { _controller: LavandaBundle:Galeria:elimarFoto }
+
+galeria_eliminar_fotos:
+    path: /galeria_app/eliminar_fotos
+    defaults: { _controller: LavandaBundle:Galeria:elimarFotos }

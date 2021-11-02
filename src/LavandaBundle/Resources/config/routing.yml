@@ -17,3 +17,47 @@ lavanda_empresa:
 lavanda_users:
     resource: "@LavandaBundle/Resources/config/routing/users.yml"
     prefix: /
+
+lavanda_cortesias:
+    resource: "@LavandaBundle/Resources/config/routing/cortesia.yml"
+    prefix: /
+
+lavanda_productos:
+    resource: "@LavandaBundle/Resources/config/routing/producto.yml"
+    prefix: /
+
+lavanda_clientes:
+    resource: "@LavandaBundle/Resources/config/routing/cliente.yml"
+    prefix: /
+
+lavanda_citas:
+    resource: "@LavandaBundle/Resources/config/routing/citas.yml"
+    prefix: /
+
+lavanda_encuesta:
+    resource: "@LavandaBundle/Resources/config/routing/encuesta.yml"
+    prefix: /
+
+lavanda_cobranza:
+    resource: "@LavandaBundle/Resources/config/routing/cobranza.yml"
+    prefix: /
+
+lavanda_sucursal:
+    resource: "@LavandaBundle/Resources/config/routing/sucursal.yml"
+    prefix: /
+
+lavanda_expediente:
+    resource: "@LavandaBundle/Resources/config/routing/expediente.yml"
+    prefix: /
+
+lavanda_galeria:
+    resource: "@LavandaBundle/Resources/config/routing/galeria.yml"
+    prefix: /
+
+lavanda_procesos:
+    resource: "@LavandaBundle/Resources/config/routing/proceso.yml"
+    prefix: /
+
+lavanda_serviciolongitud:
+    resource: "@LavandaBundle/Resources/config/routing/serviciolongitud.yml"
+    prefix: /

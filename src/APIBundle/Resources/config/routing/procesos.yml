@@ -1,0 +1,9 @@
+api_procesos_detalle:
+    path: /procesos/detalle
+    defaults: { _controller: APIBundle:APIProcesos:listarProcesos }
+    methods: [GET]
+
+api_procesos_detalle_fotos:
+    path: /procesos/detalle/fotos
+    defaults: { _controller: APIBundle:APIProcesos:mostrarFoto }
+    methods: [GET]

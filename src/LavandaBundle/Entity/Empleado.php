@@ -370,4 +370,40 @@ class Empleado
     {
         return $this->nombreimagen;
     }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
+    /**
+     * @var \LavandaBundle\Entity\Sucursal
+     */
+    private $idsucursal;
+
+
+    /**
+     * Set idsucursal
+     *
+     * @param \LavandaBundle\Entity\Sucursal $idsucursal
+     *
+     * @return Empleado
+     */
+    public function setIdsucursal(\LavandaBundle\Entity\Sucursal $idsucursal = null)
+    {
+        $this->idsucursal = $idsucursal;
+
+        return $this;
+    }
+
+    /**
+     * Get idsucursal
+     *
+     * @return \LavandaBundle\Entity\Sucursal
+     */
+    public function getIdsucursal()
+    {
+        return $this->idsucursal;
+    }
+
+
 }

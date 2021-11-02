@@ -51,6 +51,7 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Sucursal</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Activo</th>
@@ -63,6 +64,7 @@
                     {% for empleado in empleados %}
                         <tr>
                             <td>{{ empleado.nombre }} {{ empleado.apellido }}</td>
+                            <td>{{ empleado.idsucursal.nombre }}</td>
                             <td>{{ empleado.direccion }}</td>
                             <td>{{ empleado.telefono }}</td>
                             <td>

@@ -2,3 +2,8 @@ api_servicios_listado:
     path: /servicios/listado
     defaults: { _controller: APIBundle:APIServicios:listarServiciosIndex }
     methods: [GET]
+
+api_servicios_imagen:
+    path: /servicios/imagen
+    defaults: { _controller: APIBundle:APIServicios:showLogo }
+    methods: [GET]

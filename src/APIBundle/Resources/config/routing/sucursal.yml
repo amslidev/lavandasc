@@ -1,0 +1,4 @@
+api_sucursales_listar:
+    path: /sucursales/listado
+    defaults: { _controller: APIBundle:APISucursales:listarSucursales }
+    methods: [GET]

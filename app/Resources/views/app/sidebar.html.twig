@@ -5,7 +5,7 @@
                 {% if ("" | empresa_registrada == false) %}
                     <i class="fa fa-certificate"></i>
                 {% else %}
-                    <img width="45px" height="45px" src="{{ asset('uploads/empresa/logo/logo.png') }}" class="img-circle">
+                    <img width="45px" style="background-color: ghostwhite;" height="45px" src="{{ asset('uploads/empresa/logo/logo.png') }}" class="img-circle">
                 {% endif %}
                 <span>{{ "" | nombre_empresa }}</span>
             </a>
@@ -37,7 +37,7 @@
             <div class="menu_section">
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ path('app_dashboard') }}"><i class="fa fa-home"></i> Página principal</a></li>
+                    <li><a href="{{ path('citas_index') }}"><i class="fa fa-home"></i> Página principal</a></li>
                 </ul>
             </div>
 
@@ -45,20 +45,26 @@
             <div class="menu_section">
                 <h3>Negocio</h3>
                 <ul class="nav side-menu">
-                    <li><a href="#"><i class="fa fa-calendar-check-o"></i> Citas</a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> Clientes</a></li>
+                    <li><a href="{{ path('citas_index') }}"><i class="fa fa-calendar-check-o"></i> Citas</a></li>
+                    <li><a href="{{ path('clientes_index') }}"><i class="fa fa-users"></i> Clientes</a></li>
+                    <li><a href="{{ path('citas_cobranza') }}"><i class="fa fa-money"></i> Cobranza</a></li>
+                    <li><a href="{{ path('citas_historial') }}"><i class="fa fa-calendar-o"></i> Historial de Citas</a></li>
                 </ul>
             </div>
             {% endif %}
 
-            {% if is_granted('ROLE_ADMIN')%}
+            {% if is_granted('ROLE_ADMIN') %}
             <div class="menu_section">
                 <h3>Administración</h3>
                 <ul class="nav side-menu">
                     <li><a href="{{ path('servicio_index') }}"><i class="fa fa-list"></i> Servicios</a></li>
+                    <li><a href="{{ path('producto_index') }}"><i class="fa fa-list"></i> Productos</a></li>
+                    <li><a href="{{ path('cortesia_index') }}"><i class="fa fa-glass"></i> Cortesías</a></li>
+                    <li><a href="{{ path('sucursal_index') }}"><i class="fa fa-building"></i> Sucursales</a></li>
                     <li><a href="{{ path('empleado_index') }}"><i class="fa fa-user"></i> Empleados</a></li>
-                    <li><a href="{{ path('empresa_index') }}"><i class="fa fa-cog"></i> Configuración Empresa</a></li>
                     <li><a href="{{ path('users_index') }}"><i class="fa fa-users"></i> Usuarios</a></li>
+                    <li><a href="{{ path('empresa_index') }}"><i class="fa fa-cog"></i> Configuración Empresa</a></li>
+                    <li><a href="{{ path('galeria_index') }}"><i class="fa fa-picture-o"></i> Galería App</a></li>
                 </ul>
             </div>
             {% endif %}

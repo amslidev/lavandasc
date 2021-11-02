@@ -9,7 +9,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         //Buscar datos de la empresa
-        $em = $this->getDoctrine()->getManager();
+        /*$em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery(
             "SELECT e FROM LavandaBundle:Empresa e 
@@ -20,6 +20,7 @@ class DefaultController extends Controller
 
         return $this->render('LavandaBundle:Default:index.html.twig', array(
             "empresa"=>$empresa
-        ));
+        ));*/
+        return $this->redirectToRoute('citas_index');
     }
 }

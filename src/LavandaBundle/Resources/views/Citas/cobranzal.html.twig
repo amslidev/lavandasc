@@ -1,0 +1,236 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ asset('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
+
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Citas | Cobranza
+    </title>
+{% endblock top_content_header%}
+
+
+{% block page_content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Citas <small>Cobranza</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="datatable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Colaborador</th>
+                        <th>Servicio</th>
+                        <th>Fecha (realización)</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if (citas != null) %}
+                        {% for cita in citas %}
+                            <tr>
+                                <td>{{ cita.idcliente.nombre }} {{ cita.idcliente.apellido }}</td>
+                                <td>{{ cita.idempleado.nombre }} {{ cita.idempleado.apellido }}</td>
+                                <td>{{ cita.idservicio.nombre }}</td>
+                                <td>{{ cita.fechacita | date('Y-m-d') }}</td>
+                                <td>
+                                    {% if cita.idservicio.cobraronza == 0 %}
+                                        <input type="button" class="btn btn-success" onclick="cobrarServicio({{ cita.idservicio.idservicio }},
+                                                '{{ cita.idservicio.nombre }}',
+                                                '{{ cita.idcliente.nombre }} {{ cita.idcliente.apellido }}',
+                                        {{ cita.idservicio.precio }},
+                                        {{ cita.idcita }},
+                                        {{ cita.idcliente.idcliente }}
+                                                )" value="Cobrar">
+                                    {% else %}
+                                        <input type="button" class="btn btn-success" onclick="cobrarServicioLongitud({{ cita.idservicio.idservicio }},
+                                                '{{ cita.idservicio.nombre }}',
+                                                '{{ cita.idcliente.nombre }} {{ cita.idcliente.apellido }}',
+                                        {{ cita.idserviciolongitud.precio }},
+                                        {{ cita.idserviciolongitud.longitud }},
+                                        {{ cita.idcita }},
+                                        {{ cita.idcliente.idcliente }}
+                                                )" value="Cobrar">
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>No se encontraron registros de citas por cobrar</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+
+                <!-- Modal -->
+                <div class="modal fade" id="cobroServicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="titulModalServicio"></h3>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size: medium" id="tituloCliente"></p>
+                                <p style="font-size: medium" id="precio"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btncobroservicio"> <i class="fa fa-money" aria-hidden="true"> Cobrar</i></button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="cobroServicioLongitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="titulModalServicioLongitud"></h3>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size: medium" id="tituloClienteLongitud"></p>
+                                <p style="font-size: medium" id="precioLongitud"></p>
+                                <p style="font-size: medium" id="longitud"></p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btncobroservicio"> <i class="fa fa-money" aria-hidden="true"> Cobrar</i></button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        function cobrarServicio(idservicio, nombreservicio, cliente, costo, idcita, idcliente) {
+            var URL = "{{ app.request.getSchemeAndHttpHost() }}/arsc/web/";
+            $("#cobroServicio").modal('show');
+            $("#titulModalServicio").html("Cobrar servicio: " + nombreservicio);
+            $("#tituloCliente").html("Servicio brindado a: " + cliente);
+            $("#precio").html("Costo: $" + costo);
+            $(".btncobroservicio").unbind("click").click(function () {
+                var datos = {};
+                datos.idcita = idcita;
+                $.ajax({
+                   type: 'GET',
+                   url: '{{ path('cobranza_cobrar_servicio') }}',
+                   data: datos,
+                   success: function () {
+                       swal({
+                           title: "¡Éxito!",
+                           text: "¡Pago registrado correctamente!",
+                           icon: "success",
+                           button: "Aceptar",
+                       });
+                       $("#cobroServicio").modal('hide');
+                       window.location=URL+"clientes/procesos/"+idcliente;
+                   },
+                   error: function () {
+                        toastr.error("Error en la operación","¡Error!");
+                   }
+                });
+            });
+        }
+
+        function cobrarServicioLongitud(idservicio, nombreservicio, cliente, costo, longitud, idcita, idcliente) {
+            var URL = "{{ app.request.getSchemeAndHttpHost() }}/arsc/web/";
+            $("#cobroServicioLongitud").modal('show');
+            $("#titulModalServicioLongitud").html("Cobrar servicio: " + nombreservicio);
+            $("#tituloClienteLongitud").html("Servicio brindado a: " + cliente);
+            $("#precioLongitud").html("Costo: $" + costo);
+            $("#longitud").html("Longitud: " + longitud + " cm");
+            $(".btncobroservicio").unbind("click").click(function () {
+                var datos = {};
+                datos.idcita = idcita;
+                datos.total = costo;
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('cobranza_cobrar_onza') }}',
+                    data: datos,
+                    success: function () {
+                        swal({
+                            title: "¡Éxito!",
+                            text: "¡Pago registrado correctamente!",
+                            icon: "success",
+                            button: "Aceptar",
+                        });
+                        $("#cobroServicio").modal('hide');
+                        window.location=URL+"clientes/procesos/"+idcliente;
+                    },
+                    error: function () {
+                        toastr.error("Error en la operación","¡Error!");
+                    }
+                });
+            });
+        }
+
+    </script>
+
+
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Datatables -->
+    <script src="{{ asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('assets/js/dtconfig.js') }}"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

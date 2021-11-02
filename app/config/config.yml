@@ -8,7 +8,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi:             ~
@@ -80,11 +80,17 @@ fos_user:
       address: you@example.com
       sender_name: You
 
-kms_froala_editor:
-    language: "es"
-    includeJQuery: true
-    includeCodeMirror: false
-    includeFontAwesome: false
-    includeJS: true
-    includeCSS: true
-    pluginsDisabled: [ "image",  "file", "video", "table", "link", "draggable", "code_view", "emoticons", "emoticons" ,"entities", "inline_class", "inline_style", "paragraph_format", "paragraph_style", "save" ]
+fm_summernote:
+    selector: .summernote
+    toolbar:
+      style: ['bold', 'italic', 'clear']
+      font: ['strikethrough', 'superscript', 'subscript']
+      fontsize: ['fontsize']
+      color: ['color']
+      para: ['ul', 'ol', 'paragraph']
+    width: 700
+    height: 100
+    language: 'es-ES' # define language (with language culture code like de-DE, fr-FR, etc.) by default, it is in english
+    include_jquery: false #include js libraries, if your template already have them, set to false
+    include_bootstrap: false
+    include_fontawesome: true

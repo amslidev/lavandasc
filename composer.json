@@ -42,8 +42,9 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "phing/phing": "^2.0",
-        "kms/froala-editor-bundle": "^2.9",
-        "firebase/php-jwt": "^5.3"
+        "firebase/php-jwt": "^5.3",
+        "helios-ag/fm-summernote-bundle": "^0.2.0",
+        "symfony/dotenv": "^3.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

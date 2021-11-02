@@ -1,0 +1,105 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Encuesta
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <a href="{{ path('clientes_index') }}" class="btn btn-primary"><i class="fa fa-backward"> Clientes</i></a>
+        <div class="x_panel">
+            <div class="x_title">
+                <h3>Respuestas de {{ cliente.nombre  }} {{ cliente.apellido }}  <small>Respondió el día: {{ encuesta.fecharegistro | date('d-m-Y H:i:s') }}</small></h3>
+            </div>
+            <div class="x_content">
+                <div class="col-lg-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p style="font-size: medium; color: black;"> ¿Cuándo fue la última vez que se aplicó algún tratamiento de reconstrucción capilar?</p>
+                            <label for="txtpregunta1">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta1" name="txtpregunta1" value="{{ encuesta.pregunta1 }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> ¿Tiene actualmente algún proceso de decoloración en su cabello?</p>
+                            <label for="opcion1">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion1" name="opcion1" value="{{ (encuesta.opcion1 == "1" ? "SÍ" : "NO") }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> En caso de ser su respuesta positiva, ¿Hace cuánto que se lo realizó?</p>
+                            <label for="txtpregunta2">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta2" name="txtpregunta2" value="{{ encuesta.opcion1 == "1" ? encuesta.pregunta2 : "Respondío que NO" }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> ¿Tiene actualmente algún proceso de alaciado o rizos permanentes?</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion2 == "1" ? "SÍ" : "NO") }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> En caso de ser su respuesta positiva, ¿Hace cuánto que se lo realizó?</p>
+                            <label for="txtpregunta3">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta3" name="txtpregunta3" value="{{ encuesta.opcion2 == "1" ? encuesta.pregunta3 : "Respondío que NO" }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> ¿Con qué frecuencia lava normalmente su cabello?</p>
+                            <label for="txtpregunta4">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta4" name="txtpregunta4" value="{{ encuesta.pregunta4 }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> ¿Con qué frecuencia plancha o utiliza utensilios de calor en su cabello?</p>
+                            <label for="txtpregunta5">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta5" name="txtpregunta5" value="{{ encuesta.pregunta5 }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;"> ¿Presenta algún tipo de alergia?</p>
+                            <label for="txtpregunta6">Respuesta: </label>
+                            <input readonly class="form-control" id="txtpregunta6" name="txtpregunta6" value="{{ encuesta.pregunta6 }}">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {{ summernote_init() }}
+
+    <script type="text/javascript">
+        $("#lavandabundle_empresa_logo").change(function () {
+            var fileInput = $(this);
+            var filePath = fileInput.val();
+            var allowedExtensions = /(.png)$/i;
+            if(!allowedExtensions.exec(filePath)){
+                toastr.error("El archivo debe contener la extensión .png","¡Atención!");
+                fileInput.val('');
+                return false;
+            }
+        });
+    </script>
+
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

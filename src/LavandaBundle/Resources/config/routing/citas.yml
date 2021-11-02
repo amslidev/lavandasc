@@ -1,0 +1,25 @@
+citas_index:
+    path: /citas
+    defaults: { _controller: LavandaBundle:Citas:index }
+
+citas_listado:
+    path: /citas/listado
+    defaults: { _controller: LavandaBundle:Citas:buscarCitas }
+
+citas_actualizar_estatus:
+    path: /citas/actualizar_estatus
+    defaults: { _controller: LavandaBundle:Citas:actualizarEstatusCita }
+    condition: "request.isXmlHttpRequest()"
+
+citas_historial:
+    path: /citas/historial
+    defaults: { _controller: LavandaBundle:Citas:historialCitas }
+
+citas_cobranza:
+    path: /citas/cobranza
+    defaults: { _controller: LavandaBundle:Cobranza:index }
+
+citas_proceso:
+    path: /citas/proceso
+    defaults: { _controller: LavandaBundle:Citas:registraCitaProceso }
+    condition: "request.isXmlHttpRequest()"

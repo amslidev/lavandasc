@@ -1,0 +1,3 @@
+proceso_registro:
+    path: /cita/proceso/registro/{idcita}
+    defaults: { _controller: LavandaBundle:Procesos:registrarProceso }

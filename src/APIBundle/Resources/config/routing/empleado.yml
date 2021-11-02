@@ -1,0 +1,9 @@
+api_empledos_listar:
+    path: /empleados/listado
+    defaults: { _controller: APIBundle:APIEmpleados:listarEmpleados}
+    methods: [GET]
+
+api_empledos_imagen:
+    path: /empleados/imagen
+    defaults: { _controller: APIBundle:APIEmpleados:showFoto}
+    methods: [GET]

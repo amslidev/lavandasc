@@ -14,3 +14,13 @@ users_validar_username:
 users_editar_usuario:
     path: /users/editar_usuario/{idusuario}
     defaults: { _controller: LavandaBundle:Usuarios:editarUsuario}
+
+users_lock_user:
+    path: /users/lock_user
+    defaults: { _controller: LavandaBundle:Usuarios:lockUser }
+    condition: "request.isXmlHttpRequest()"
+
+users_unlock_user:
+    path: /users/unlock_user
+    defaults: { _controller: LavandaBundle:Usuarios:unlockUser }
+    condition: "request.isXmlHttpRequest()"

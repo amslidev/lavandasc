@@ -1,0 +1,16 @@
+serviciolongitud_index:
+    path: /servicios/servicio_longitud/{idservicio}
+    defaults: { _controller: LavandaBundle:ServicioLongitud:index }
+
+serviciolongitud_editar:
+    path: /servicios/servicio_longitud/editar/{idlongitud}
+    defaults: { _controller: LavandaBundle:ServicioLongitud:editar }
+
+serviciolongitud_eliminar:
+    path: /servicios/servicio_longitud/eliminar/{idlongitud}/{idservicio}
+    defaults: { _controller: LavandaBundle:ServicioLongitud:eliminar }
+
+serviciolongitud_listar_longitudes:
+    path: /servicios/serviciolongitud/listar_longitudes
+    defaults: { _controller: LavandaBundle:ServicioLongitud:listarLongitudServicio }
+    condition: "request.isXmlHttpRequest()"

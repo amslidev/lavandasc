@@ -1,0 +1,11 @@
+producto_index:
+    path: /productos
+    defaults: { _controller: LavandaBundle:Productos:index}
+
+producto_new:
+    path: /productos/new
+    defaults: { _controller: LavandaBundle:Productos:new}
+
+producto_edit:
+    path: /productos/edit/{idproducto}
+    defaults: { _controller: LavandaBundle:Productos:edit}

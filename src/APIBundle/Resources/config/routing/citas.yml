@@ -1,0 +1,9 @@
+api_citas_verificar:
+    path: /citas/verificar
+    defaults: { _controller: APIBundle:APICitas:validarCita}
+    methods: [POST]
+
+api_citas_mis_citas:
+    path: /citas/mis_citas
+    defaults: { _controller: APIBundle:APICitas:misCitas}
+    methods: [GET]

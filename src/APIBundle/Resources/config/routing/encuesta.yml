@@ -1,0 +1,4 @@
+api_encuesta_registro:
+    path: /encuesta/registro
+    defaults: { _controller: APIBundle:APIEncuesta:registrarEncuesta }
+    methods: [POST]

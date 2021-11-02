@@ -1,0 +1,9 @@
+api_productos_listado:
+    path: /productos/listado
+    defaults: { _controller: APIBundle:APIProductos:indexProductos}
+    methods: [GET]
+
+api_productos_logo:
+    path: /productos/logo
+    defaults: { _controller: APIBundle:APIProductos:showLogo}
+    methods: [GET]

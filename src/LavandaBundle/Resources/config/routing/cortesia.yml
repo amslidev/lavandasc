@@ -1,0 +1,11 @@
+cortesia_index:
+    path: /cortesias
+    defaults: { _controller: LavandaBundle:Cortesias:index}
+
+cortesia_new:
+    path: /cortesias/new
+    defaults: { _controller: LavandaBundle:Cortesias:new}
+
+cortesia_edit:
+    path: /cortesias/edit/{idcortesia}
+    defaults: { _controller: LavandaBundle:Cortesias:edit}

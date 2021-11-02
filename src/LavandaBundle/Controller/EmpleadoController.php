@@ -5,6 +5,7 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Empleado;
 use LavandaBundle\Form\EmpleadoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -102,9 +103,31 @@ class EmpleadoController extends Controller
             return $this->redirectToRoute("empleado_index");
         }
 
-        return $this->render('LavandaBundle:Empleados:new.html.twig', array(
+        return $this->render('LavandaBundle:Empleados:edit.html.twig', array(
             "form"=>$form->createView(),
             "empleado"=>$empleado
         ));
     }
+
+    public function listarEmpleadosSucursalAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $idscursal = $request->get('idsucursal');
+
+        $empleados = $em->getRepository('LavandaBundle:Empleado')->findBy(array(
+            "idsucursal" => $idscursal
+        ));
+
+        $arrEmpleados = array();
+
+        foreach ($empleados as $empleado){
+            array_push($arrEmpleados, [
+               "idempleado" => $empleado->getIdempleado(),
+                "nombre" => $empleado->getNombre()." ".$empleado->getApellido()
+            ]);
+        }
+
+        return new JsonResponse($arrEmpleados);
+    }
+
 }

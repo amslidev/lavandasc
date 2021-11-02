@@ -34,4 +34,22 @@ LavandaBundle\Entity\Servicio:
             length: 65535
             options:
                 fixed: false
+        cobraronza:
+            type: boolean
+            nullable: true
+            column: cobrarOnza
+        rutaimagen:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: nombreImagen
     lifecycleCallbacks: {  }

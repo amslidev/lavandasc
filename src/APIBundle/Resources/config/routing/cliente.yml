@@ -1,0 +1,9 @@
+api_cliente_new:
+    path: /clientes/new
+    defaults: { _controller: APIBundle:APIClientes:new }
+    methods: [POST]
+
+api_cliente_login:
+    path: /clientes/login
+    defaults: { _controller: APIBundle:APIClientes:login }
+    methods: [POST]

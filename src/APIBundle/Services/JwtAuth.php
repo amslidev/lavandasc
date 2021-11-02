@@ -35,8 +35,7 @@ class JwtAuth
         if($passwordValid){
             $token = array(
                 "sub" => $usuario->getIdusuario(),
-                "email" => $usuario->getEmail(),
-                "tag" => $usuario->getTaguser(),
+                "username" => $usuario->getUsername(),
                 "iat" => time(),
                 "exp" => time() + (7*24*60*60)
             );

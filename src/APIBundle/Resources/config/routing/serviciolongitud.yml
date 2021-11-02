@@ -1,0 +1,4 @@
+api_serviciolongitud_longitudes:
+    path: /serviciolongitud/longitudes
+    defaults: { _controller: APIBundle:APIServicioLongitud:listarServicioLongitud }
+    methods: [GET]

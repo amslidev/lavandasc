@@ -159,4 +159,46 @@ class UsuariosController extends Controller
             "usuario"=>$usuario
         ));
     }
+
+    public  function  lockUserAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $idusuario = $request->query->get('idusuario');
+
+        $usuario = $em->getRepository('LavandaBundle:Usuario')->find($idusuario);
+
+        $usuario->setIsactive(false);
+
+        $em->persist($usuario);
+        $flush = $em->flush();
+
+        $response = new Response();
+        if($flush == null){
+            $response->setStatusCode(200);
+        }else{
+            $response->setStatusCode(500);
+        }
+        return $response;
+    }
+
+    public  function  unlockUserAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $idusuario = $request->query->get('idusuario');
+
+        $usuario = $em->getRepository('LavandaBundle:Usuario')->find($idusuario);
+
+        $usuario->setIsactive(true);
+
+        $em->persist($usuario);
+        $flush = $em->flush();
+
+        $response = new Response();
+        if($flush == null){
+            $response->setStatusCode(200);
+        }else{
+            $response->setStatusCode(500);
+        }
+        return $response;
+    }
 }

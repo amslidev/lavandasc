@@ -6,6 +6,7 @@ use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -51,27 +52,24 @@ class EmpresaType extends AbstractType
                 "data_class"=>null,
                 "required"=>false
             ))
-            ->add('mision',FroalaEditorType::class, array(
-                "language" => "es",
-                "toolbarInline" => false,
-                "tableColors" => [ "#FFFFFF", "#FF0000" ],
+            ->add('mision', TextareaType::class, array(
                 "label"=>"Misión",
-                "required"=>false
-            ) )
-            ->add('vision', FroalaEditorType::class, array(
-                "language" => "es",
-                "toolbarInline" => false,
-                "tableColors" => [ "#FFFFFF", "#FF0000" ],
+                "attr"=>array(
+                    "class"=>"summernote",
+                )
+            ))
+            ->add('vision', TextareaType::class, array(
                 "label"=>"Visión",
-                "required"=>false
+                "attr"=>array(
+                    "class"=>"summernote",
+                )
             ))
-            ->add('valores', FroalaEditorType::class, array(
-                "language" => "es",
-                "toolbarInline" => false,
-                "tableColors" => [ "#FFFFFF", "#FF0000" ],
+            ->add('valores',TextareaType::class, array(
                 "label"=>"Valores",
-                "required"=>false
-            ))
+                "attr"=>array(
+                    "class"=>"summernote",
+                )
+            ) )
             ->add('Guardar', SubmitType::class, array(
                 "label"=>"Guardar",
                 "attr"=>array("class"=>"form-submit btn btn-success")

@@ -9,3 +9,8 @@ empleado_new:
 empleado_edit:
     path: /empleados/edit/{idempleado}
     defaults: { _controller: "LavandaBundle:Empleado:edit"}
+
+empleado_sucursal:
+    path: /empleados/sucursal
+    defaults: { _controller: "LavandaBundle:Empleado:listarEmpleadosSucursal"}
+    condition: "request.isXmlHttpRequest()"

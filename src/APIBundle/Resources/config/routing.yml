@@ -9,3 +9,43 @@ api_empresa:
 api_servicios:
     resource: "@APIBundle/Resources/config/routing/servicio.yml"
     prefix:    /
+
+api_productos:
+    resource: "@APIBundle/Resources/config/routing/producto.yml"
+    prefix:    /
+
+api_empleados:
+    resource: "@APIBundle/Resources/config/routing/empleado.yml"
+    prefix:    /
+
+api_clientes:
+    resource: "@APIBundle/Resources/config/routing/cliente.yml"
+    prefix:    /
+
+api_cortesias:
+    resource: "@APIBundle/Resources/config/routing/cortesia.yml"
+    prefix:    /
+
+api_citas:
+    resource: "@APIBundle/Resources/config/routing/citas.yml"
+    prefix:    /
+
+api_encuesta:
+    resource: "@APIBundle/Resources/config/routing/encuesta.yml"
+    prefix:    /
+
+api_galeria:
+    resource: "@APIBundle/Resources/config/routing/galeria.yml"
+    prefix:    /
+
+api_sucursales:
+    resource: "@APIBundle/Resources/config/routing/sucursal.yml"
+    prefix:    /
+
+api_procesos:
+    resource: "@APIBundle/Resources/config/routing/procesos.yml"
+    prefix:    /
+
+api_serviciolongitud:
+    resource: "@APIBundle/Resources/config/routing/serviciolongitud.yml"
+    prefix:    /

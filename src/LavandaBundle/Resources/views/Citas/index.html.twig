@@ -1,0 +1,247 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.print.css') }}" rel="stylesheet" media="print">
+
+
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Citas
+    </title>
+{% endblock top_content_header%}
+
+
+{% block page_content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>CITAS <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-12">
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                </div>
+                <br/>
+               <div id="calendar"></div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="datosCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="titulModal"></h3>
+                            </div>
+                            <div class="modal-body">
+                                <h4 id="servicio"></h4>
+                                <div class="center-block">
+                                    <button class="btn btn-success btnrealizada" id="btnrealizada">Cita realizada</button>
+                                    <button class="btn btn-danger btncancelada" id="btncancelada">Cita cancelada</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+
+    <!-- FullCalendar -->
+    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lavandabundle_citas_idempleado").html("");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_citas_idsucursal").change(function () {
+           var idsucursal = $(this).val();
+           var datos = {};
+           datos.idsucursal = idsucursal;
+           $.ajax({
+              type: 'GET',
+              url: '{{ path('empleado_sucursal') }}',
+              data: datos,
+              success: function (empleados) {
+                  console.log(empleados);
+                  $("#lavandabundle_citas_idempleado").html("");
+                  var emp = $("#lavandabundle_citas_idempleado");
+                  var total = empleados.length;
+                  if(total > 0){
+                      emp.append('<option value="">Seleccione un elemento</option>');
+                      for(var i =0;i<total;i++){
+                          emp.append('<option value="'+empleados[i].idempleado + '">'+empleados[i].nombre + '</option>');
+                      }
+                  }else{
+                      emp.append('<option value="">No se han registrado empleados para esta sucursal</option>');
+                  }
+              },
+              error: function () {
+                toastr.error("Error al intentar cargar la lista de empleados", "¡Error!");
+              }
+           });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap',
+                defaultView: 'agendaWeek',
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sáb'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                hiddenDays: [7],
+                buttonText: {
+                    today:    'Hoy',
+                    month:    'Mes',
+                    week:     'Semana',
+                    day:      'Día',
+                    list:     'Lista'
+                },
+                minTime: "09:00:00",
+                maxTime: "20:00:00",
+                eventColor: '#9161B3',
+                eventTextColor: '#2D2C28',
+                allDaySlot: false,
+                eventRender: function(eventObj, $el){
+                    $el.popover({
+                        title: eventObj.title,
+                        content: eventObj.description,
+                        trigger: 'hover',
+                        placement: 'top',
+                        container: 'body'
+                    });
+                },
+                events: function (start, end, timezone, callback) {
+                    var datos = {};
+                    datos.idempleado = $("#lavandabundle_citas_idempleado").val();
+                    $.ajax({
+                        url: '{{ path('citas_listado') }}',
+                        type: 'GET',
+                        data: datos,
+                        success: function (doc) {
+                            var events = [];
+
+                           for(cita of doc){
+                               events.push({
+                                   id: cita.id,
+                                   title: cita.title,
+                                   start: cita.start,
+                                   end: cita.end,
+                                   color: cita.color,
+                                   description: cita.description
+                               });
+                           }
+                            callback(events);
+                        },
+                        error: function (err) {
+                            alert("Error en la carga");
+                        }
+                    });
+                },
+                eventClick: function(event, jsEvent, view) {
+                    $("#datosCita").modal("show");
+                    $("#titulModal").html(event.title);
+                    $("#servicio").html(event.description);
+
+                    if(event.color == "#D8C223"){
+                        $("#btnrealizada").show();
+                        $("#btnrealizada").attr("idcita",event.id);
+                        $("#btncancelada").show();
+                        $("#btncancelada").attr("idcita", event.id);
+                    }else{
+                        $("#btnrealizada").hide();
+                        $("#btncancelada").hide();
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $("#lavandabundle_citas_idempleado").change(function () {
+            $("#calendar").fullCalendar('refetchEvents');
+        });
+    </script>
+
+    <script>
+        $(".btnrealizada").unbind("click").click(function () {
+            $("#datosCita").modal("hide");
+            var idcita = $(this).attr("idcita");
+            var datos = {};
+            datos.idcita = idcita;
+            datos.opcion = "1";
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('citas_actualizar_estatus') }}',
+               data: datos,
+               success: function () {
+                   toastr.success("Se actualizó el estatus de la cita como REALIZADA", "¡Éxito!");
+                   $("#calendar").fullCalendar('refetchEvents');
+               },
+               error: function () {
+                   toastr.error("Error en la operación","¡Error!");
+               }
+            });
+        });
+        $(".btncancelada").unbind("click").click(function () {
+            $("#datosCita").modal("hide");
+            var idcita = $(this).attr("idcita");
+            var datos = {};
+            datos.idcita = idcita;
+            datos.opcion = "2";
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('citas_actualizar_estatus') }}',
+                data: datos,
+                success: function () {
+                    toastr.success("La cita ha sido eliminada exitosamente", "¡Éxito!");
+                    $("#calendar").fullCalendar('refetchEvents');
+                },
+                error: function () {
+                    toastr.error("Error en la operación","¡Error!");
+                }
+            });
+        });
+    </script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

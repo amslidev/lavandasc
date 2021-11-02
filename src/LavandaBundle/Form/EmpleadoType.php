@@ -2,6 +2,8 @@
 
 namespace LavandaBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -26,6 +28,16 @@ class EmpleadoType extends AbstractType
             ->add('apellido', TextType::class, array(
                 "label"=>"Apellidos",
                 "attr"=>array("class"=>"form-control")
+            ))
+            ->add('idsucursal', EntityType::class, array(
+                "label" => "Sucursal a la que pertenece",
+                "class" => "LavandaBundle\Entity\Sucursal",
+                "placeholder" => "Seleccione un elemento",
+                "attr" => array("class" => "form-control"),
+                "query_builder" => function(EntityRepository $er){
+                    return $er->createQueryBuilder('s')
+                        ->where('s.activo = 1');
+                }
             ))
             ->add('direccion', TextareaType::class, array(
                 "label"=>"Ingrese la dirección",

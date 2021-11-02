@@ -1,0 +1,147 @@
+{% extends ":app:base.html.twig" %}
+
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{{ asset('assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{{ asset('assets/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
+
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Galería App
+    </title>
+{% endblock top_content_header%}
+
+
+{% block page_content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>Galería para la Aplicación</h2>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alignright">
+        {% if fotos != null %}
+            <a href="{{ path('galeria_eliminar_fotos') }}" class="label label-danger"><i class="fa fa-trash"> Eliminar todo</i></a>
+        {% endif %}
+    </div>
+    <div class="col-lg-12">
+        <h3>Galería</h3>
+        <div class="container">
+            <div class="row">
+                {% if fotos != null %}
+                    {% for foto in fotos %}
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                               data-image="{{ asset(foto.rutaimagen~foto.nombreimagen) }}"
+                               data-target="#image-gallery">
+                                <img class="img-thumbnail-foto" style="height: 200px; width: 200px" src="{{ asset(foto.rutaimagen~foto.nombreimagen) }}" alt="Another alt text">
+                            </a>
+                            <a href="{{ path('galeria_eliminar_foto', {'idfoto': foto.idgaleria}) }}" class="label label-danger"><i class="fa fa-trash-o"> Eliminar</i> </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2>No se encontraron fotos para la aplicación</h2>
+                {% endif %}
+                <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="image-gallery-title"></h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img id="image-gallery-image" style="height: 500px;" class="img-responsive col-md-12" src="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
+                                </button>
+
+                                <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {% for message in app.session.flashBag().get("status") %}
+        <script>
+            {% for info in app.session.flashBag().get("info") %}
+            var info = "{{ info }}";
+            console.log(info);
+            if(info == "success"){
+                toastr.success('{{ message }}', '¡Éxito!');
+            }else if(info == "error"){
+                toastr.error('{{ message }}', 'Hubo un problema...');
+            }else if(info == "info"){
+                toastr.info('{{ message }}','Información');
+            }
+            {% endfor %}
+        </script>
+
+    {% endfor %}
+
+    <script src="{{ asset('assets/js/galeria.js') }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ asset('assets/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    <!-- gauge.js -->
+    <script src="{{ asset('assets/vendors/gauge.js/dist/gauge.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Skycons -->
+    <script src="{{ asset('assets/vendors/skycons/skycons.js') }}"></script>
+    <!-- Flot -->
+    <script src="{{ asset('assets/vendors/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot/jquery.flot.resize.js') }}"></script>
+    <!-- Flot plugins -->
+    <script src="{{ asset('assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/flot.curvedlines/curvedLines.js') }}"></script>
+    <!-- DateJS -->
+    <script src="{{ asset('assets/vendors/DateJS/build/date.js') }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('assets/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+    <script src="{{ asset('assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

@@ -1,0 +1,3 @@
+cliente_expediente:
+    path: /cliente/expediente/{idcliente}
+    defaults: { _controller: LavandaBundle:Expediente:index}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -83,6 +83,10 @@
     <!--TOASTR-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+
+
+
+
     {% for message in app.session.flashBag().get("status") %}
     <script>
         {% for info in app.session.flashBag().get("info") %}
@@ -115,6 +119,7 @@
     </script>
 
     {% endfor %}
+
 {% endblock javascripts %}
 
 {% block modals %}{% endblock modals %}

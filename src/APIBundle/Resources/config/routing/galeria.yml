@@ -1,0 +1,9 @@
+api_galeria_listado:
+    path: /galeria/listado
+    defaults: { _controller: APIBundle:APIGaleria:listarGaleria}
+    methods: [GET]
+
+api_galeria_visualizar:
+    path: /galeria/visualizar
+    defaults: { _controller: APIBundle:APIGaleria:visualizarFoto}
+    methods: [GET]

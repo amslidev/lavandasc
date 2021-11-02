@@ -1,0 +1,80 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Clientes | Editar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-12">
+
+        {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel header">
+                <h2>Editar Cliente {{ cliente.nombre }} {{ cliente.apellido }}</h2>
+            </div>
+            <div class="panel-body">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                {{ form_end(form) }}
+
+            </div>
+            <div class="panel-footer">
+                <ul>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('clientes_index') }}">Volver al listado</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('clientes_index', {'idcliente': cliente.idcliente}) }}"  style="font-size: medium"> Volver al cliente</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $("#lavandabundle_cliente_email").change(function () {
+            var idcliente = '{{ cliente.idcliente }}';
+            var email = $(this).val();
+            var datos = {};
+            datos.idcliente = idcliente;
+            datos.email = email;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('cliente_valida_email') }}',
+                data: datos,
+                success: function (respuesta) {
+                    $("#lavandabundle_cliente_Guardar").attr("disabled", false);
+                },
+                error: function (respuesta) {
+                    toastr.error("El correo que ingresó ya está siendo utilizado por otro cliente", "¡Error!");
+                    $("#lavandabundle_cliente_Guardar").attr("disabled", true);
+                }
+            });
+        });
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

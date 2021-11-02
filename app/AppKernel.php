@@ -18,8 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new LavandaBundle\LavandaBundle(),
-            new \KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
             new APIBundle\APIBundle(),
+            new FM\SummernoteBundle\FMSummernoteBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -90,7 +90,27 @@
                                         <li>
                                             <a style="font-size: medium" class="label label-warning" href="{{ path('users_editar_usuario', {'idusuario': usuario.idusuario}) }}"> Modificar</a>
                                         </li>
+                                        <br/>
+                                        {% if usuario.role != 'ROLE_ADMIN' %}
+                                            <li>
+                                                <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-danger btnbloquea btn-sm
+                                                        {% if usuario.isactive == false %}
+                                                            hidden
+                                                        {% endif %}
+                                                    "> <i class="fa fa-lock" aria-hidden="true"> Bloquear</i></button>
+                                                <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-primary btndesbloquea btn-sm
+                                                        {% if usuario.isactive == true %}
+                                                            hidden
+                                                        {% endif %}
+                                                    ">
+                                                    <i class="fa fa-lock" aria-hidden="true"> Desbloquear</i></button>
+                                            </li>
+                                        {% else %}
+                                            <p>Los administradores no pueden ser bloqueados</p>
+                                        {% endif %}
+
                                     </ul>
+
                                 </td>
                             </tr>
                         {% endfor %}
@@ -111,7 +131,45 @@
 
     {{ parent() }}
 
+    <script type="text/javascript">
+        $(".btnbloquea").unbind("click").click(function () {
+           $(this).addClass("hidden");
+           $(this).parent().find(".btndesbloquea").removeClass("hidden");
+           var idusuario = $(this).attr("data-id");
+           var datos = {};
+           datos.idusuario = idusuario;
+           $.ajax({
+              'type': 'GET',
+              'url':  '{{ path('users_lock_user') }}',
+              'data': datos,
+              success: function () {
+                  toastr.success("Usuario deshabilitado correctamente","¡Éxito!");
+              },
+               error: function () {
+                   toastr.error("Error en la operación", "¡Error!");
+               }
+           });
+        });
 
+        $(".btndesbloquea").unbind("click").click(function () {
+            $(this).addClass("hidden");
+            $(this).parent().find(".btnbloquea").removeClass("hidden");
+            var idusuario = $(this).attr("data-id");
+            var datos = {};
+            datos.idusuario = idusuario;
+            $.ajax({
+                'type': 'GET',
+                'url':  '{{ path('users_unlock_user') }}',
+                'data': datos,
+                success: function () {
+                    toastr.success("Usuario habilitado correctamente","¡Éxito!");
+                },
+                error: function () {
+                    toastr.error("Error en la operación", "¡Error!");
+                }
+            });
+        });
+    </script>
 
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>

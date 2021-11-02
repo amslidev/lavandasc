@@ -36,3 +36,30 @@ services:
         arguments:
             $manager: '@doctrine.orm.entity_manager'
             $encoder: '@security.user_password_encoder.generic'
+
+    validar_encuesta.twig_extension:
+        class: LavandaBundle\Twig\Extension\ValidarEncuesta
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']
+
+    edad.twig_extension:
+        class: LavandaBundle\Twig\Extension\Edad
+        public: false
+        tags:
+        - { name: twig.extension}
+
+    fecha_cita.twig_extension:
+        class: LavandaBundle\Twig\Extension\ValidarFechaCitaExtension
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']
+
+    proceso_registrado.twig_extension:
+        class: LavandaBundle\Twig\Extension\ValidarProcesoRegistradoExtension
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']

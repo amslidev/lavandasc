@@ -1,0 +1,9 @@
+cobranza_cobrar_servicio:
+    path: /cobranza/cobrar_servicio
+    defaults: { _controller: LavandaBundle:Cobranza:cobrarServicio }
+    condition: "request.isXmlHttpRequest()"
+
+cobranza_cobrar_onza:
+    path: /cobranza/cobrar_onza
+    defaults: { _controller: LavandaBundle:Cobranza:cobrarOnza }
+    condition: "request.isXmlHttpRequest()"

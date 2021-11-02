@@ -1,0 +1,16 @@
+clientes_index:
+    path: /clientes/{idcliente}
+    defaults: { _controller: LavandaBundle:Clientes:index, idcliente:null}
+
+clientes_edit:
+    path: /clientes/edit/{idcliente}
+    defaults: { _controller: LavandaBundle:Clientes:edit }
+
+cliente_valida_email:
+    path: /clientes/valida_mail
+    defaults: { _controller: LavandaBundle:Clientes:validaEmail}
+    condition: "request.isXmlHttpRequest()"
+
+cliente_procesos:
+    path: /clientes/procesos/{idcliente}
+    defaults: { _controller: LavandaBundle:Citas:listarCitasCliente }
