@@ -1,0 +1,4 @@
+api_notificaciones_listar:
+    path: /notificaciones/listar
+    defaults: { _controller: APIBundle:APINotificaciones:listar }
+    methods: [GET]

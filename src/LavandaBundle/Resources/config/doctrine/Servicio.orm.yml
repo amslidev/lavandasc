@@ -52,4 +52,7 @@ LavandaBundle\Entity\Servicio:
             options:
                 fixed: false
             column: nombreImagen
+        activo:
+            type: boolean
+            nullable: true
     lifecycleCallbacks: {  }

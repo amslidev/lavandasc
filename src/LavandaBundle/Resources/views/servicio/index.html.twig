@@ -53,8 +53,8 @@
                     <th>Nombre</th>
                     <th>Tiempo (Min.)</th>
                     <th>Precio</th>
-                    <th>Foto</th>
-                    <th>Cobro largo cabello</th>
+                    <th>Cobro long.</th>
+                    <th>Activo</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -63,12 +63,11 @@
                     <tr>
                         <td>{{ servicio.nombre }}</td>
                         <td>{{ servicio.tiempo }}</td>
-                        <td>${{ servicio.precio | number_format(2, ".",",") }}</td>
                         <td>
-                            {% if servicio.rutaimagen != null %}
-                                <img src="{{ asset(servicio.rutaimagen~servicio.nombreimagen) }}" style="width: 80px;height: 80px" class="img-circle">
+                            {% if servicio.cobraronza == false %}
+                                ${{ servicio.precio | number_format(2, ".",",") }}
                             {% else %}
-                                <p>Sin foto</p>
+                                <p>Se cobra por longitud</p>
                             {% endif %}
                         </td>
                         <td>
@@ -79,34 +78,21 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a class="btn btn-warning btn-sm" href="{{ path('servicio_edit', { 'idservicio': servicio.idservicio }) }}"> Modificar</a>
-                            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#myModal{{ servicio.idservicio }}">
-                                Descripción
-                            </button>
+                            {% if servicio.activo == 1 %}
+                                <i class="fa fa-check-square-o" style="color: green"></i>
+                            {% else %}
+                                <i class="fa fa-close" style="color: red"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="{{ path('servicio_edit', { 'idservicio': servicio.idservicio }) }}"> <i class="fa fa-edit" > Editar</i> </a>
                             {% if servicio.cobraronza == 1 %}
                                 <a href="{{ path('serviciolongitud_index', {'idservicio': servicio.idservicio}) }}" class="btn btn-primary btn-sm"><i class="fa fa-cog"> Longitudes</i> </a>
                             {% endif %}
+                            <a href="{{ path('fotosservicio_index', {'idservicio': servicio.idservicio}) }}" class="btn btn-dark btn-sm" ><i class="fa fa-picture-o"> Galería</i> </a>
                         </td>
                     </tr>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal{{ servicio.idservicio }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">{{ servicio.nombre }}</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea class="summernote">
-                                        {{ servicio.descripcion }}
-                                    </textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 {% endfor %}
                 </tbody>
             </table>

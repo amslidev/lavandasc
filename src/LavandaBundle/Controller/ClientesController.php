@@ -2,8 +2,13 @@
 
 namespace LavandaBundle\Controller;
 
+use LavandaBundle\Entity\Cliente;
+use LavandaBundle\Entity\Usuario;
 use LavandaBundle\Form\ClienteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -34,12 +39,63 @@ class ClientesController extends Controller
         ));
     }
 
+    public function addAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $cliente = new Cliente();
+
+        $form = $this->createForm(ClienteType::class, $cliente);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+                $usuario = new Usuario();
+
+                $usuario->setUsername($form->get('username')->getData());
+                $factory = $this->get('security.encoder_factory');
+                $encoder = $factory->getEncoder($usuario);
+                $password = $encoder->encodePassword($form->get('password')->getData(), $usuario->getSalt());
+                $usuario->setPassword($password);
+                $usuario->setRole('ROLE_CLIENTE');
+
+                $usuario->setCreatedAt(new \DateTime("now"));
+                $usuario->setIsactive(true);
+
+                $em->persist($usuario);
+                $cliente->setIdusuario($usuario);
+                $em->persist($cliente);
+                $em->flush();
+
+                $this->get('arsc.notificacion_correo_service')->enviarCorreoRegistro($cliente, $form->get('username')->getData(), $form->get('password')->getData());
+
+                $status = "Cliente registrado correctamente, pronto le llegará un correo con sus datos de usuario";
+                $this->session->getFlashBag()->add("info","success");
+                $this->session->getFlashBag()->add("status",$status);
+                return $this->redirectToRoute("clientes_index");
+        }
+
+        return $this->render('LavandaBundle:Clientes:add.html.twig', array(
+            "form" => $form->createView()
+        ));
+    }
+
     public function editAction(Request $request, $idcliente = null){
         $em = $this->getDoctrine()->getManager();
 
         $cliente = $em->getRepository('LavandaBundle:Cliente')->find($idcliente);
 
+        $user = $this->getUser();
+
+        $role = $user->getRole();
+
         $form = $this->createForm(ClienteType::class, $cliente);
+
+        $form->remove('username');
+        $form->remove('password');
+
+        if($role == "ROLE_USER"){
+            $form->remove('telefono');
+        }
+
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
@@ -95,5 +151,9 @@ class ClientesController extends Controller
         }
 
         return $response;
+    }
+
+    public function paginaContactoAction(Request  $request){
+
     }
 }

@@ -19,7 +19,6 @@
 
 {% block page_content %}
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <a href="{{ path('clientes_index') }}" class="btn btn-primary"><i class="fa fa-backward"> Clientes</i></a>
         <div class="x_panel">
             <div class="x_title">
                 <h3>Respuestas de {{ cliente.nombre  }} {{ cliente.apellido }}  <small>Respondió el día: {{ encuesta.fecharegistro | date('d-m-Y H:i:s') }}</small></h3>
@@ -29,45 +28,76 @@
 
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p style="font-size: medium; color: black;"> ¿Cuándo fue la última vez que se aplicó algún tratamiento de reconstrucción capilar?</p>
-                            <label for="txtpregunta1">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta1" name="txtpregunta1" value="{{ encuesta.pregunta1 }}">
-                            <div class="clearfix"></div>
+                            <h3>Acerca de las instalaciones</h3>
 
-                            <p style="font-size: medium; color: black;"> ¿Tiene actualmente algún proceso de decoloración en su cabello?</p>
+                            <p style="font-size: medium; color: black;">1.- Las instalaciones de la peluquería se encuentran en el buen estado y son confortables</p>
                             <label for="opcion1">Respuesta: </label>
-                            <input readonly class="form-control" id="opcion1" name="opcion1" value="{{ (encuesta.opcion1 == "1" ? "SÍ" : "NO") }}">
+                            <input readonly class="form-control" id="opcion1" name="opcion1" value="{{ (encuesta.opcion1 | validar_respuesta ) }}">
                             <div class="clearfix"></div>
 
-                            <p style="font-size: medium; color: black;"> En caso de ser su respuesta positiva, ¿Hace cuánto que se lo realizó?</p>
-                            <label for="txtpregunta2">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta2" name="txtpregunta2" value="{{ encuesta.opcion1 == "1" ? encuesta.pregunta2 : "Respondío que NO" }}">
-                            <div class="clearfix"></div>
-
-                            <p style="font-size: medium; color: black;"> ¿Tiene actualmente algún proceso de alaciado o rizos permanentes?</p>
+                            <p style="font-size: medium; color: black;">2.- El personal cuenta con recursos materiales suficientes para llevar a cabo su trabajo</p>
                             <label for="opcion2">Respuesta: </label>
-                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion2 == "1" ? "SÍ" : "NO") }}">
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion2 | validar_respuesta) }}">
                             <div class="clearfix"></div>
 
-                            <p style="font-size: medium; color: black;"> En caso de ser su respuesta positiva, ¿Hace cuánto que se lo realizó?</p>
-                            <label for="txtpregunta3">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta3" name="txtpregunta3" value="{{ encuesta.opcion2 == "1" ? encuesta.pregunta3 : "Respondío que NO" }}">
+                            <p style="font-size: medium; color: black;">3.- El ambiente va acorde con el establecimiento (música, decoración, olores)</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion3 | validar_respuesta) }}">
                             <div class="clearfix"></div>
 
-                            <p style="font-size: medium; color: black;"> ¿Con qué frecuencia lava normalmente su cabello?</p>
-                            <label for="txtpregunta4">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta4" name="txtpregunta4" value="{{ encuesta.pregunta4 }}">
+                            <p style="font-size: medium; color: black;">4.- Me encuentro a gusto en el salón de belleza</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion4 | validar_respuesta) }}">
                             <div class="clearfix"></div>
 
-                            <p style="font-size: medium; color: black;"> ¿Con qué frecuencia plancha o utiliza utensilios de calor en su cabello?</p>
-                            <label for="txtpregunta5">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta5" name="txtpregunta5" value="{{ encuesta.pregunta5 }}">
+                            <h3>Acerca de la atención recibida por el personal del salón de belleza</h3>
+
+                            <p style="font-size: medium; color: black;">1.- El trato del personal conmigo ha sido considerado y amable</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion5 | validar_respuesta) }}">
                             <div class="clearfix"></div>
 
-                            <p style="font-size: medium; color: black;"> ¿Presenta algún tipo de alergia?</p>
-                            <label for="txtpregunta6">Respuesta: </label>
-                            <input readonly class="form-control" id="txtpregunta6" name="txtpregunta6" value="{{ encuesta.pregunta6 }}">
+                            <p style="font-size: medium; color: black;">2.- El estilista se interesó por el resultado final</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion6 | validar_respuesta) }}">
                             <div class="clearfix"></div>
+
+                            <h3>Sobre el servicio recibido en el salón</h3>
+
+                            <p style="font-size: medium; color: black;">1.- El servicio recibido ha sido satisfactorio</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion7 | validar_respuesta) }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;">2.- El servicio se realizó en el tiempo acorde a mis expectativas</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion8 | validar_respuesta) }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;">3.- El precio del servicio va acorde al valor que me aporta</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion9 | validar_respuesta) }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;">4.- Me han informado de las ofertas en el curso</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion10 == "1" ? "Sí" : "No" ) }}">
+                            <div class="clearfix"></div>
+
+                            <p style="font-size: medium; color: black;">5.- Me gustan los productos que se utilizan en el salón</p>
+                            <label for="opcion2">Respuesta: </label>
+                            <input readonly class="form-control" id="opcion2" name="opcion2" value="{{ (encuesta.opcion11 == "1" ? "Sí" : "No" ) }}">
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <ul>
+                                <li>
+                                    <a style="font-size: medium" href="{{ path('clientes_index') }}">Volver al listado</a>
+                                </li>
+                                <li>
+                                    <a style="font-size: medium" href="{{ path('clientes_index', {"idcliente" : cliente.idcliente}) }}">Volver al Cliente</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 

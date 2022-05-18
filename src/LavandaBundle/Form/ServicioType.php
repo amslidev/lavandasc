@@ -60,6 +60,11 @@ class ServicioType extends AbstractType
                 "attr" => array("class" => "form-control"),
                 "required" => false
             ))
+            ->add('activo', CheckboxType::class, array(
+                "label" => "¿El servicio está activo?",
+                "attr" => array("class" => "form-control"),
+                "required" => false
+            ))
             ->add('Guardar', SubmitType::class, array(
                 "label"=>"Guardar",
                 "attr"=>array("class"=>"form-submit btn btn-success")

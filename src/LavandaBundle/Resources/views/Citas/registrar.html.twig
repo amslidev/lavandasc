@@ -1,0 +1,215 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Citas | Registrar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-12">
+
+        {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel header">
+                <h2>Registro de nueva cita</h2>
+            </div>
+            <div class="panel-body">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+
+                <br/>
+                <div class="clearfix"></div>
+                <button type="button" id="btnagendarcita" class="btn btn-primary" onclick="agendarCita();" >Verificar disponibilidad</button>
+
+            </div>
+            <div class="panel-footer">
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lavandabundle_citas_idserviciolongitud").html("");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var fecha = new Date();
+            var year = fecha.getFullYear();
+            var month = fecha.getMonth();
+            var day = fecha.getDate();
+
+            if(day >= "1" && day <= "9"){
+                day = "0" + day;
+            }
+
+            var fechaActual = year + "-" + (month  + 1) + "-" + day;
+            $("#lavandabundle_citas_fechacita").attr('min', fechaActual);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_citas_idsucursal").change(function () {
+            var idsucursal = $(this).val();
+            var datos = {};
+            datos.idsucursal = idsucursal;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('empleado_sucursal') }}',
+                data: datos,
+                success: function (empleados) {
+                    $("#lavandabundle_citas_idempleado").html("");
+                    var emp = $("#lavandabundle_citas_idempleado");
+                    var total = empleados.length;
+                    if(total > 0){
+                        emp.append('<option value="">Seleccione al empleado que le atenderá</option>');
+                        for(var i=0;i<total;i++){
+                            emp.append('<option value="' + empleados[i].idempleado + '">' + empleados[i].nombre + '</option>');
+                        }
+                    }else{
+                        emp.append('<option value="">No se han registrado empleados para esta sucursal</option>');
+                    }
+                },
+                error: function (empleados) {
+
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_citas_fechacita").change(function () {
+            var fechaSel = $(this).val();
+            var date = new Date('"' + fechaSel + '"');
+
+            if(date.getDay() === 0){
+                toastr.error("El día domingo no está disponible para agendar cita", "¡Error!");
+                $(this).val("");
+            }
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        function agendarCita() {
+            var idservicio = $("#lavandabundle_citas_servicio").val();
+            var idlongitud = $("#lavandabundle_citas_idserviciolongitud").val();
+            var idsucursal = $("#lavandabundle_citas_idsucursal").val();
+            var idempleado = $("#lavandabundle_citas_idempleado").val();
+            var fecha = $("#lavandabundle_citas_fechacita").val();
+            var hora = $("#lavandabundle_citas_horacita").val();
+            var idcliente = $("#lavandabundle_citas_idcliente").val();
+            var datos = {};
+
+            if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && hora !== ""){
+                datos.idservicio = idservicio;
+                datos.idlongitud = idlongitud;
+                datos.idsucursal = idsucursal;
+                datos.idempleado = idempleado;
+                datos.fecha = fecha;
+                datos.hora = hora;
+                datos.idcliente = idcliente;
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('citas_proceso')}}',
+                    data: datos,
+                    success: function () {
+                        swal({
+                            title: "¡Éxito!",
+                            text: "Cita registrada correctamente",
+                            icon: "success",
+                            button: "Aceptar",
+                        }).then((result) => {
+                            //window.location=URL+"referencias/"+respuesta;
+                            location.reload();
+                        });
+                    },
+                    error: function () {
+                        toastr.error("No es posible agendar la cita para el día y hora seleccionado", "¡Error!");
+                    }
+                });
+
+            }else{
+                $("#lavandabundle_procesos_horacita").val("");
+                toastr.error("Para agendar la cita debe seleccionar el servicio, la sucursal, el empleado, la fecha y la hora de la cita", "¡Error!");
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_citas_servicio").change(function () {
+            var idservicio = $(this).val();
+            var datos = {};
+            datos.idservicio = idservicio;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('serviciolongitud_listar_longitudes') }}',
+                data: datos,
+                success: function (longitudes) {
+                    $("#lavandabundle_citas_idserviciolongitud").html("");
+                    var long = $("#lavandabundle_citas_idserviciolongitud");
+                    var total = longitudes.length;
+                    if(total > 0){
+                        $("#lavandabundle_citas_idserviciolongitud").attr("required", true);
+                        long.append('<option value="">Seleccione un elemento</option>');
+                        for (var i = 0; i<total; i++){
+                            long.append('<option value="'+longitudes[i].idserviciolongitud + '">'+ longitudes[i].longitud + ' cm' + '</option>');
+                        }
+                    }else{
+                        long.append('<option value="">Este servicio no está asociado a registros de longitudes</option>');
+                    }
+                },
+                error: function () {
+                    toastr.error("Error al intentar recuperar la lista de longitudes", "¡Error!");
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_citas_Guardar").one('click', function (event) {
+            event.preventDefault();
+            toastr.info('Presione nuevamente para confirmar el registro','¡Atención!');
+        });
+
+        enviando = false; //Obligaremos a entrar el if en el primer submit
+
+        function checkSubmit() {
+            if (!enviando) {
+                enviando= true;
+                return true;
+            } else {
+                //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+                toastr.info('Ya se enviaron los datos','¡Atención!');
+                return false;
+            }
+        }
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

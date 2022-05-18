@@ -1,0 +1,33 @@
+LavandaBundle\Entity\Galeria:
+    type: entity
+    table: galeria
+    id:
+        idgaleria:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idGaleria
+            generator:
+                strategy: IDENTITY
+    fields:
+        rutaimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: nombreImagen
+        fechacarga:
+            type: date
+            nullable: false
+            column: fechaCarga
+    lifecycleCallbacks: {  }

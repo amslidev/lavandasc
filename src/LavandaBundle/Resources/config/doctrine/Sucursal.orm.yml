@@ -1,0 +1,36 @@
+LavandaBundle\Entity\Sucursal:
+    type: entity
+    table: sucursal
+    id:
+        idsucursal:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idSucursal
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 300
+            options:
+                fixed: false
+        direccion:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        activo:
+            type: boolean
+            nullable: false
+        email:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

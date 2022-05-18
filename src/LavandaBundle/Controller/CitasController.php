@@ -3,6 +3,7 @@
 namespace LavandaBundle\Controller;
 
 use LavandaBundle\Entity\Citas;
+use LavandaBundle\Form\Citas2Type;
 use LavandaBundle\Form\CitasType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -332,5 +333,16 @@ class CitasController extends Controller
         $horaSel = \DateTime::createFromFormat('!H:i', $hSel);
         if($horaDesde > $horaHasta) $horaHasta->modify('+1 day');
         return ($horaDesde <= $horaSel && $horaSel <= $horaHasta);
+    }
+
+    public function registrarCitaAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(Citas2Type::class);
+        $form->handleRequest($request);
+
+        return $this->render('LavandaBundle:Citas:registrar.html.twig', array(
+            "form" => $form->createView()
+        ));
     }
 }

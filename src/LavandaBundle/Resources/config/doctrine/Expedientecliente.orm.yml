@@ -1,0 +1,144 @@
+LavandaBundle\Entity\Expedientecliente:
+    type: entity
+    table: expedientecliente
+    indexes:
+        diagnostico_expedientecliente_fk:
+            columns:
+                - idDiagnostico
+        tipocuero_expedientecliente_fk:
+            columns:
+                - idTipoCuero
+        Cliente_ExpedienteCliente_fk_idx:
+            columns:
+                - idCliente
+    id:
+        idexpediente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idExpediente
+            generator:
+                strategy: IDENTITY
+    fields:
+        decoloracion:
+            type: boolean
+            nullable: true
+        cantidaddecoloracion:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadDecoloracion
+        planchadopermanente:
+            type: boolean
+            nullable: true
+            column: planchadoPermanente
+        cantidadplanchado:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadPlanchado
+        tintes:
+            type: boolean
+            nullable: true
+        cantidadtintes:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadTintes
+        alisadosprogresivos:
+            type: boolean
+            nullable: true
+            column: alisadosProgresivos
+        cantidadalisados:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadAlisados
+        caspa:
+            type: boolean
+            nullable: true
+        alergiacosmetico:
+            type: boolean
+            nullable: true
+            column: alergiaCosmetico
+        nombrecosmetico:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: nombreCosmetico
+        alergiaquimico:
+            type: boolean
+            nullable: true
+            column: alergiaQuimico
+        nombrequimico:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: nombreQuimico
+        productosacidos:
+            type: boolean
+            nullable: true
+            column: productosAcidos
+        nombreproductoacido:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: nombreProductoAcido
+        usomedicamentos:
+            type: boolean
+            nullable: true
+            column: usoMedicamentos
+        nombremedicamentos:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+            column: nombreMedicamentos
+        embarazada:
+            type: boolean
+            nullable: true
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+        iddiagnostico:
+            targetEntity: Diagnostico
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idDiagnostico:
+                    referencedColumnName: idDiagnostico
+            orphanRemoval: false
+        idtipocuero:
+            targetEntity: Tipocuero
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoCuero:
+                    referencedColumnName: idTipoCuero
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

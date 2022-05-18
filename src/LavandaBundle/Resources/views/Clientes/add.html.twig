@@ -1,0 +1,142 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Clientes | Registrar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-12">
+
+        {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel header">
+                <h2>Registro de nuevo Cliente</h2>
+            </div>
+            <div class="panel-body">
+
+                {{ form_start(form) }}
+
+                {{ form_label(form.nombre) }}
+                {{ form_widget(form.nombre) }}
+
+                {{ form_label(form.apellido) }}
+                {{ form_widget(form.apellido) }}
+
+                {{ form_label(form.telefono) }}
+                {{ form_widget(form.telefono) }}
+
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username) }}
+
+                {{ form_widget(form.password) }}
+
+                {{ form_widget(form) }}
+
+                {{ form_end(form) }}
+
+                <span id="msg"></span>
+
+            </div>
+            <div class="panel-footer">
+                <ul>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('clientes_index') }}">Volver al listado</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lavandabundle_cliente_username").val('Ingrese su usuario');
+            $("#lavandabundle_cliente_password_first").val('');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#lavandabundle_cliente_username").change(function () {
+            var username = $(this).val();
+            var datos = {};
+            datos.username = username;
+            $.ajax({
+                url: '{{ path('users_validar_username') }}',
+                type: 'GET',
+                data: datos,
+                success: function () {
+                    $("#lavandabundle_cliente_username").css("border-color","#33FF5A");
+                },
+                error: function () {
+                    toastr.error("El usuario ya está registrado","¡Error!");
+                    $("#lavandabundle_cliente_username").val("");
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id=lavandabundle_cliente_password_first]").attr("required", true);
+            $("[id=lavandabundle_cliente_password_second]").attr("required", true);
+        })
+    </script>
+
+    <script type="text/javascript">
+        var pw1 = $("[id=lavandabundle_cliente_password_first]");
+        var pw2 = $("[id=lavandabundle_cliente_password_second]");
+
+        function coinicidirPasswords() {
+            var pass1 = pw1.val();
+            var pass2 = pw2.val();
+            var msg = $("#msg");
+            msg.text("");
+
+            console.log(pass1);
+            console.log(pass2);
+
+            if(pass1.length < 8 && pass2.length < 8){
+                msg.text("Las contraseñas deben tener mínimo 8 caracteres");
+                msg.css("label label-danger");
+                $("#lavandabundle_cliente_Guardar").attr("disabled",true);
+            }else if(pass1 !== pass2){
+                msg.text("Las contraseñas no coinciden");
+                msg.css("label label-danger");
+                $("#lavandabundle_cliente_Guardar").attr("disabled",true);
+            }else if(pass1.length >= 8 && pass2.length >= 8 && pass1 === pass2){
+                $("#lavandabundle_cliente_Guardar").attr("disabled",false);
+                msg.text("");
+            }
+        }
+
+        pw2.keyup(function () {
+            coinicidirPasswords();
+        });
+
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

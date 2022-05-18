@@ -1,0 +1,86 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<title>
+    {{ "" | nombre_empresa}} | Contacto
+</title>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
+{% if ("" | empresa_registrada == false) %}
+    <link rel="icon" type="text/css" class="fa fa-user">
+{% else %}
+    <link rel="icon" href="{{ asset('uploads/empresa/logo/logo-web.jpg') }}" style="background-color: ghostwhite;">
+{% endif %}
+
+<body>
+<div class="container center-block">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="first">
+                        <div class="myform form ">
+                            <div align="center" style="padding-top: 10%">
+                                {% if ("" | empresa_registrada == false) %}
+                                    <p></p>
+                                {% else %}
+                                    <img width="200px" height="200px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
+                                {% endif %}
+
+                            </div>
+                            <h4>Complete los siguientes datos para contactarse con nuestros expertos</h4>
+                            <div class="clearfix"></div>
+                            {{form_start(form)}}
+                            <div class="form-group">
+                                {{ form_label(form.nombre) }}
+                                {{ form_widget (form.nombre) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.apellido) }}
+                                {{ form_widget (form.apellido) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.telefono) }}
+                                {{ form_widget (form.telefono) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.email) }}
+                                {{ form_widget (form.email) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.idsucursal) }}
+                                {{ form_widget (form.idsucursal) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.comentarios) }}
+                                {{ form_widget (form.comentarios) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.enviar) }}
+                                {{ form_widget (form.enviar) }}
+                            </div>
+
+                            {{form_end(form)}}
+                        </div>
+
+                        <hr/>
+                        <div class="col-md-12 text-center ">
+                            <a href="{{ path('login') }}" class=" btn btn-block mybtn btn-dark tx-tfm" >Volver al login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>

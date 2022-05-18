@@ -1,0 +1,9 @@
+arsc_contacto:
+    path: /contacto
+    defaults: { _controller: LavandaBundle:Anonimo:contacto }
+    methods: [GET, POST]
+
+arsc_registro_anonimo:
+    path: /registroanonimo
+    defaults: { _controller: LavandaBundle:Anonimo:registro }
+    methods: [GET, POST]

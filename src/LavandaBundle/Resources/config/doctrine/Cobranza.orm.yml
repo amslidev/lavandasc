@@ -1,0 +1,57 @@
+LavandaBundle\Entity\Cobranza:
+    type: entity
+    table: cobranza
+    indexes:
+        citas_cobranza_fk:
+            columns:
+                - idCita
+        usuario_cobranza_fk:
+            columns:
+                - idUsuario
+    id:
+        idcobranza:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidadonza:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadOnza
+        total:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        fecharegistro:
+            type: datetime
+            nullable: false
+            column: fechaRegistro
+    manyToOne:
+        idcita:
+            targetEntity: Citas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
+            orphanRemoval: false
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

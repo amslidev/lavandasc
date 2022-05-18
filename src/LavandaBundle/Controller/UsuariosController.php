@@ -12,8 +12,11 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Usuario;
 use LavandaBundle\Form\UsuarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\MimeType\FileinfoMimeTypeGuesser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsuariosController extends Controller
@@ -36,6 +39,32 @@ class UsuariosController extends Controller
             "last_Username" => $lastUsername
         ));
 
+    }
+
+    public function supportAction(){
+        $publicResourcesFolderPath = "../web/uploads/manuales/";
+        $filename = "manual.pdf";
+
+        $response = new BinaryFileResponse($publicResourcesFolderPath.$filename);
+
+        $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
+
+        // Set the mimetype with the guesser or manually
+        if($mimeTypeGuesser->isSupported()){
+            // Guess the mimetype of the file according to the extension of the file
+            $response->headers->set('Content-Type', $mimeTypeGuesser->guess($publicResourcesFolderPath.$filename));
+        }else{
+            // Set the mimetype of the file manually, in this case for a text file is text/plain
+            $response->headers->set('Content-Type', 'application/pdf');
+        }
+
+        // Set content disposition inline of the file
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $filename
+        );
+
+        return $response;
     }
 
     public function indexAction(){

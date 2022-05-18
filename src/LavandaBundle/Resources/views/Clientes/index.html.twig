@@ -39,12 +39,18 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
+            <div class="pull-right">
+                <ul>
+                    <li>
+                        <a style="font-size: medium"  class="label label-primary" href="{{ path('cliente_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
+                    </li>
+                </ul>
+            </div>
+            <br/>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Email</th>
                     <th>Acciones</th>
@@ -56,43 +62,33 @@
                         <tr>
                             <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
                             <td>
-                                {% if cliente.fechanacimiento != null %}
-                                    {{ cliente.fechanacimiento | date('Y-m-d') | edad }} años
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    {{ cliente.telefono }}
                                 {% else %}
-                                    <p>No se encontró fecha de nacimiento</p>
+                                    **********
                                 {% endif %}
                             </td>
-                            <td>{{ cliente.direccion }}</td>
-                            <td>{{ cliente.telefono }}</td>
                             <td>{{ cliente.email }} </td>
                             <td>
-                                <ul>
-                                    <li>
-                                        <a style="font-size: medium" class="label label-warning" href="{{ path('clientes_edit', {'idcliente': cliente.idcliente}) }}"> Editar</a>
-                                    </li>
-                                    <br/>
-                                    <li>
-                                        <a style="font-size: medium" class="label label-primary" href="{{ path('cliente_expediente', {'idcliente': cliente.idcliente}) }}"> Expediente</a>
-                                    </li>
-                                    <br/>
-                                    <li>
-                                        <a style="font-size: medium" class="label label-primary"  href="{{ path('cliente_procesos', {'idcliente': cliente.idcliente}) }}"> Procesos</a>
-                                    </li>
-                                    <br/>
-                                    {% if cliente.idcliente | validar_encuesta == true %}
-                                    <li>
-                                        <a style="font-size: medium" href="{{ path('encuesta_ver_respuesta', {'idcliente': cliente.idcliente }) }}"> Expediente</a>
-                                    </li>
-                                    {% else%}
-                                        <li>Aún no ha contestado la encuesta</li>
-                                    {% endif %}
-                                </ul>
+                                <a class="btn btn-sm btn-warning" href="{{ path('clientes_edit', {'idcliente': cliente.idcliente}) }}"> Editar</a>
+                                <a class="btn btn-sm btn-success" href="{{ path('cliente_expediente', {'idcliente': cliente.idcliente}) }}"> Expediente</a>
+                                <a class="btn btn-sm btn-primary"  href="{{ path('cliente_procesos', {'idcliente': cliente.idcliente}) }}"> Procesos</a>
+                                {% if cliente.idcliente | validar_encuesta == true %}
+                                    <a class="btn btn-default" href="{{ path('encuesta_ver_respuesta', {'idcliente': cliente.idcliente }) }}"> Encuesta</a>
+                                {% else%}
+                                    <p>Aún no ha contestado la encuesta</p>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                 {% else %}
                     <tr>
                         <td>No se encontraron registros de clientes</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 {% endif %}
                 </tbody>

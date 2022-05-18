@@ -1,0 +1,7 @@
+fotosservicio_index:
+    path: /servicios/fotosservicio/{idservicio}
+    defaults: { _controller: LavandaBundle:FotosServicios:index }
+
+fotoservicio_borrar_single:
+    path: /servicios/fotosservicio/borrar_single/{idfoto}
+    defaults: { _controller: LavandaBundle:FotosServicios:elimarFoto }

@@ -61,3 +61,11 @@ lavanda_procesos:
 lavanda_serviciolongitud:
     resource: "@LavandaBundle/Resources/config/routing/serviciolongitud.yml"
     prefix: /
+
+lavanda_fotosservicio:
+    resource: "@LavandaBundle/Resources/config/routing/fotosservicio.yml"
+    prefix: /
+
+lavanda_anonimo:
+    resource: "@LavandaBundle/Resources/config/routing/anonimos.yml"
+    prefix: /

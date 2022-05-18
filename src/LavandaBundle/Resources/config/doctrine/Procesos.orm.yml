@@ -1,0 +1,84 @@
+LavandaBundle\Entity\Procesos:
+    type: entity
+    table: procesos
+    indexes:
+        citas_procesos_fk:
+            columns:
+                - idCita
+    id:
+        idproceso:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idProceso
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechaproceso:
+            type: date
+            nullable: false
+            column: fechaProceso
+        procedimiento:
+            type: string
+            nullable: false
+            length: 300
+            options:
+                fixed: false
+        productos:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        comentarios:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        fechaproximacita:
+            type: date
+            nullable: false
+            column: fechaProximaCita
+        rutafotoantes:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: rutaFotoAntes
+        nombrefotoantes:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: nombreFotoAntes
+        rutafotodesp:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: rutaFotoDesp
+        nombrefotodesp:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: nombreFotoDesp
+    manyToOne:
+        idcita:
+            targetEntity: Citas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

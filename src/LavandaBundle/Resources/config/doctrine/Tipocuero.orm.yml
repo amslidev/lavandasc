@@ -1,0 +1,21 @@
+LavandaBundle\Entity\Tipocuero:
+    type: entity
+    table: tipocuero
+    id:
+        idtipocuero:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idTipoCuero
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

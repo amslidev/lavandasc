@@ -1,0 +1,153 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<title>
+    {{ "" | nombre_empresa}} | Registro
+</title>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
+{% if ("" | empresa_registrada == false) %}
+    <link rel="icon" type="text/css" class="fa fa-user">
+{% else %}
+    <link rel="icon" href="{{ asset('uploads/empresa/logo/logo-web.jpg') }}" style="background-color: ghostwhite;">
+{% endif %}
+
+<body>
+<div class="container center-block">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="first">
+                        <div class="myform form ">
+                            <div align="center" style="padding-top: 10%">
+                                {% if ("" | empresa_registrada == false) %}
+                                    <p></p>
+                                {% else %}
+                                    <img width="200px" height="200px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
+                                {% endif %}
+
+                            </div>
+                            <h4>Complete los siguientes datos para registrarse</h4>
+                            <div class="clearfix"></div>
+                            {{ form_start(form) }}
+
+                            <div class="form-group">
+                                {{ form_label(form.nombre) }}
+                                {{ form_widget(form.nombre) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.apellido) }}
+                                {{ form_widget(form.apellido) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.telefono) }}
+                                {{ form_widget(form.telefono) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.username) }}
+                                {{ form_widget(form.username) }}
+
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(form.password) }}
+
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(form) }}
+                            </div>
+                            {{ form_end(form) }}
+
+                            <span id="msg"></span>
+                        </div>
+                        <hr/>
+                        <div class="col-md-12 text-center ">
+                            <a href="{{ path('login') }}" class=" btn btn-block mybtn btn-dark tx-tfm" >Volver al login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lavandabundle_contacto_username").val('Ingrese su usuario');
+        $("#lavandabundle_contacto_password_first").val('');
+    });
+</script>
+
+<script type="text/javascript">
+    $("#lavandabundle_contacto_username").change(function () {
+        var username = $(this).val();
+        var datos = {};
+        datos.username = username;
+        $.ajax({
+            url: '{{ path('users_validar_username') }}',
+            type: 'GET',
+            data: datos,
+            success: function () {
+                $("#lavandabundle_contacto_username").css("border-color","#33FF5A");
+            },
+            error: function () {
+                toastr.error("El usuario ya está registrado","¡Error!");
+                $("#lavandabundle_contacto_username").val("");
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[id=lavandabundle_contacto_password_first]").attr("required", true);
+        $("[id=lavandabundle_contacto_password_second]").attr("required", true);
+    })
+</script>
+
+<script type="text/javascript">
+    var pw1 = $("[id=lavandabundle_contacto_password_first]");
+    var pw2 = $("[id=lavandabundle_contacto_password_second]");
+
+    function coinicidirPasswords() {
+        var pass1 = pw1.val();
+        var pass2 = pw2.val();
+        var msg = $("#msg");
+        msg.text("");
+
+        console.log(pass1);
+        console.log(pass2);
+
+        if(pass1.length < 8 && pass2.length < 8){
+            msg.text("Las contraseñas deben tener mínimo 8 caracteres");
+            msg.css("label label-danger");
+            $("#lavandabundle_contacto_Guardar").attr("disabled",true);
+        }else if(pass1 !== pass2){
+            msg.text("Las contraseñas no coinciden");
+            msg.css("label label-danger");
+            $("#lavandabundle_contacto_Guardar").attr("disabled",true);
+        }else if(pass1.length >= 8 && pass2.length >= 8 && pass1 === pass2){
+            $("#lavandabundle_contacto_Guardar").attr("disabled",false);
+            msg.text("");
+        }
+    }
+
+    pw2.keyup(function () {
+        coinicidirPasswords();
+    });
+
+</script>
+
+
+</body>

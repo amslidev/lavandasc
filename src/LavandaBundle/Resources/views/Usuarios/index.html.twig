@@ -66,8 +66,10 @@
                                 <td>
                                     {% if (usuario.role == 'ROLE_ADMIN') %}
                                         ADMINISTRADOR
+                                    {% elseif ((usuario.role == 'ROLE_USER') ) %}
+                                        COLABORADOR
                                     {% else %}
-                                        USUARIO
+                                        CLIENTE
                                     {% endif %}
                                 </td>
                                 <td>{{ usuario.createdAt | date('d-m-Y') }}</td>

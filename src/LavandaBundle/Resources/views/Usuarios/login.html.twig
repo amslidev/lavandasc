@@ -9,6 +9,14 @@
 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<!--SWEET ALERT-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if ("" | empresa_registrada == false) %}
+    <link rel="icon" type="text/css" class="fa fa-user">
+{% else %}
+    <link rel="icon" href="{{ asset('uploads/empresa/logo/logo-web.jpg') }}" style="background-color: ghostwhite;">
+{% endif %}
 
 <body>
 <div class="container center-block">
@@ -48,6 +56,16 @@
                                         </script>
                                     {% endif %}
                                 </div>
+                                <hr/>
+                                <div class="col-md-12 text-center ">
+                                    <p>Si aún no tiene cuenta, puede registrarse</p>
+                                    <a href="{{ path('arsc_registro_anonimo') }}" class=" btn btn-block mybtn btn-dark tx-tfm" >Registrarse</a>
+                                </div>
+                                <hr/>
+                                <div class="col-md-12 text-center ">
+                                    <p>Si no desea registrarse, puede contactarse con nosotros</p>
+                                    <a href="{{ path('arsc_contacto') }}" class=" btn btn-block mybtn btn-dark tx-tfm" > Contacto</a>
+                                </div>
 
                             </form>
 
@@ -60,5 +78,37 @@
         </div>
     </div>
 </div>
+
+{% for message in app.session.flashBag().get("status") %}
+<script>
+    {% for info in app.session.flashBag().get("info") %}
+    var info = "{{ info }}";
+    console.log(info);
+    if(info == "success"){
+        swal({
+            title: "¡Éxito!",
+            text: "{{ message }}",
+            icon: "success",
+            button: "Aceptar",
+        });
+    }else if(info == "error"){
+        swal({
+            title: "Hubo un problema...",
+            text: "{{ message }}",
+            icon: "error",
+            button: "Aceptar",
+        });
+    }else if(info == "info"){
+        swal({
+            title: "¡Información!",
+            text: "{{ message }}",
+            icon: "info",
+            button: "Aceptar",
+        });
+    }
+
+    {% endfor %}
+</script>
+{% endfor %}
 
 </body>

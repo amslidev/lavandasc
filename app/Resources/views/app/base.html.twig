@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% if ("" | empresa_registrada == false) %}
+        <link rel="icon" type="text/css" class="fa fa-user">
+    {% else %}
+        <link rel="icon" href="{{ asset('uploads/empresa/logo/logo-web.jpg') }}" style="background-color: ghostwhite;">
+    {% endif %}
+
+
 {% block stylesheets %}
     <!-- Bootstrap -->
     <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">

@@ -38,14 +38,19 @@ class APIEncuestaController extends Controller
                 if($encuestaPrevia == null){
                     $encuesta = new Encuesta();
                     $encuesta->setIdcliente($cliente);
-                    $encuesta->setPregunta1($info["pregunta1"]);
+
                     $encuesta->setOpcion1($info["opcion1"]);
-                    $encuesta->setPregunta2($info["pregunta2"]);
                     $encuesta->setOpcion2($info["opcion2"]);
-                    $encuesta->setPregunta3($info["pregunta3"]);
-                    $encuesta->setPregunta4($info["pregunta4"]);
-                    $encuesta->setPregunta5($info["pregunta5"]);
-                    $encuesta->setPregunta6($info["pregunta6"]);
+                    $encuesta->setOpcion3($info["opcion3"]);
+                    $encuesta->setOpcion4($info["opcion4"]);
+                    $encuesta->setOpcion5($info["opcion5"]);
+                    $encuesta->setOpcion6($info["opcion6"]);
+                    $encuesta->setOpcion7($info["opcion7"]);
+                    $encuesta->setOpcion8($info["opcion8"]);
+                    $encuesta->setOpcion9($info["opcion9"]);
+                    $encuesta->setOpcion10($info["opcion10"]);
+                    $encuesta->setOpcion11($info["opcion11"]);
+
                     $encuesta->setFecharegistro(new \DateTime("now"));
 
                     $em->persist($encuesta);

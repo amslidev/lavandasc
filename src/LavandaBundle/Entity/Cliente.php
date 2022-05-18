@@ -225,4 +225,9 @@ class Cliente
     {
         return $this->idusuario;
     }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 }

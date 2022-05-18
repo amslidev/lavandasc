@@ -1,0 +1,52 @@
+LavandaBundle\Entity\Cortesias:
+    type: entity
+    table: cortesias
+    id:
+        idcortesia:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCortesia
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        descripcion:
+            type: string
+            nullable: false
+            length: 150
+            options:
+                fixed: false
+        disponible:
+            type: boolean
+            nullable: false
+        fechaingreso:
+            type: date
+            nullable: false
+            column: fechaIngreso
+        fechasalida:
+            type: date
+            nullable: true
+            column: fechaSalida
+        rutaimagen:
+            type: string
+            nullable: false
+            length: 150
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: nombreImagen
+    lifecycleCallbacks: {  }

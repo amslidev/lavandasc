@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php" line="219" mnemonic="2" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="583e1fb9-ae55-4ef6-93c1-91814266a878" name="Default Changelist" comment="Módulo de usuarios (Actualización)&#10;Construcción de la API">
+      <change afterPath="$PROJECT_DIR$/.idea/phing.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/citashoy.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/citasproximas.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIGaleriaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIMovilesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APINotificacionesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIProcesosController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIServicioLongitudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APISucursalesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Resources/config/routing/movil.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Resources/config/routing/notificacion.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APICitasControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIClientesControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APICortesiasControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIEmpleadosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIEmpresaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIEncuestaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIGaleriaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIHomeControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIMovilesControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APINotificacionesControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIProcesosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIProductosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIServicioLongitudControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APIServiciosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/APISucursalesControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/HomeControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/APIBundle/Tests/Controller/ServiciosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Command/CitasHoyCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Command/CitasProximasCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/AnonimoController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ExpedienteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/FotosServiciosController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/GaleriaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ProcesosController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioLongitudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/SucursalController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Cobranza.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Contacto.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Diagnostico.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Encuesta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Expedientecliente.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Fotosproducto.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Fotosservicio.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Galeria.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Globales.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Moviles.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Notificaciones.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Procesos.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Serviciolongitud.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Sucursal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Tipocuero.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ContactoType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ExpedienteclienteType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/FotosservicioType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/GaleriaType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ProcesosType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/RegistroType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ServiciolongitudType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/SucursalType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Citas.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cliente.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cobranza.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Contacto.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cortesias.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Diagnostico.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Encuesta.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Estatuscita.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Expedientecliente.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Fotosproducto.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Fotosservicio.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Galeria.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Globales.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Moviles.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Notificaciones.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Procesos.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Producto.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Serviciolongitud.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Sucursal.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Tipocuero.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/anonimos.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/fotosservicio.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Anonimo/contacto.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Anonimo/register.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/add.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/fotosservicio/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Services/NotificacionCorreoService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Services/NotificacionFirebaseService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/APIServiciosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/AnonimoControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/CitasControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/ClientesControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/CobranzaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/CortesiasControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/EncuestaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/ExpedienteControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/FotosServiciosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/GaleriaControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/ProcesosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/ProductosControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/ServicioLongitudControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/SucursalControllerControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/SucursalControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/UsuariosControllerControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Twig/Extension/ValidarRespuesta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/APIBundle/Controller/DefaultControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/images/imgdefault.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/cortesias/Coca Cola/1624392034.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/cortesias/Coca Cola/1624392105.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/cortesias/Coca Cola/1624392273.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/cortesias/Coca Cola/1624556460.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/empleados/1624918313/imagen/Juana-Perez.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/empresa/logo/logo-web.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/empresa/logo/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-01633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-11633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-21633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-31633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-41633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/galeria/Foto-51633636816.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/manuales/manual.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/50/fotoantes/50-FotoAntes.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/50/fotodespues/50-FotoDespues.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/53/fotoantes/53-FotoAntes.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/53/fotodespues/53-FotoDespues.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/69/fotoantes/69-FotoAntes.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/69/fotodespues/69-FotoDespues.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/74/fotoantes/74-FotoAntes.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/74/fotodespues/74-FotoDespues.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/82/fotoantes/82-FotoAntes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/82/fotodespues/82-FotoDespues.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/83/fotoantes/83-FotoAntes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/83/fotodespues/83-FotoDespues.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/86/fotoantes/86-FotoAntes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/86/fotodespues/86-FotoDespues.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/90/fotoantes/90-FotoAntes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/procesos/90/fotodespues/90-FotoDespues.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Producto para el cabello/1624422841.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Producto para el cabello/1624472868.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Shampoo/1628887896.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-01642795002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-11642795002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-21642795002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-31642795002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-41642795002.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-51642795003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-61642795003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-71642795003.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/4Foto-81642795003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Alaciado Japonés 2/1633567172.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Alaciado Japonés/1633532461.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Corte de cabello/1633532227.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Diagnóstico Capilar/1633567183.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Keratina Zero/1633567225.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Limpieza Capilar Profunda/1633567258.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Mascarilla nutritiva/1633567296.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Planchado express/1633567350.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/servicios/Prueba/1635893517.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/usuarios/cristhian/1624061630.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/usuarios/iarias/1624060263.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/usuarios/prueba/1624059842.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/lavandasc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lavandasc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/app/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/app/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/APIBundle/Controller/APIEncuestaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIBundle/Controller/APIEncuestaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/APIBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/ClientesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ClientesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Cliente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Cortesias.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Cortesias.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/cliente.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/cliente.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/usuario.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/usuario.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Empleados/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Empleados/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Encuesta/ver.encuesta.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Encuesta/ver.encuesta.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Productos/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Productos/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Sucursales/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Sucursales/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/registrar.usuario.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/registrar.usuario.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>foto</find>
+      <find>license</find>
+      <find>Unlicensed</find>
+      <find>&quot;https://www.froala.com/wysiwyg-editor?k=u</find>
+      <find>licen</find>
+      <find>widget_attributes</find>
+      <find>$form</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\xampp\htdocs\lavandasc</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/cobranzal.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/CobranzaController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Entity/Serviciolongitud.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Form/ProcesosType.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioLongitudController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/serviciolongitud.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Procesos/registrar.html.twig" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Controller/APIEncuestaController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Twig/Extension/ValidarRespuesta.php" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Resources/config/routing/notificacion.yml" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Controller/APINotificacionesController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Services/NotificacionFirebaseService.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Encuesta/ver.encuesta.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Twig/Extension/ValidarFechaCitaExtension.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/procesos.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Command/CitasHoyCommand.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/login.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Resources/config/routing/movil.yml" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Controller/APIMovilesController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Productos/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Empleados/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/usuario.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/footer.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Command/CitasProximasCommand.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/cliente.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/registrar.usuario.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Entity/Cliente.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Entity/Cortesias.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/ClientesController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/add.html.twig" />
+        <option value="$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Form/FotosservicioType.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/views/fotosservicio/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/fotosservicio.yml" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Entity/Fotosservicio.php" />
+        <option value="$PROJECT_DIR$/src/LavandaBundle/Controller/FotosServiciosController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PHPCSFixerProjectConfiguration">
+    <option name="selectedConfigurationId" value="DEFAULT_INTERPRETER" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/jdorn/sql-formatter" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-cache-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/incenteev/composer-parameter-handler" />
+      <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/symfony" />
+      <path value="$PROJECT_DIR$/vendor/sensio/distribution-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sensiolabs/security-checker" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-apcu" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
+      <path value="$PROJECT_DIR$/vendor/phing/phing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/helios-ag/fm-summernote-bundle" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/sensio/generator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1912" />
+    <option name="y" value="-3" />
+    <option name="width" value="1936" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectId" id="29G4Q8N342cmJmqm9L2E1X4z82I" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="routing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Galeria" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LavandaBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="servicio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arsc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arsc" type="462c0819:PsiDirectoryNode" />
+              <item name="var" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/arsc/src/LavandaBundle/Form&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Form" />
+      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Anonimo" />
+      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\fotosservicio" />
+      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Citas" />
+      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Clientes" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1635383517330" text="$form" recursive="true" caseInsensitive="true" type="PHP" history="1" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="583e1fb9-ae55-4ef6-93c1-91814266a878" name="Default Changelist" comment="" />
+      <created>1623778594961</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623778594961</updated>
+      <workItem from="1623778596631" duration="2067000" />
+      <workItem from="1623791019115" duration="2857000" />
+      <workItem from="1623862142582" duration="3028000" />
+      <workItem from="1623865851822" duration="3391000" />
+      <workItem from="1623869302828" duration="1547000" />
+      <workItem from="1624033226733" duration="1136000" />
+      <workItem from="1624034426718" duration="8759000" />
+      <workItem from="1624055047603" duration="7837000" />
+      <workItem from="1624075306363" duration="595000" />
+      <workItem from="1624121081862" duration="9072000" />
+      <workItem from="1624286926227" duration="7312000" />
+      <workItem from="1624374474231" duration="1578000" />
+      <workItem from="1624376716727" duration="29707000" />
+      <workItem from="1624492137701" duration="13311000" />
+      <workItem from="1624808578630" duration="1884000" />
+      <workItem from="1624916980369" duration="4893000" />
+      <workItem from="1624987000791" duration="9491000" />
+      <workItem from="1625278060607" duration="722000" />
+      <workItem from="1625498225359" duration="595000" />
+      <workItem from="1625589826112" duration="616000" />
+      <workItem from="1625694290496" duration="595000" />
+      <workItem from="1625761503562" duration="13288000" />
+      <workItem from="1625852516372" duration="12464000" />
+      <workItem from="1626114358699" duration="13548000" />
+      <workItem from="1626192077937" duration="2242000" />
+      <workItem from="1626226653645" duration="1807000" />
+      <workItem from="1627255685998" duration="7178000" />
+      <workItem from="1627496728471" duration="125000" />
+      <workItem from="1627576747788" duration="12461000" />
+      <workItem from="1627742467767" duration="2476000" />
+      <workItem from="1627945035832" duration="627000" />
+      <workItem from="1628100777306" duration="1184000" />
+      <workItem from="1628472049671" duration="78000" />
+      <workItem from="1628551177504" duration="4083000" />
+      <workItem from="1628615443451" duration="582000" />
+      <workItem from="1628628871396" duration="4294000" />
+      <workItem from="1628789813541" duration="18839000" />
+      <workItem from="1630079637439" duration="1398000" />
+      <workItem from="1630081941455" duration="6766000" />
+      <workItem from="1630428008010" duration="7863000" />
+      <workItem from="1630593088540" duration="4016000" />
+      <workItem from="1632846995744" duration="604000" />
+      <workItem from="1633036007842" duration="1194000" />
+      <workItem from="1633106473618" duration="1215000" />
+      <workItem from="1633361465784" duration="7384000" />
+      <workItem from="1633458385740" duration="4292000" />
+      <workItem from="1633467376192" duration="18176000" />
+      <workItem from="1633622642418" duration="7954000" />
+      <workItem from="1633638752601" duration="659000" />
+      <workItem from="1633661206512" duration="2360000" />
+      <workItem from="1633710666840" duration="18226000" />
+      <workItem from="1633811918619" duration="1297000" />
+      <workItem from="1633967812555" duration="15031000" />
+      <workItem from="1634174300123" duration="135000" />
+      <workItem from="1634569755266" duration="2761000" />
+      <workItem from="1634828040633" duration="11012000" />
+      <workItem from="1635176331496" duration="2714000" />
+      <workItem from="1635260937288" duration="9692000" />
+      <workItem from="1635377386795" duration="4877000" />
+      <workItem from="1635458550714" duration="5258000" />
+      <workItem from="1635724010027" duration="2802000" />
+      <workItem from="1635738455846" duration="17706000" />
+      <workItem from="1636156306807" duration="856000" />
+      <workItem from="1636409347054" duration="3012000" />
+      <workItem from="1636424102128" duration="1362000" />
+      <workItem from="1636426818882" duration="6935000" />
+      <workItem from="1636502211745" duration="15125000" />
+      <workItem from="1636590169455" duration="1153000" />
+      <workItem from="1636675372101" duration="728000" />
+      <workItem from="1637088453580" duration="2329000" />
+      <workItem from="1637102275237" duration="1826000" />
+      <workItem from="1637272507140" duration="4647000" />
+      <workItem from="1637292613438" duration="3311000" />
+      <workItem from="1637718901811" duration="1841000" />
+      <workItem from="1637851891175" duration="609000" />
+      <workItem from="1638035611014" duration="7000" />
+      <workItem from="1639415993741" duration="18207000" />
+      <workItem from="1640020966772" duration="16000" />
+      <workItem from="1641271309407" duration="1582000" />
+      <workItem from="1641851653457" duration="2640000" />
+      <workItem from="1641856614819" duration="639000" />
+      <workItem from="1642526806761" duration="10115000" />
+      <workItem from="1645554604985" duration="938000" />
+      <workItem from="1645652352620" duration="629000" />
+      <workItem from="1648226687300" duration="1188000" />
+      <workItem from="1648745199204" duration="11000" />
+      <workItem from="1652726071175" duration="22262000" />
+      <workItem from="1652889018642" duration="503000" />
+    </task>
+    <task id="LOCAL-00001" summary="Carga del proyecto">
+      <created>1623787315265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623787315267</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Módulo de usuarios">
+      <created>1624061757461</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1624061757461</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Módulo de usuarios (Actualización)&#10;Construcción de la API">
+      <created>1624377400998</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1624377400998</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Módulo de usuarios (Actualización)&#10;Construcción de la API">
+      <created>1635885328958</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1635885328959</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="441367000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-3" width="1936" height="1048" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="DB Browser" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.21114683" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="DB Execution Console" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="12" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Messages" order="14" visible="true" weight="0.1275917" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="sqlalchemy-transfer" order="3" side_tool="true" />
+      <window_info anchor="right" id="SQL Formatter" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Carga del proyecto" />
+    <MESSAGE value="Módulo de usuarios" />
+    <MESSAGE value="Módulo de usuarios (Actualización)&#10;Construcción de la API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Módulo de usuarios (Actualización)&#10;Construcción de la API" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/registrar.usuario.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="126" column="49" selection-start-line="126" selection-start-column="49" selection-end-line="126" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Form/CitasType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="28" column="62" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Entity/Cortesias.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="230" column="29" selection-start-line="230" selection-start-column="29" selection-end-line="230" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Entity/Cliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5209">
+          <caret line="230" column="29" selection-start-line="230" selection-start-column="29" selection-end-line="230" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/ProcesosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="82" column="70" selection-start-line="82" selection-start-column="70" selection-end-line="82" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Form/ProcesosType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="76" column="14" selection-start-line="68" selection-start-column="12" selection-end-line="76" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/procesos.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-543">
+          <caret line="61" column="124" selection-start-line="61" selection-start-column="124" selection-end-line="61" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/js/dtconfig.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+          <folding>
+            <element signature="e#1761#1772#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Procesos/registrar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="791">
+          <caret line="199" column="83" selection-start-line="194" selection-start-column="24" selection-end-line="199" selection-end-column="83" />
+          <folding>
+            <element signature="e#7408#7421#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="128" column="20" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
+          <folding>
+            <element signature="e#13859#13900#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="139" column="39" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
+          <folding>
+            <element signature="e#4225#4238#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2024">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="12" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/add.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/ClientesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
+          <folding>
+            <element signature="e#44#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Controller/APICitasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="97" column="46" selection-start-line="97" selection-start-column="46" selection-end-line="97" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/cliente.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/cortesia.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/empleado.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/empresa.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/encuesta.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/galeria.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/home.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/movil.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="59" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/notificacion.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/procesos.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Resources/config/routing/producto.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Controller/APIProductosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/cliente.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/usuario.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1058">
+          <caret line="227" column="8" selection-start-line="227" selection-start-column="8" selection-end-line="227" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/footer.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Form/GaleriaType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="30" column="14" selection-start-line="21" selection-start-column="11" selection-end-line="30" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Form/FotosservicioType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/GaleriaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1817">
+          <caret line="79" column="83" selection-start-line="79" selection-start-column="83" selection-end-line="79" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3036">
+          <caret line="135" column="58" selection-start-line="135" selection-start-column="58" selection-end-line="135" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="34" column="21" selection-start-line="30" selection-start-column="16" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Entity/Fotosservicio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2622">
+          <caret line="114" column="35" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/servicio.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/fotosservicio.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1518">
+          <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Galeria/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/fotosservicio/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1426">
+          <caret line="62" column="62" selection-start-line="62" selection-start-column="62" selection-end-line="62" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/FotosServiciosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#44#83#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

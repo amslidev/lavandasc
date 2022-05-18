@@ -49,3 +49,11 @@ api_procesos:
 api_serviciolongitud:
     resource: "@APIBundle/Resources/config/routing/serviciolongitud.yml"
     prefix:    /
+
+api_moviles:
+    resource: "@APIBundle/Resources/config/routing/movil.yml"
+    prefix:    /
+
+api_notificaciones:
+    resource: "@APIBundle/Resources/config/routing/notificacion.yml"
+    prefix:    /

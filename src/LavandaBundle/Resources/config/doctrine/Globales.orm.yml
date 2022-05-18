@@ -1,0 +1,36 @@
+LavandaBundle\Entity\Globales:
+    type: entity
+    table: globales
+    id:
+        idglobal:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idGlobal
+            generator:
+                strategy: IDENTITY
+    fields:
+        concepto:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: Concepto
+        clave:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: true
+            column: Clave
+        valor:
+            type: string
+            nullable: false
+            length: 400
+            options:
+                fixed: false
+            column: Valor
+    lifecycleCallbacks: {  }

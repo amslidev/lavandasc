@@ -63,3 +63,18 @@ services:
         tags:
         - { name: twig.extension }
         arguments: ['@doctrine.orm.entity_manager']
+
+    arsc.notificacion_firebase_service:
+        class: LavandaBundle\Services\NotificacionFirebaseService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    arsc.notificacion_correo_service:
+        class: LavandaBundle\Services\NotificacionCorreoService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    validar_respuesta.twig_extension:
+        class: LavandaBundle\Twig\Extension\ValidarRespuesta
+        public: false
+        tags:
+        - { name: twig.extension }
+        arguments: ['@doctrine.orm.entity_manager']

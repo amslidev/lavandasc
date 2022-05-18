@@ -1,0 +1,59 @@
+LavandaBundle\Entity\Contacto:
+    type: entity
+    table: contacto
+    indexes:
+        sucursal_contacto_fk_idx:
+            columns:
+                - idsucursal
+    id:
+        idcontacto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        apellido:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        telefono:
+            type: string
+            nullable: true
+            length: 15
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        comentarios:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        idsucursal:
+            targetEntity: Sucursal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idsucursal:
+                    referencedColumnName: idSucursal
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -225,4 +225,9 @@ class Cortesias
     {
         return $this->nombreimagen;
     }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 }

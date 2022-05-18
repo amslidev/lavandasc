@@ -1,0 +1,64 @@
+LavandaBundle\Entity\Cliente:
+    type: entity
+    table: cliente
+    indexes:
+        usuario_cliente_fk:
+            columns:
+                - idUsuario
+    id:
+        idcliente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCliente
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        apellido:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        direccion:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        telefono:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: true
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        fechanacimiento:
+            type: date
+            nullable: true
+            column: fechaNacimiento
+    manyToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

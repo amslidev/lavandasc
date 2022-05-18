@@ -14,3 +14,7 @@ cliente_valida_email:
 cliente_procesos:
     path: /clientes/procesos/{idcliente}
     defaults: { _controller: LavandaBundle:Citas:listarCitasCliente }
+
+cliente_new:
+    path: /clientes/new/client
+    defaults: { _controller: LavandaBundle:Clientes:add }

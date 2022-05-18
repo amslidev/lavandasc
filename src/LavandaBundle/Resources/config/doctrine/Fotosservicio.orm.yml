@@ -1,0 +1,44 @@
+LavandaBundle\Entity\Fotosservicio:
+    type: entity
+    table: fotosservicio
+    indexes:
+        servicio_fotosservicio_fk:
+            columns:
+                - idServicio
+    id:
+        idfotoservicio:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idFotoServicio
+            generator:
+                strategy: IDENTITY
+    fields:
+        rutaimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: nombreImagen
+    manyToOne:
+        idservicio:
+            targetEntity: Servicio
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idServicio:
+                    referencedColumnName: idServicio
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,39 @@
+LavandaBundle\Entity\Moviles:
+    type: entity
+    table: moviles
+    indexes:
+        usuario_moviles_fk:
+            columns:
+                - idUsuario
+    id:
+        idmovil:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        token:
+            type: string
+            nullable: false
+            length: 300
+            options:
+                fixed: false
+        fecharegistro:
+            type: datetime
+            nullable: false
+            column: fechaRegistro
+    manyToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

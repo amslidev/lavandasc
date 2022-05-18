@@ -35,20 +35,35 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3>Menu</h3>
+                <h3>Menú</h3>
                 <ul class="nav side-menu">
                     <li><a href="{{ path('citas_index') }}"><i class="fa fa-home"></i> Página principal</a></li>
                 </ul>
             </div>
 
             {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER')%}
+                <div class="menu_section">
+                    <h3>Citas</h3>
+                    <ul class="nav side-menu">
+                        <li>
+                            <a><i class="fa fa-calendar-check-o"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a class="symfony-docs" href="{{ path('citas_index') }}">Calenadario de Citas</a></li>
+                                <li><a class="symfony-docs" href="{{ path('citas_registro') }}">Agendar Cita</a></li>
+                                <li><a class="symfony-docs" href="{{ path('citas_historial') }}"> Historial de Citas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER')%}
             <div class="menu_section">
                 <h3>Negocio</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ path('citas_index') }}"><i class="fa fa-calendar-check-o"></i> Citas</a></li>
                     <li><a href="{{ path('clientes_index') }}"><i class="fa fa-users"></i> Clientes</a></li>
                     <li><a href="{{ path('citas_cobranza') }}"><i class="fa fa-money"></i> Cobranza</a></li>
-                    <li><a href="{{ path('citas_historial') }}"><i class="fa fa-calendar-o"></i> Historial de Citas</a></li>
+
                 </ul>
             </div>
             {% endif %}

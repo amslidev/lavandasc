@@ -230,4 +230,33 @@ class Servicio
     {
         return $this->nombre;
     }
+    /**
+     * @var boolean
+     */
+    private $activo;
+
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Servicio
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
 }

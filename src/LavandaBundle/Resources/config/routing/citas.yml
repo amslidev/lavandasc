@@ -23,3 +23,7 @@ citas_proceso:
     path: /citas/proceso
     defaults: { _controller: LavandaBundle:Citas:registraCitaProceso }
     condition: "request.isXmlHttpRequest()"
+
+citas_registro:
+    path: /citas/registro
+    defaults: { _controller: LavandaBundle:Citas:registrarCita }

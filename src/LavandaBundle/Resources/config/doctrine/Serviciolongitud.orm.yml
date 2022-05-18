@@ -1,0 +1,40 @@
+LavandaBundle\Entity\Serviciolongitud:
+    type: entity
+    table: serviciolongitud
+    indexes:
+        servicio_serviciolongitud_fk:
+            columns:
+                - idServicio
+    id:
+        idserviciolongitud:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idServicioLongitud
+            generator:
+                strategy: IDENTITY
+    fields:
+        longitud:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        precio:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+    manyToOne:
+        idservicio:
+            targetEntity: Servicio
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idServicio:
+                    referencedColumnName: idServicio
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -34,17 +34,6 @@
 
     {{ parent() }}
 
-    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/froala_editor.pkgd.min.js') }}"></script>
-    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.9.8/js/languages/es.js') }}"></script>
-    <script>
-        $(function() {
-            $('div#froala-editor').froalaEditor({
-                // Set the language code.
-                language: 'es'
-            })
-        });
-    </script>
-
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
     <!-- Custom Theme Scripts -->

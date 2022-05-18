@@ -1,0 +1,113 @@
+LavandaBundle\Entity\Citas:
+    type: entity
+    table: citas
+    indexes:
+        estatuscita_citas_fk:
+            columns:
+                - idEstatus
+        cortesias_citas_fk:
+            columns:
+                - idCortesia
+        servicio_citas_fk:
+            columns:
+                - idServicio
+        cliente_citas_fk:
+            columns:
+                - idCliente
+        empleado_citas_fk:
+            columns:
+                - idEmpleado
+        serviciolongitud_citas_fk:
+            columns:
+                - idServicioLongitud
+    id:
+        idcita:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCita
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechacita:
+            type: date
+            nullable: false
+            column: fechaCita
+        horarioinicio:
+            type: time
+            nullable: false
+            column: horarioInicio
+        horariofin:
+            type: time
+            nullable: false
+            column: horarioFin
+        comentarios:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+        idcortesia:
+            targetEntity: Cortesias
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCortesia:
+                    referencedColumnName: idCortesia
+            orphanRemoval: false
+        idempleado:
+            targetEntity: Empleado
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idEmpleado:
+                    referencedColumnName: idEmpleado
+            orphanRemoval: false
+        idestatus:
+            targetEntity: Estatuscita
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idEstatus:
+                    referencedColumnName: idEstatus
+            orphanRemoval: false
+        idservicio:
+            targetEntity: Servicio
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idServicio:
+                    referencedColumnName: idServicio
+            orphanRemoval: false
+        idserviciolongitud:
+            targetEntity: Serviciolongitud
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idServicioLongitud:
+                    referencedColumnName: idServicioLongitud
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,100 @@
+LavandaBundle\Entity\Encuesta:
+    type: entity
+    table: encuesta
+    indexes:
+        cliente_encuesta_fk:
+            columns:
+                - idCliente
+    id:
+        idencuesta:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idEncuesta
+            generator:
+                strategy: IDENTITY
+    fields:
+        opcion1:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion2:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion3:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion4:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion5:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion6:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion7:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion8:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion9:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion10:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        opcion11:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: true
+        fecharegistro:
+            type: datetime
+            nullable: true
+            column: fechaRegistro
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

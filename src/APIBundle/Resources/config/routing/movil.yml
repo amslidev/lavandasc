@@ -1,0 +1,9 @@
+api_movil_registro:
+    path: /moviles/registro
+    defaults: { _controller: APIBundle:APIMoviles:registrarMovil }
+    methods: [POST]
+
+api_movil_eliminar:
+    path: /moviles/eliminar
+    defaults: { _controller: APIBundle:APIMoviles:eliminarDispositivo }
+    methods: [POST]

@@ -1,0 +1,27 @@
+LavandaBundle\Entity\Estatuscita:
+    type: entity
+    table: estatuscita
+    id:
+        idestatus:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idEstatus
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        clave:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: true
+    lifecycleCallbacks: {  }

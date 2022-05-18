@@ -1,0 +1,44 @@
+LavandaBundle\Entity\Fotosproducto:
+    type: entity
+    table: fotosproducto
+    indexes:
+        producto_fotosproducto_fk:
+            columns:
+                - idProducto
+    id:
+        idfotoproducto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idFotoProducto
+            generator:
+                strategy: IDENTITY
+    fields:
+        rutaimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: rutaImagen
+        nombreimagen:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: nombreImagen
+    manyToOne:
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProducto:
+                    referencedColumnName: idProducto
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
