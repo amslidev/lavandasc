@@ -16,11 +16,13 @@ class DefaultController extends Controller
             WHERE e.idempresa IS NOT NULL"
         );
         $query->setMaxResults(1);
-        $empresa = $query->getOneOrNullResult();
-
-        return $this->render('LavandaBundle:Default:index.html.twig', array(
-            "empresa"=>$empresa
-        ));*/
-        return $this->redirectToRoute('citas_index');
+        $empresa = $query->getOneOrNullResult(); */
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN" || $user->getRole() == "ROLE_USER"){
+            return $this->redirectToRoute('citas_index');
+        }else{
+            return $this->render('LavandaBundle:Default:index.html.twig');
+        }
+       //return $this->redirectToRoute('home');
     }
 }

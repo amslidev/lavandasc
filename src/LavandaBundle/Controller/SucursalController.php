@@ -19,6 +19,14 @@ class SucursalController extends Controller
     }
 
     public function indexAction(){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $sucursales = $em->getRepository('LavandaBundle:Sucursal')->findAll();
@@ -29,6 +37,14 @@ class SucursalController extends Controller
     }
 
     public function addAction(Request $request){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $sucursal = new Sucursal();
@@ -65,6 +81,14 @@ class SucursalController extends Controller
     }
 
     public function editAction(Request $request, $id){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $sucursal = $em->getRepository('LavandaBundle:Sucursal')->find($id);

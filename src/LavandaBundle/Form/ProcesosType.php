@@ -105,9 +105,10 @@ class ProcesosType extends AbstractType
             ->add('horacita', TimeType::class, array(
                 "label" => "Seleccione la hora para la próxima cita",
                 "attr" => $ccsClass,
-                "widget" => "single_text",
+                "widget" => "choice",
                 "mapped" => false,
-                "data_class" => null
+                "data_class" => null,
+                "hours" => ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
             ))
             //->add('idcita')
             ->add('Guardar', SubmitType::class, array(

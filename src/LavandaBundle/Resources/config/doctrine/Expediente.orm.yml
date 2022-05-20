@@ -1,0 +1,44 @@
+LavandaBundle\Entity\Expediente:
+    type: entity
+    table: expediente
+    indexes:
+        cliente_expediente_fk_idx:
+            columns:
+                - idcliente
+    id:
+        idexpediente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        rutafoto:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        nombrefoto:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        fecha:
+            type: datetime
+            nullable: true
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -40,12 +40,9 @@
         </div>
         <div class="x_content">
             <div class="pull-right">
-                <ul>
-                    <li>
-                        <a style="font-size: medium"  class="label label-primary" href="{{ path('producto_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
-                    </li>
-                </ul>
+                <a class="btn btn-primary" href="{{ path('producto_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
             </div>
+            <br/>
             <br/>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -70,9 +67,9 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="{{ path('producto_edit', {'idproducto': producto.idproducto}) }}"> Modificar</a>
+                                <a class="btn btn-sm btn-warning btn-sm" href="{{ path('producto_edit', {'idproducto': producto.idproducto}) }}"> <i class="fa fa-edit" aria-hidden="true"> Editar</i> </a>
                                 <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#myModal{{ producto.idproducto }}">
-                                    Descripción
+                                    <i class="fa fa-eye-slash" aria-hidden="true"> Descripción </i>
                                 </button>
                             </td>
                         </tr>

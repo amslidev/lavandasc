@@ -1,0 +1,149 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.print.css') }}" rel="stylesheet" media="print">
+
+
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Mis Citas
+    </title>
+{% endblock top_content_header%}
+
+
+{% block page_content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Mis Citas <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+               <div id="calendar"></div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="datosCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="titulModal"></h3>
+                            </div>
+                            <div class="modal-body">
+                                <h4 id="servicio"></h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+
+    <!-- FullCalendar -->
+    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#calendar").fullCalendar('refetchEvents');
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap',
+                defaultView: 'agendaWeek',
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sáb'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                hiddenDays: [7],
+                buttonText: {
+                    today:    'Hoy',
+                    month:    'Mes',
+                    week:     'Semana',
+                    day:      'Día',
+                    list:     'Lista'
+                },
+                minTime: "09:00:00",
+                maxTime: "20:00:00",
+                eventColor: '#9161B3',
+                eventTextColor: '#2D2C28',
+                allDaySlot: false,
+                eventRender: function(eventObj, $el){
+                    $el.popover({
+                        title: eventObj.title,
+                        content: eventObj.description,
+                        trigger: 'hover',
+                        placement: 'top',
+                        container: 'body'
+                    });
+                },
+                events: function (start, end, timezone, callback) {
+                    $.ajax({
+                        url: '{{ path('citas_cliente_listado') }}',
+                        type: 'GET',
+                        success: function (doc) {
+                            var events = [];
+
+                           for(cita of doc){
+                               events.push({
+                                   id: cita.id,
+                                   title: cita.title,
+                                   start: cita.start,
+                                   end: cita.end,
+                                   color: cita.color,
+                                   description: cita.description
+                               });
+                           }
+                            callback(events);
+                        },
+                        error: function (err) {
+                            alert("Error en la carga");
+                        }
+                    });
+                },
+                eventClick: function(event, jsEvent, view) {
+                    $("#datosCita").modal("show");
+                    $("#titulModal").html(event.title);
+                    $("#servicio").html(event.description);
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

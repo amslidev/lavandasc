@@ -28,6 +28,14 @@ class CortesiasController extends Controller
      }
 
      public function newAction(Request $request){
+         $user = $this->getUser();
+         if($user->getRole() == "ROLE_ADMIN"){
+             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+         }else if($user->getRole() == "ROLE_USER"){
+             $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+         }else{
+             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+         }
          //Accedemos al Entity Manager de Doctrine
          $em = $this->getDoctrine()->getManager();
 
@@ -85,6 +93,14 @@ class CortesiasController extends Controller
      }
 
      public function editAction(Request $request, $idcortesia = null){
+         $user = $this->getUser();
+         if($user->getRole() == "ROLE_ADMIN"){
+             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+         }else if($user->getRole() == "ROLE_USER"){
+             $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+         }else{
+             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+         }
          $em = $this->getDoctrine()->getManager();
 
          $cortesia = $em->getRepository('LavandaBundle:Cortesias')->find($idcortesia);

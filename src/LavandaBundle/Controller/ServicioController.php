@@ -27,6 +27,14 @@ class ServicioController extends Controller
 
     public function indexAction()
     {
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $servicios = $em->getRepository('LavandaBundle:Servicio')->findAll();
@@ -42,6 +50,14 @@ class ServicioController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $servicio = new Servicio();
         $form = $this->createForm('LavandaBundle\Form\ServicioType', $servicio);
         $form->handleRequest($request);
@@ -101,6 +117,14 @@ class ServicioController extends Controller
      */
     public function editAction(Request $request, Servicio $servicio)
     {
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $deleteForm = $this->createDeleteForm($servicio);
         $editForm = $this->createForm('LavandaBundle\Form\ServicioType', $servicio);
         $editForm->handleRequest($request);
@@ -146,6 +170,14 @@ class ServicioController extends Controller
      */
     public function deleteAction(Request $request, Servicio $servicio)
     {
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $form = $this->createDeleteForm($servicio);
         $form->handleRequest($request);
 

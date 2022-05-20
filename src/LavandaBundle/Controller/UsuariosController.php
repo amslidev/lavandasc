@@ -128,7 +128,7 @@ class UsuariosController extends Controller
 
         $username = $request->query->get('username');
 
-        var_dump($username);
+        //var_dump($username);
 
         $usuario = $em->getRepository('LavandaBundle:Usuario')->findOneBy(array(
            "username"=>$username

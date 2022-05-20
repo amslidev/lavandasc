@@ -18,6 +18,14 @@ class EmpresaController extends Controller
     }
 
     public function indexAction(Request $request){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery(

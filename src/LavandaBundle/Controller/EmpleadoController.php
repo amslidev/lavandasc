@@ -19,6 +19,14 @@ class EmpleadoController extends Controller
     }
 
     public function indexAction(){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $empleados = $em->getRepository('LavandaBundle:Empleado')->findAll();
@@ -29,6 +37,14 @@ class EmpleadoController extends Controller
     }
 
     public function newAction(Request $request){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $empleado = new Empleado();
@@ -70,6 +86,14 @@ class EmpleadoController extends Controller
     }
 
     public function editAction(Request $request, $idempleado  = null){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $empleado = $em->getRepository('LavandaBundle:Empleado')->find($idempleado);

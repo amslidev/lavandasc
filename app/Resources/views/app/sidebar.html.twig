@@ -37,23 +37,58 @@
             <div class="menu_section">
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ path('citas_index') }}"><i class="fa fa-home"></i> Página principal</a></li>
+                    {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('citas_index') }}"><i class="fa fa-home"></i> Página principal</a></li>
+                    {% elseif is_granted('ROLE_CLIENTE') %}
+                        <li><a href="{{ path('lavanda_homepage') }}"><i class="fa fa-home"></i> Página principal</a></li>
+                    {%endif %}
+
                 </ul>
             </div>
 
-            {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER')%}
+            {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER') or  is_granted('ROLE_CLIENTE') %}
                 <div class="menu_section">
                     <h3>Citas</h3>
+                    {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER') %}
+                        <ul class="nav side-menu">
+                            <li>
+                                <a><i class="fa fa-calendar-check-o"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a class="symfony-docs" href="{{ path('citas_index') }}">Calendario de Citas</a></li>
+                                    <li><a class="symfony-docs" href="{{ path('citas_registro') }}">Agendar Cita</a></li>
+                                    <li><a class="symfony-docs" href="{{ path('citas_historial') }}"> Historial de Citas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% elseif is_granted('ROLE_CLIENTE') %}
+                        <ul class="nav side-menu">
+                            <li>
+                                <a><i class="fa fa-calendar-check-o"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a class="symfony-docs" href="{{ path('citas_cliente_index') }}">Mis Citas</a></li>
+                                    <li><a class="symfony-docs" href="{{ path('citas_cliente_registro') }}">Agendar Cita</a></li>
+                                    <li><a class="symfony-docs" href="{{ path('citas_historial') }}"> Historial de Citas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+                </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_CLIENTE') %}
+                <div class="menu_section">
+                    <h3>Expediente</h3>
                     <ul class="nav side-menu">
                         <li>
-                            <a><i class="fa fa-calendar-check-o"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                            <a><i class="fa fa-folder-open-o"></i> Información <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a class="symfony-docs" href="{{ path('citas_index') }}">Calenadario de Citas</a></li>
-                                <li><a class="symfony-docs" href="{{ path('citas_registro') }}">Agendar Cita</a></li>
-                                <li><a class="symfony-docs" href="{{ path('citas_historial') }}"> Historial de Citas</a></li>
+                                <li><a class="symfony-docs" href="{{ path('cliente_expediente_fotografico') }}">Mi Expediente</a></li>
+                                <li><a class="symfony-docs" href="{{ path('proceso_cliente_listado') }}">Mis Procesos</a></li>
                             </ul>
                         </li>
                     </ul>
+
                 </div>
             {% endif %}
 

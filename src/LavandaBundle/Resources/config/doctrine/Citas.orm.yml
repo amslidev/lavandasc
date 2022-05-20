@@ -5,18 +5,18 @@ LavandaBundle\Entity\Citas:
         estatuscita_citas_fk:
             columns:
                 - idEstatus
-        cortesias_citas_fk:
-            columns:
-                - idCortesia
         servicio_citas_fk:
             columns:
                 - idServicio
-        cliente_citas_fk:
-            columns:
-                - idCliente
         empleado_citas_fk:
             columns:
                 - idEmpleado
+        cortesias_citas_fk:
+            columns:
+                - idCortesia
+        cliente_citas_fk:
+            columns:
+                - idCliente
         serviciolongitud_citas_fk:
             columns:
                 - idServicioLongitud

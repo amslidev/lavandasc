@@ -27,3 +27,16 @@ citas_proceso:
 citas_registro:
     path: /citas/registro
     defaults: { _controller: LavandaBundle:Citas:registrarCita }
+
+citas_cliente_index:
+    path: /citas/miscitas
+    defaults: { _controller: LavandaBundle:Citas:citasClienteIndex }
+
+citas_cliente_listado:
+    path: /citas/miscitas/listado
+    defaults: { _controller: LavandaBundle:Citas:buscarCitasCliente }
+    condition: "request.isXmlHttpRequest()"
+
+citas_cliente_registro:
+    path: /citas/miscitas/registro
+    defaults: { _controller: LavandaBundle:Citas:registrarCitaCliente }

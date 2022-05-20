@@ -1,0 +1,192 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Expediente del Cliente
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Expediente del Cliente {{ cliente.nombre }} {{ cliente.apellido }}</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-lg-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-lg-5">
+                                <label for="Email">Email</label>
+                                <input class="form-control" value="{{ cliente.email }}" readonly>
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="Edad">Edad</label>
+                                <input class="form-control" value="{{ cliente.fechanacimiento | date('Y-m-d') | edad }} años" readonly>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr/>
+                            {{ form_start(form) }}
+                            <div class="col-lg-5">
+                                <label style="font-size: medium">Tipo de cuero cabelludo</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_widget(form.idtipocuero) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <br/>
+                            <div class="col-lg-5">
+                                <label style="font-size: medium">Análisis o Diagnóstico</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_widget(form.iddiagnostico) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <br/>
+                            <div class="col-lg-5">
+                                <label style="font-size: medium">Procesos de Cabello</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.decoloracion) }}
+                                {{ form_widget(form.decoloracion) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.cantidaddecoloracion) }}
+                                {{ form_widget(form.cantidaddecoloracion) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.planchadopermanente) }}
+                                {{ form_widget(form.planchadopermanente) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.cantidadplanchado) }}
+                                {{ form_widget(form.cantidadplanchado) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.tintes) }}
+                                {{ form_widget(form.tintes) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.cantidadtintes) }}
+                                {{ form_widget(form.cantidadtintes) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.alisadosprogresivos) }}
+                                {{ form_widget(form.alisadosprogresivos) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.cantidadalisados) }}
+                                {{ form_widget(form.cantidadalisados) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <br/>
+                            <div class="col-lg-5">
+                                <label style="font-size: medium">Antecedentes alérgicos</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.caspa) }}
+                                {{ form_widget(form.caspa) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.alergiacosmetico) }}
+                                {{ form_widget(form.alergiacosmetico) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.nombrecosmetico) }}
+                                {{ form_widget(form.nombrecosmetico) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.alergiaquimico) }}
+                                {{ form_widget(form.alergiaquimico) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.nombrequimico) }}
+                                {{ form_widget(form.nombrequimico) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <br/>
+                            <div class="col-lg-5">
+                                <label style="font-size: medium">Información general</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.productosacidos) }}
+                                {{ form_widget(form.productosacidos) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.nombreproductoacido) }}
+                                {{ form_widget(form.nombreproductoacido) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.usomedicamentos) }}
+                                {{ form_widget(form.usomedicamentos) }}
+                            </div>
+                            <div class="col-lg-7">
+                                {{ form_label(form.nombremedicamentos) }}
+                                {{ form_widget(form.nombremedicamentos) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-5">
+                                {{ form_label(form.embarazada) }}
+                                {{ form_widget(form.embarazada) }}
+                            </div>
+                            <div class="clearfix"></div>
+                            {{ form_end(form) }}
+                        </div>
+                        <div class="panel-footer">
+                            <ul>
+                                <li>
+                                    <a style="font-size: medium" href="{{ path('clientes_index') }}">Volver al listado</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('clientes_index', {'idcliente': cliente.idcliente}) }}"  style="font-size: medium"> Volver al cliente</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/expediente.js') }}"></script>
+
+{% endblock javascripts %}

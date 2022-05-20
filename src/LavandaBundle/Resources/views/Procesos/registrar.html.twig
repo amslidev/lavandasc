@@ -17,12 +17,13 @@
 
 {% block page_content %}
     <div class="col-lg-12">
-        {{ form_start(form) }}
+
         <div class="panel panel-default">
-            <div class="panel header">
+            <div class="panel-heading">
                 <h2>Registrar información del proceso <small>Cliente: {{ cita.idcliente.nombre }} {{ cita.idcliente.apellido }}. Fecha de la última cita: {{ cita.fechacita | date('Y-m-d') }} </small></h2>
             </div>
             <div class="panel-body">
+                {{ form_start(form) }}
                 <div class="col-lg-10 col-md-10">
                     {{ form_label(form.fechaproceso) }}
                     {{ form_widget(form.fechaproceso) }}
@@ -79,6 +80,7 @@
                 <button type="button" id="btnagendarcita" class="btn btn-primary" onclick="agendarCita();" >Verificar disponibilidad</button>
                 <br/>
                 {{ form_widget(form.Guardar) }}
+                {{ form_end(form) }}
             </div>
             <div class="panel-footer">
                 <ul>
@@ -88,7 +90,7 @@
                 </ul>
             </div>
         </div>
-        {{ form_end(form) }}
+
     </div>
 {% endblock %}
 
@@ -172,17 +174,21 @@
             var idsucursal = $("#lavandabundle_procesos_sucursal").val();
             var idempleado = $("#lavandabundle_procesos_empleado").val();
             var fecha = $("#lavandabundle_procesos_fechacita").val();
-            var hora = $("#lavandabundle_procesos_horacita").val();
+            var horaSel = $("#lavandabundle_procesos_horacita_hour").val();
+            var minutoSel = $("#lavandabundle_procesos_horacita_minute").val();
             var idcliente = '{{ cita.idcliente.idcliente }}';
             var datos = {};
 
             if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && hora !== ""){
+                let horaSeleccionada = horaSel+":"+minutoSel;
+                var hora = new Date("1970-01-01 " + horaSeleccionada);
                 datos.idservicio = idservicio;
                 datos.idlongitud = idlongitud;
                 datos.idsucursal = idsucursal;
                 datos.idempleado = idempleado;
                 datos.fecha = fecha;
-                datos.hora = hora;
+                datos.hora = hora.getHours();
+                datos.minutos = hora.getMinutes();
                 datos.idcliente = idcliente;
 
                 $.ajax({

@@ -4,6 +4,7 @@ namespace LavandaBundle\Controller;
 
 use LavandaBundle\Entity\Citas;
 use LavandaBundle\Form\Citas2Type;
+use LavandaBundle\Form\CitasClienteType;
 use LavandaBundle\Form\CitasType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -12,7 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CitasController extends Controller
 {
+
     public function indexAction(Request $request){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
+
+        //$this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(CitasType::class);
@@ -43,15 +56,56 @@ class CitasController extends Controller
                 $color = "#CF3831";
             }
 
-            array_push($arrCitas, [
-                "id"=>$cita->getIdcita() != null ? $cita->getIdcita() : "0" ,
-                "title"=>$cita->getIdcliente()->getNombre() != null ? "Cita agendada para ".$cita->getIdcliente()->getNombre()." ".$cita->getIdcliente()->getApellido() : "",
-                "start"=>$cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d")."T".$cita->getHorarioinicio()->format("H:i") : "2021-07-12",
-                "end"=>$cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d")."T".$cita->getHorariofin()->format("H:i") : "2021-07-12",
-                "allDay"=>false,
-                "description"=>"El servicio solicitado es ".$cita->getIdservicio()->getNombre(),
-                "color"=>$color
-            ]);
+            $arrCitas[] = [
+                "id" => $cita->getIdcita() != null ? $cita->getIdcita() : "0",
+                "title" => $cita->getIdcliente()->getNombre() != null ? "Cita agendada para " . $cita->getIdcliente()->getNombre() . " " . $cita->getIdcliente()->getApellido() : "",
+                "start" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorarioinicio()->format("H:i") : "2021-07-12",
+                "end" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorariofin()->format("H:i") : "2021-07-12",
+                "allDay" => false,
+                "description" => "El servicio solicitado es " . $cita->getIdservicio()->getNombre(),
+                "color" => $color
+            ];
+        }
+        return new JsonResponse($arrCitas);
+    }
+
+    public function citasClienteIndexAction(Request $request){
+        return $this->render('LavandaBundle:Citas:index.citas.cliente.html.twig');
+    }
+
+    public function buscarCitasClienteAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        $cliente = $em->getRepository('LavandaBundle:Cliente')->findOneBy(array(
+            "idusuario"=>$user->getIdusuario()
+        ));
+
+        $citas = $em->getRepository('LavandaBundle:Citas')->findBy(array(
+            "idcliente"=>$cliente->getIdcliente()
+        ));
+
+        $arrCitas = array();
+
+        foreach ($citas as $cita){
+            if($cita->getIdestatus()->getClave() == "EC1"){
+                $color = "#D8C223";
+            }else if($cita->getIdestatus()->getClave() == "EC4" || $cita->getIdestatus()->getClave() == "EC5"){
+                $color = "#73C83C";
+            }else if($cita->getIdestatus()->getClave() == "EC3"){
+                $color = "#CF3831";
+            }
+
+            $arrCitas[] = [
+                "id" => $cita->getIdcita() != null ? $cita->getIdcita() : "0",
+                "title" => $cita->getIdcliente()->getNombre() != null ? "Cita agendada para " . $cita->getIdcliente()->getNombre() . " " . $cita->getIdcliente()->getApellido() : "",
+                "start" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorarioinicio()->format("H:i") : "2021-07-12",
+                "end" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorariofin()->format("H:i") : "2021-07-12",
+                "allDay" => false,
+                "description" => "El servicio solicitado es " . $cita->getIdservicio()->getNombre(),
+                "color" => $color
+            ];
         }
         return new JsonResponse($arrCitas);
     }
@@ -71,24 +125,17 @@ class CitasController extends Controller
                 $estatusCita = $em->getRepository('LavandaBundle:Estatuscita')->findOneBy(array(
                     "clave"=>"EC4"
                 ));
-
                 $cita->setIdestatus($estatusCita);
-
                 $em->persist($cita);
             }else if($opcion == "2"){
                 $em->remove($cita);
             }
-
-
-
             $flush = $em->flush();
-
             if($flush == null){
                 $response->setStatusCode(200);
             }else{
                 $response->setStatusCode(500);
             }
-
         }else{
             $response->setStatusCode(500);
         }
@@ -98,11 +145,28 @@ class CitasController extends Controller
     public function historialCitasAction(){
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery(
-            "SELECT c FROM LavandaBundle:Citas c 
-            LEFT JOIN LavandaBundle:Estatuscita e WITH c.idestatus = e.idestatus 
-            WHERE (e.clave = 'EC3' OR e.clave = 'EC5')"
-        );
+        $user = $this->getUser();
+
+        if($user->getRole() != "ROLE_CLIENTE"){
+            $query = $em->createQuery(
+                "SELECT c FROM LavandaBundle:Citas c 
+                LEFT JOIN LavandaBundle:Estatuscita e WITH c.idestatus = e.idestatus 
+                WHERE (e.clave = 'EC3' OR e.clave = 'EC5')"
+            );
+        }else{
+            $cliente = $em->getRepository('LavandaBundle:Cliente')->findOneBy(array(
+                "idusuario" => $user->getIdusuario()
+            ));
+
+            $query = $em->createQuery(
+                "SELECT c FROM LavandaBundle:Citas c 
+                LEFT JOIN LavandaBundle:Estatuscita e WITH c.idestatus = e.idestatus 
+                WHERE (e.clave = 'EC3' OR e.clave = 'EC5') 
+                AND c.idcliente = :idcliente"
+            );
+
+            $query->setParameter("idcliente", $cliente->getIdcliente());
+        }
 
         $citas = $query->getResult();
 
@@ -120,7 +184,7 @@ class CitasController extends Controller
             "idcliente" => $cliente->getIdcliente()
         ));
 
-        return $this->render('LavandaBundle:Clientes:procesos.html.twig', array(
+        return $this->render('LavandaBundle:Procesos:procesos.html.twig', array(
             "citas" => $citas,
             "cliente" => $cliente
         ));
@@ -135,13 +199,24 @@ class CitasController extends Controller
         $idcliente = $request->get('idcliente');
         $fecha = $request->get('fecha');
         $hora = $request->get('hora');
+        $minuto = $request->get('minuto');
+
+        if($idcliente == 0){
+            $user = $this->getUser();
+            $cliente = $em->getRepository('LavandaBundle:Cliente')->findOneBy(array(
+                "idusuario" => $user->getIdusuario()
+            ));
+            $idcliente = $cliente->getIdcliente();
+        }
 
 
         $response = new Response();
         if($idservicio != "" && $idempleado != "" && $fecha != "" && $hora != ""){
-
+            if($minuto >= 0 && $minuto <= 9){
+                $minuto = "0".$minuto;
+            }
             $oFecha = new \DateTime($fecha);
-            $oHora = new \DateTime($hora);
+            $oHora = new \DateTime($hora.":".$minuto);
 
             $empleado = $em->getRepository('LavandaBundle:Empleado')->find($idempleado);
             $servicio = $em->getRepository('LavandaBundle:Servicio')->find($idservicio);
@@ -345,4 +420,17 @@ class CitasController extends Controller
             "form" => $form->createView()
         ));
     }
+
+    public function registrarCitaClienteAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(CitasClienteType::class);
+        $form->handleRequest($request);
+
+        return $this->render('LavandaBundle:Citas:registrar.cita.cliente.html.twig', array(
+            "form" => $form->createView()
+        ));
+    }
+
+
 }

@@ -97,4 +97,32 @@ class ProcesosController extends Controller
             "proceso" => $proceso
         ));
     }
+
+    public function procesosClienteAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_CLIENTE"){
+            $cliente = $em->getRepository('LavandaBundle:Cliente')->findOneBy(array(
+                "idusuario" => $user->getIdusuario()
+            ));
+
+            $query = $em->createQuery(
+                "SELECT p FROM LavandaBundle:Procesos p 
+                LEFT JOIN LavandaBundle:Citas c WITH p.idcita = c.idcita 
+                LEFT JOIN LavandaBundle:Cliente cl WITH c.idcliente = cl.idcliente 
+                WHERE cl.idcliente = :idcliente"
+            );
+            $query->setParameter("idcliente", $cliente->getIdcliente());
+            $procesos = $query->getResult();
+
+
+        }else{
+            return $this->redirectToRoute('login');
+        }
+
+        return $this->render('LavandaBundle:Procesos:procesos.clientes.html.twig', array(
+            "citas" => $procesos
+        ));
+    }
 }

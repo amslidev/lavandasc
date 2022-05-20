@@ -7,3 +7,8 @@ arsc_registro_anonimo:
     path: /registroanonimo
     defaults: { _controller: LavandaBundle:Anonimo:registro }
     methods: [GET, POST]
+
+arsc_registro_validausername:
+    path: /registroanonimo/validausername
+    defaults: { _controller: LavandaBundle:Anonimo:validarUsernameAnonimo }
+    methods: [GET]

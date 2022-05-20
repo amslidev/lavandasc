@@ -40,12 +40,9 @@
         </div>
         <div class="x_content">
             <div class="pull-right">
-                <ul>
-                    <li>
-                        <a style="font-size: medium"  class="label label-primary" href="{{ path('cortesia_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
-                    </li>
-                </ul>
+                <a class="btn btn-primary" href="{{ path('cortesia_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
             </div>
+            <br/>
             <br/>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -78,11 +75,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <ul>
-                                    <li>
-                                        <a style="font-size: medium" class="label label-warning" href="{{ path('cortesia_edit', {'idcortesia': cortesia.idcortesia}) }}"> Modificar</a>
-                                    </li>
-                                </ul>
+                                <a  class="btn btn-sm btn-warning" href="{{ path('cortesia_edit', {'idcortesia': cortesia.idcortesia}) }}"> <i class="fa fa-edit" aria-hidden="true"> Editar</i> </a>
                             </td>
                         </tr>
                     {% endfor %}

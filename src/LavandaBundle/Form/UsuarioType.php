@@ -55,7 +55,7 @@ class UsuarioType extends AbstractType
                 "required"=>false
             ))
             ->add('Guardar', SubmitType::class, array(
-                "label"=>"Registrar",
+                "label"=>"Guardar",
                 "attr"=> array("class"=>"form-submit btn btn-success")
             ))
             //->add('createdAt')

@@ -89,9 +89,10 @@ class Citas2Type extends AbstractType
             ->add('horacita', TimeType::class, array(
                 "label" => "Seleccione la hora de la cita",
                 "attr" => $ccsClass,
-                "widget" => "single_text",
+                "widget" => "choice",
                 "mapped" => false,
-                "data_class" => null
+                "data_class" => null,
+                "hours" => ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
             ))
             ->add('idcortesia', EntityType::class, array(
                 "label" => "Seleccione la cortesía",

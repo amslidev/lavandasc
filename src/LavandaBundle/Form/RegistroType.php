@@ -81,7 +81,10 @@ class RegistroType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'LavandaBundle\Entity\Cliente'
+            'data_class' => 'LavandaBundle\Entity\Cliente',
+            'csrf_protection' =>  true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id' => 'cliente_item'
         ));
     }
 

@@ -2,12 +2,12 @@ LavandaBundle\Entity\Expedientecliente:
     type: entity
     table: expedientecliente
     indexes:
-        diagnostico_expedientecliente_fk:
-            columns:
-                - idDiagnostico
         tipocuero_expedientecliente_fk:
             columns:
                 - idTipoCuero
+        diagnostico_expedientecliente_fk:
+            columns:
+                - idDiagnostico
         Cliente_ExpedienteCliente_fk_idx:
             columns:
                 - idCliente

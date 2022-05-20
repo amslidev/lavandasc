@@ -40,6 +40,14 @@ class ClientesController extends Controller
     }
 
     public function addAction(Request $request){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $cliente = new Cliente();
@@ -79,6 +87,14 @@ class ClientesController extends Controller
     }
 
     public function editAction(Request $request, $idcliente = null){
+        $user = $this->getUser();
+        if($user->getRole() == "ROLE_ADMIN"){
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }else if($user->getRole() == "ROLE_USER"){
+            $this->denyAccessUnlessGranted('ROLE_USER', $user, 'No tiene acceso a esta página');
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $cliente = $em->getRepository('LavandaBundle:Cliente')->find($idcliente);

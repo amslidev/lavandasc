@@ -40,11 +40,7 @@
             </div>
             <div class="x_content">
                 <div class="pull-right">
-                    <ul>
-                        <li>
-                            <a style="font-size: medium"  class="label label-primary" href="{{ path('users_registrar_usuario') }}"><i class="fa fa-plus"> Nuevo</i> </a>
-                        </li>
-                    </ul>
+                    <a  class="btn btn-primary" href="{{ path('users_registrar_usuario') }}"><i class="fa fa-plus"> Nuevo</i> </a>
                 </div>
                 <br/>
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -88,31 +84,21 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <ul>
-                                        <li>
-                                            <a style="font-size: medium" class="label label-warning" href="{{ path('users_editar_usuario', {'idusuario': usuario.idusuario}) }}"> Modificar</a>
-                                        </li>
-                                        <br/>
-                                        {% if usuario.role != 'ROLE_ADMIN' %}
-                                            <li>
-                                                <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-danger btnbloquea btn-sm
+                                    <a  class="btn btn-sm btn-warning" href="{{ path('users_editar_usuario', {'idusuario': usuario.idusuario}) }}"> <i class="fa fa-edit" aria-hidden="true"> Editar</i> </a>
+                                    {% if usuario.role != 'ROLE_ADMIN' %}
+                                        <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-danger btnbloquea btn-sm
                                                         {% if usuario.isactive == false %}
                                                             hidden
                                                         {% endif %}
                                                     "> <i class="fa fa-lock" aria-hidden="true"> Bloquear</i></button>
-                                                <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-primary btndesbloquea btn-sm
+                                        <button type="submit" data-id="{{ usuario.idusuario }}" class="btn btn-primary btndesbloquea btn-sm
                                                         {% if usuario.isactive == true %}
                                                             hidden
                                                         {% endif %}
-                                                    ">
-                                                    <i class="fa fa-lock" aria-hidden="true"> Desbloquear</i></button>
-                                            </li>
-                                        {% else %}
-                                            <p>Los administradores no pueden ser bloqueados</p>
-                                        {% endif %}
-
-                                    </ul>
-
+                                                    "> <i class="fa fa-lock" aria-hidden="true"> Desbloquear</i></button>
+                                    {% else %}
+                                        <p>Los administradores no pueden ser bloqueados</p>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

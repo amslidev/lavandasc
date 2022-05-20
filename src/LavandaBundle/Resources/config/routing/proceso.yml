@@ -1,3 +1,7 @@
 proceso_registro:
     path: /cita/proceso/registro/{idcita}
     defaults: { _controller: LavandaBundle:Procesos:registrarProceso }
+
+proceso_cliente_listado:
+    path: /mis_procesos
+    defaults: { _controller: LavandaBundle:Procesos:procesosCliente }

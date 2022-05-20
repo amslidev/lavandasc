@@ -1,3 +1,15 @@
 cliente_expediente:
     path: /cliente/expediente/{idcliente}
-    defaults: { _controller: LavandaBundle:Expediente:index}
+    defaults: { _controller: LavandaBundle:Expediente:addExpedienteCliente }
+
+cliente_expediente_eliminar_foto:
+    path: /cliente/expediente/elimina_foto/{idfoto}
+    defaults: { _controller: LavandaBundle:Expediente:elimarFoto }
+
+cliente_expediente_eliminar_fotos:
+    path: /cliente/expediente/eliminar_fotos/{idcliente}
+    defaults: { _controller: LavandaBundle:Expediente:elimarFotos }
+
+cliente_expediente_fotografico:
+    path: /cliente/expediente_fotografico
+    defaults: { _controller: LavandaBundle:Expediente:showExpedienteCliente }
