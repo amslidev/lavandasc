@@ -32,7 +32,7 @@ class CitasType extends AbstractType
                 },
                 "attr" => array("class" => "form-control")
             ))
-            ->add('idempleado', EntityType::class, array(
+            /*->add('idempleado', EntityType::class, array(
                 "label"=>"Seleccione al colaborador",
                 "placeholder"=>"Seleccione un elemento",
                 "class"=>"LavandaBundle\Entity\Empleado",
@@ -45,7 +45,7 @@ class CitasType extends AbstractType
                     return $empleado->getNombre()." ".$empleado->getApellido();
                 },
                 "attr"=>array("class"=>"form-control")
-            ))
+            ))*/
             //->add('idestatus')
             //->add('idservicio')
         ;

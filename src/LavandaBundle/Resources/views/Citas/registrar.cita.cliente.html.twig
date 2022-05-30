@@ -120,9 +120,13 @@
             var idcliente = 0;
             var datos = {};
 
-            if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && hora !== ""){
+            if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && horaSel !== ""){
+                if(minutoSel >= "0" && minutoSel <= "9"){
+                    minutoSel = "0"+minutoSel;
+                }
+
                 let horaSeleccionada = horaSel+":"+minutoSel;
-                var hora = new Date("1970-01-01 " + horaSeleccionada);
+                let hora = new Date("1970/01/01 " + horaSeleccionada);
                 datos.idservicio = idservicio;
                 datos.idlongitud = idlongitud;
                 datos.idsucursal = idsucursal;

@@ -63,6 +63,20 @@ h1,h2,h3{
     outline:none;
     border: 1px solid lightgrey;
 }
+
+.container{
+    height: 100%;
+    align-content: center;
+}
+
+.card{
+    padding-top: 20px;
+    height: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
 form .error {
     color: #ff0000;
 }

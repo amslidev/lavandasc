@@ -18,19 +18,19 @@
     <link rel="icon" href="{{ asset('uploads/empresa/logo/logo-web.jpg') }}" style="background-color: ghostwhite;">
 {% endif %}
 
-<body>
+<body style="background: url({{ asset('assets/images/backloginarsc.jpg') }}); background-size: cover; ">
 <div class="container center-block">
-    <div class="row">
+    <div class="row" style="padding-top: 50px;">
         <div class="col-md-5 mx-auto">
-            <div class="panel panel-default">
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-body">
                     <div id="first">
                         <div class="myform form ">
-                            <div align="center" style="padding-top: 2%">
+                            <div align="center" style="padding-top: 2px;">
                                 {% if ("" | empresa_registrada == false) %}
                                     <p></p>
                                 {% else %}
-                                    <img width="200px" height="200px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
+                                    <img width="150px" height="150px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
                                 {% endif %}
 
                             </div>

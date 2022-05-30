@@ -39,17 +39,28 @@ class CitasController extends Controller
     public function buscarCitasAction(Request $request){
         $em = $this->getDoctrine()->getManager();
 
-        $idempleado = $request->get('idempleado');
+        //$idempleado = $request->get('idempleado');
+        $idsucursal = $request->get('idsucursal');
 
-        $citas = $em->getRepository('LavandaBundle:Citas')->findBy(array(
-            "idempleado"=>$idempleado
-        ));
+//        $citas = $em->getRepository('LavandaBundle:Citas')->findBy(array(
+//            "idempleado"=>$idempleado
+//        ));
+
+        $query = $em->createQuery(
+            "SELECT c FROM LavandaBundle:Citas c 
+            LEFT JOIN LavandaBundle:Empleado e WITH c.idempleado = e.idempleado 
+            LEFT JOIN LavandaBundle:Sucursal s WITH e.idsucursal = s.idsucursal 
+            WHERE s.idsucursal = :idsucursal"
+        );
+        $query->setParameter("idsucursal", $idsucursal);
+
+        $citas = $query->getResult();
 
         $arrCitas = array();
 
         foreach ($citas as $cita){
             if($cita->getIdestatus()->getClave() == "EC1"){
-                $color = "#D8C223";
+                $color = "#23A4D8";
             }else if($cita->getIdestatus()->getClave() == "EC4" || $cita->getIdestatus()->getClave() == "EC5"){
                 $color = "#73C83C";
             }else if($cita->getIdestatus()->getClave() == "EC3"){
@@ -62,8 +73,8 @@ class CitasController extends Controller
                 "start" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorarioinicio()->format("H:i") : "2021-07-12",
                 "end" => $cita->getFechacita()->format("Y-m-d") != null ? $cita->getFechacita()->format("Y-m-d") . "T" . $cita->getHorariofin()->format("H:i") : "2021-07-12",
                 "allDay" => false,
-                "description" => "El servicio solicitado es " . $cita->getIdservicio()->getNombre(),
-                "color" => $color
+                "description" => "El servicio solicitado es " . $cita->getIdservicio()->getNombre().". Se asignó a ".$cita->getIdempleado()->getNombre()." ".$cita->getIdempleado()->getApellido()." para su atención",
+                "color" => $color,
             ];
         }
         return new JsonResponse($arrCitas);

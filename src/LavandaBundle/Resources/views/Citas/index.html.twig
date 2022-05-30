@@ -150,7 +150,7 @@
                 },
                 events: function (start, end, timezone, callback) {
                     var datos = {};
-                    datos.idempleado = $("#lavandabundle_citas_idempleado").val();
+                    datos.idsucursal = $("#lavandabundle_citas_idsucursal").val();
                     $.ajax({
                         url: '{{ path('citas_listado') }}',
                         type: 'GET',
@@ -165,7 +165,7 @@
                                    start: cita.start,
                                    end: cita.end,
                                    color: cita.color,
-                                   description: cita.description
+                                   description: cita.description,
                                });
                            }
                             callback(events);
@@ -180,7 +180,7 @@
                     $("#titulModal").html(event.title);
                     $("#servicio").html(event.description);
 
-                    if(event.color == "#D8C223"){
+                    if(event.color == "#23A4D8"){
                         $("#btnrealizada").show();
                         $("#btnrealizada").attr("idcita",event.id);
                         $("#btncancelada").show();
@@ -195,7 +195,7 @@
     </script>
 
     <script>
-        $("#lavandabundle_citas_idempleado").change(function () {
+        $("#lavandabundle_citas_idsucursal").change(function () {
             $("#calendar").fullCalendar('refetchEvents');
         });
     </script>

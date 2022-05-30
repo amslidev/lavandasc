@@ -94,7 +94,7 @@ class Citas2Type extends AbstractType
                 "data_class" => null,
                 "hours" => ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
             ))
-            ->add('idcortesia', EntityType::class, array(
+            /*->add('idcortesia', EntityType::class, array(
                 "label" => "Seleccione la cortesía",
                 "placeholder" => "Seleccione un elemento",
                 "class" => "LavandaBundle\Entity\Cortesias",
@@ -103,7 +103,7 @@ class Citas2Type extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.nombre', 'ASC');
                 }
-            ))
+            ))*/
             /*->add('Guardar', SubmitType::class, array(
                 "attr" => array("class" => "form-submit btn btn-success")
             ))*/
