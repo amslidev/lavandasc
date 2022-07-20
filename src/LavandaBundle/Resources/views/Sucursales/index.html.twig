@@ -50,6 +50,7 @@
                     <th>Dirección</th>
                     <th>Activa</th>
                     <th>Email</th>
+                    <th>Clave</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -67,6 +68,7 @@
                                 {% endif %}
                             </td>
                             <td>{{ sucursal.email }}</td>
+                            <td>{{ sucursal.clave }}</td>
                             <td>
                                 <a class="btn btn-sm btn-warning" href="{{ path('sucursal_edit', {'id': sucursal.idsucursal}) }}"> <i class="fa fa-edit" aria-hidden="true"> Editar</i> </a>
                             </td>
@@ -75,6 +77,7 @@
                 {% else %}
                     <tr>
                         <td>No se encontraron registros de clientes</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

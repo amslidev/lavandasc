@@ -76,6 +76,21 @@
                 </div>
             {% endif %}
 
+            {% if is_granted('ROLE_ADMIN') or  is_granted('ROLE_USER') or  is_granted('ROLE_CLIENTE') %}
+                <div class="menu_section">
+                    <h3>Bar</h3>
+                    <ul class="nav side-menu">
+                        <li>
+                            <a><i class="fa fa-beer"></i> Barra <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a class="symfony-docs" href="{{ path('bar_pos') }}"> Punto de Venta</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+
             {% if is_granted('ROLE_CLIENTE') %}
                 <div class="menu_section">
                     <h3>Expediente</h3>
@@ -107,14 +122,42 @@
             <div class="menu_section">
                 <h3>Administración</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ path('servicio_index') }}"><i class="fa fa-list"></i> Servicios</a></li>
-                    <li><a href="{{ path('producto_index') }}"><i class="fa fa-list"></i> Productos</a></li>
-                    <li><a href="{{ path('cortesia_index') }}"><i class="fa fa-glass"></i> Cortesías</a></li>
-                    <li><a href="{{ path('sucursal_index') }}"><i class="fa fa-building"></i> Sucursales</a></li>
-                    <li><a href="{{ path('empleado_index') }}"><i class="fa fa-user"></i> Empleados</a></li>
-                    <li><a href="{{ path('users_index') }}"><i class="fa fa-users"></i> Usuarios</a></li>
-                    <li><a href="{{ path('empresa_index') }}"><i class="fa fa-cog"></i> Configuración Empresa</a></li>
-                    <li><a href="{{ path('galeria_index') }}"><i class="fa fa-picture-o"></i> Galería App</a></li>
+                    <li>
+                        <a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ path('servicio_index') }}"> Servicios</a></li>
+                            <li><a href="{{ path('producto_index') }}"> Productos</a></li>
+                            <li><a href="{{ path('cortesia_index') }}"> Cortesías</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-database"></i> Inventario <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ path('proveedores_index') }}"> Proveedores</a></li>
+                            <li><a href="{{ path('bodegas_index') }}"> Bodegas</a></li>
+                            <li><a href="{{ path('categorias_index') }}"> Categorías</a></li>
+                            <li><a href="{{ path('unidadesmedida_index') }}"> Unidades de Medida</a></li>
+                            <li><a href="{{ path('compras_index') }}"> Compras</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a><i class="fa fa-file-excel-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ path('cortesia_index') }}"> Productos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-cogs"></i> Herramientas <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ path('users_index') }}"> Usuarios</a></li>
+                            <li><a href="{{ path('sucursal_index') }}"> Sucursales</a></li>
+                            <li><a href="{{ path('empleado_index') }}"> Empleados</a></li>
+                            <li><a href="{{ path('empresa_index') }}"> Configuración Empresa</a></li>
+                            <li><a href="{{ path('galeria_index') }}"> Galería App</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
             {% endif %}

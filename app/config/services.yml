@@ -72,6 +72,18 @@ services:
         class: LavandaBundle\Services\NotificacionCorreoService
         arguments: ['@doctrine.orm.entity_manager']
 
+    arsc.actualizar_stock_service:
+        class: LavandaBundle\Services\ActualizarStockService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    arsc.actualizar_totales_service:
+        class: LavandaBundle\Services\ActualizarTotalesOrdenService
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    arsc.bitacora_ventas:
+        class: LavandaBundle\Services\BitacoraVentasService
+        arguments: ['@doctrine.orm.entity_manager']
+
     validar_respuesta.twig_extension:
         class: LavandaBundle\Twig\Extension\ValidarRespuesta
         public: false

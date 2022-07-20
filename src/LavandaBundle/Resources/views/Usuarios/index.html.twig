@@ -50,6 +50,7 @@
                         <th>Perfil</th>
                         <th>Fecha de Registro</th>
                         <th>Activo</th>
+                        <th>Sucursal</th>
                         <th>Foto</th>
                         <th>Acciones</th>
                     </tr>
@@ -76,9 +77,10 @@
                                         <i class="fa fa-close"></i>
                                     {% endif %}
                                 </td>
+                                <td>{{ usuario.idsucursal.nombre }}</td>
                                 <td>
                                     {% if usuario.rutaimagen != null %}
-                                        <img src="{{ asset(usuario.rutaimagen~usuario.nombreimagen) }}" style="width: 50px;height: 50px" class="img-circle">
+                                        <img src="{{ asset(usuario.rutaimagen~usuario.nombreimagen) }}" style="width: 30px;height: 30px" class="img-circle">
                                     {% else %}
                                         <p>Sin foto</p>
                                     {% endif %}
@@ -96,8 +98,6 @@
                                                             hidden
                                                         {% endif %}
                                                     "> <i class="fa fa-lock" aria-hidden="true"> Desbloquear</i></button>
-                                    {% else %}
-                                        <p>Los administradores no pueden ser bloqueados</p>
                                     {% endif %}
                                 </td>
                             </tr>

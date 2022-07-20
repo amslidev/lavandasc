@@ -42,7 +42,7 @@ LavandaBundle\Entity\Cliente:
                 fixed: true
         email:
             type: string
-            nullable: false
+            nullable: true
             length: 100
             options:
                 fixed: false

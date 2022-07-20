@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -56,7 +57,7 @@ class ClientesController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-                $usuario = new Usuario();
+                /*$usuario = new Usuario();
 
                 $usuario->setUsername($form->get('username')->getData());
                 $factory = $this->get('security.encoder_factory');
@@ -69,13 +70,13 @@ class ClientesController extends Controller
                 $usuario->setIsactive(true);
 
                 $em->persist($usuario);
-                $cliente->setIdusuario($usuario);
+                $cliente->setIdusuario($usuario);*/
                 $em->persist($cliente);
                 $em->flush();
 
-                $this->get('arsc.notificacion_correo_service')->enviarCorreoRegistro($cliente, $form->get('username')->getData(), $form->get('password')->getData());
+                //$this->get('arsc.notificacion_correo_service')->enviarCorreoRegistro($cliente, $form->get('username')->getData(), $form->get('password')->getData());
 
-                $status = "Cliente registrado correctamente, pronto le llegará un correo con sus datos de usuario";
+                $status = "Cliente registrado correctamente";
                 $this->session->getFlashBag()->add("info","success");
                 $this->session->getFlashBag()->add("status",$status);
                 return $this->redirectToRoute("clientes_index");
@@ -169,7 +170,56 @@ class ClientesController extends Controller
         return $response;
     }
 
-    public function paginaContactoAction(Request  $request){
+    public function listarClientesPOSAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $clientes = $em->getRepository('LavandaBundle:Cliente')->findAll();
+
+        $arrClientes = [];
+
+        foreach ($clientes as $cliente){
+            $arrClientes[] = [
+                "idcliente" => $cliente->getIdcliente(),
+                "nombre" => $cliente->getNombre()." ".$cliente->getApellido()
+            ];
+        }
+
+        return new JsonResponse($arrClientes);
+    }
+
+    public function nuevoClientePOSAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $response = new Response();
+
+        $cliente = new Cliente();
+
+        $nombre = $request->request->get('nombre');
+        $apellido = $request->request->get('apellido');
+        $telefono = $request->request->get('telefono');
+
+        if($nombre != "" && $apellido != "" && $telefono != ""){
+            try {
+                $cliente->setNombre($nombre);
+                $cliente->setApellido($apellido);
+                $cliente->setTelefono($telefono);
+
+                $em->persist($cliente);
+                $em->flush();
+
+                $response->setStatusCode(200);
+                $response->setContent("Cliente registrado correctamente");
+            }catch (\Exception $e){
+                $response->setStatusCode(500);
+                $response->setContent($e->getMessage());
+            }
+        }else{
+            $response->setStatusCode(500);
+            $response->setContent("Faltan elementos en la petición");
+        }
+
+        return $response;
     }
 }

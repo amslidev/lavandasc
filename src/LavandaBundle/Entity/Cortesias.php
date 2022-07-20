@@ -230,4 +230,62 @@ class Cortesias
     {
         return $this->nombre;
     }
+    /**
+     * @var float|null
+     */
+    private $precio;
+
+    /**
+     * @var int|null
+     */
+    private $cantidadcortesia;
+
+
+    /**
+     * Set precio.
+     *
+     * @param float|null $precio
+     *
+     * @return Cortesias
+     */
+    public function setPrecio($precio = null)
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    /**
+     * Get precio.
+     *
+     * @return float|null
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * Set cantidadcortesia.
+     *
+     * @param int|null $cantidadcortesia
+     *
+     * @return Cortesias
+     */
+    public function setCantidadcortesia($cantidadcortesia = null)
+    {
+        $this->cantidadcortesia = $cantidadcortesia;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidadcortesia.
+     *
+     * @return int|null
+     */
+    public function getCantidadcortesia()
+    {
+        return $this->cantidadcortesia;
+    }
 }

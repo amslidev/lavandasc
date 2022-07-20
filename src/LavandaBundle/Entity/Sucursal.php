@@ -143,4 +143,33 @@ class Sucursal
     {
         return $this->email;
     }
+    /**
+     * @var string
+     */
+    private $clave;
+
+
+    /**
+     * Set clave.
+     *
+     * @param string $clave
+     *
+     * @return Sucursal
+     */
+    public function setClave($clave)
+    {
+        $this->clave = $clave;
+
+        return $this;
+    }
+
+    /**
+     * Get clave.
+     *
+     * @return string
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
 }

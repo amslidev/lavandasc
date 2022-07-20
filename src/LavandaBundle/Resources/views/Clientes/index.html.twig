@@ -48,7 +48,6 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Teléfono</th>
-                    <th>Email</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -64,7 +63,6 @@
                                     **********
                                 {% endif %}
                             </td>
-                            <td>{{ cliente.email }} </td>
                             <td>
                                 <a class="btn btn-sm btn-warning" href="{{ path('clientes_edit', {'idcliente': cliente.idcliente}) }}"> <i class="fa fa-edit"> Editar</i> </a>
                                 <a class="btn btn-sm btn-success" href="{{ path('cliente_expediente', {'idcliente': cliente.idcliente}) }}"> <i class="fa fa-folder-open-o"> Expediente</i> </a>

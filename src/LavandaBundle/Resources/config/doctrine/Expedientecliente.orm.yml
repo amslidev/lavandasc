@@ -5,12 +5,12 @@ LavandaBundle\Entity\Expedientecliente:
         tipocuero_expedientecliente_fk:
             columns:
                 - idTipoCuero
-        diagnostico_expedientecliente_fk:
-            columns:
-                - idDiagnostico
         Cliente_ExpedienteCliente_fk_idx:
             columns:
                 - idCliente
+        diagnostico_expedientecliente_fk:
+            columns:
+                - idDiagnostico
     id:
         idexpediente:
             type: integer

@@ -5,6 +5,7 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Producto;
 use LavandaBundle\Form\ProductoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -69,6 +70,7 @@ class ProductosController extends Controller
 
             $producto->setFechaalta(new \DateTime("now"));
             $producto->setDisponible(true);
+            $producto->setStock(0);
 
             $em->persist($producto);
             $em->flush();
@@ -129,6 +131,46 @@ class ProductosController extends Controller
             "form"=>$form->createView(),
             "producto"=>$producto
         ));
+    }
+
+    public function listarProductosAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productos = $em->getRepository('LavandaBundle:Producto')->findBy(array(
+            "inventariocortesia" => false
+        ));
+
+        $arrProd = [];
+
+        foreach ($productos as $producto){
+            $arrProd[] = [
+                "idproducto" => $producto->getIdproducto(),
+                "nombre" => $producto->getNombre().", (Unidad de medida: ".$producto->getUnidadmedida()->getNombre(). ")"
+            ];
+        }
+
+        return new JsonResponse($arrProd);
+    }
+
+    public function listarProductosCortesiasAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productos = $em->getRepository('LavandaBundle:Producto')->findBy(array(
+            "inventariocortesia" => true
+        ));
+
+        $arrProd = [];
+
+        foreach ($productos as $producto){
+            $arrProd[] = [
+                "idproducto" => $producto->getIdproducto(),
+                "nombre" => $producto->getNombre().", (Unidad de medida: ".$producto->getUnidadmedida()->getNombre(). ")"
+            ];
+        }
+
+        return new JsonResponse($arrProd);
     }
 
 }

@@ -1,0 +1,29 @@
+detallebarventa_registrar_cortesias:
+    path: /detallebarventa/registrar_cortesia
+    defaults: { _controller: LavandaBundle:DetalleBarVenta:registrarCortesiasVenta }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+
+detallebarventa_listar_cortesias:
+    path: /detallebarventa/listar_cortesias
+    defaults: { _controller: LavandaBundle:DetalleBarVenta:listarProductosVenta }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+detallebarventa_cargar_info:
+    path: /detallebarventa/info_detalle
+    defaults: { _controller: LavandaBundle:DetalleBarVenta:cargarInfoDetalle }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+detallebarventa_editar_detalle:
+    path: /detallebarventa/editar_detalle
+    defaults: { _controller: LavandaBundle:DetalleBarVenta:editarDetalleOrden }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+
+detallebarventa_eliminar_detalle:
+    path: /detallebarventa/eliminar_detalle
+    defaults: { _controller: LavandaBundle:DetalleBarVenta:eliminarProductoDetalle }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

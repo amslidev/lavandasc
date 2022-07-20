@@ -1,0 +1,104 @@
+LavandaBundle\Entity\Barventa:
+    type: entity
+    table: barventa
+    indexes:
+        sucursales_barventa_fk_idx:
+            columns:
+                - idsucursal
+        formaspago_barventa_fk_idx:
+            columns:
+                - idformapago
+        clientes_barventa_fk_idx:
+            columns:
+                - idcliente
+        estatusventa_barventa_fk_idx:
+            columns:
+                - idestatus
+        usuarios_barventa_fk_idx:
+            columns:
+                - idusuario
+    uniqueConstraints:
+        noorden_UNIQUE:
+            columns:
+                - noorden
+    id:
+        idbarventa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        noorden:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: true
+        total:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        fecha:
+            type: datetime
+            nullable: true
+        descuento:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+        idestatus:
+            targetEntity: Estatusventa
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idestatus:
+                    referencedColumnName: idestatusventa
+            orphanRemoval: false
+        idformapago:
+            targetEntity: Formaspago
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idformapago:
+                    referencedColumnName: idformaspago
+            orphanRemoval: false
+        idsucursal:
+            targetEntity: Sucursal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idsucursal:
+                    referencedColumnName: idSucursal
+            orphanRemoval: false
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idusuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

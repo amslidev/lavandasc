@@ -1,0 +1,48 @@
+LavandaBundle\Entity\Servicioproducto:
+    type: entity
+    table: servicioproducto
+    indexes:
+        producto_servicioproducto_fk_idx:
+            columns:
+                - idproducto
+        servicio_servicioproducto_fk_idx:
+            columns:
+                - idservicio
+    id:
+        idservicioproducto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idservicioProducto
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproducto:
+                    referencedColumnName: idProducto
+            orphanRemoval: false
+        idservicio:
+            targetEntity: Servicio
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idservicio:
+                    referencedColumnName: idServicio
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

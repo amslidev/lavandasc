@@ -1,0 +1,9 @@
+compras_index:
+    path: /compras
+    defaults: { _controller: LavandaBundle:Compras:index }
+    methods: [GET, POST]
+
+compras_descargar_xml:
+    path: /compras/descargar_xml/{idcompra}
+    defaults: { _controller: LavandaBundle:Compras:descargarXML }
+    methods: [GET]

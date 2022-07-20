@@ -138,6 +138,11 @@ class CitasController extends Controller
                 ));
                 $cita->setIdestatus($estatusCita);
                 $em->persist($cita);
+
+                $actualizarStock = $this->get('arsc.actualizar_stock_service');
+                $actualizarStock->actualizarStockServicios($cita);
+
+
             }else if($opcion == "2"){
                 $em->remove($cita);
             }

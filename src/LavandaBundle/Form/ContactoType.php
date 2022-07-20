@@ -50,7 +50,7 @@ class ContactoType extends AbstractType
                 "attr" => array("class"=>"form-control")
             ))
             ->add('comentarios', TextareaType::class, array(
-                "label" => "Platíquenos en qué podemos ayudarle",
+                "label" => "Platíquenos, ¿en qué podemos ayudarle?",
                 "attr" => array("class"=>"form-control"),
             ))
             ->add('enviar', SubmitType::class, array(

@@ -1,0 +1,77 @@
+LavandaBundle\Entity\Proveedor:
+    type: entity
+    table: proveedor
+    indexes:
+        proveedor_ciudad_fk_idx:
+            columns:
+                - idciudad
+    id:
+        idproveedor:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        direccion:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        noint:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        noext:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        rfc:
+            type: string
+            nullable: false
+            length: 13
+            options:
+                fixed: true
+        contacto:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        telefono:
+            type: string
+            nullable: true
+            length: 15
+            options:
+                fixed: true
+        email:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+    manyToOne:
+        idciudad:
+            targetEntity: Ciudad
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idciudad:
+                    referencedColumnName: CiudadID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

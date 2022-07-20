@@ -48,7 +48,12 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Precio</th>
+                    <th>Stock mínimo</th>
+                    <th>Stock actual</th>
+                    <th>Unidad de Medida</th>
+                    <th>Bodega</th>
+                    <th>Cortesías</th>
+                    <th>Categoría</th>
                     <th>Foto</th>
                     <th>Acciones</th>
                 </tr>
@@ -58,43 +63,38 @@
                     {% for producto in productos %}
                         <tr>
                             <td>{{ producto.nombre }}</td>
-                            <td>${{ producto.precio | number_format(2 ,".",",") }}</td>
+                            <td>{{ producto.stockmin }}</td>
+                            <td>{{ producto.stock }}</td>
+                            <td>{{ producto.unidadmedida.nombre }}</td>
+                            <td>{{ producto.idbodega.nombre }}</td>
+                            <td>
+                                {% if producto.inventariocortesia == true %}
+                                    <i class="fa fa-check-square-o" style="color: green; font-size: x-large"></i>
+                                {% else %}
+                                    <i class="fa fa-close" style="color: red; font-size: x-large"></i>
+                                {% endif %}
+                            </td>
+                            <td>{{ producto.idcategoria.nombre }}</td>
                             <td>
                                 {% if producto.rutaimagen != null %}
-                                    <img src="{{ asset(producto.rutaimagen~producto.nombreimagen) }}" style="width: 80px;height: 80px" class="img-circle">
+                                    <img src="{{ asset(producto.rutaimagen~producto.nombreimagen) }}" style="width: 50px;height: 50px" class="img-circle">
                                 {% else %}
                                     <p>Sin foto</p>
                                 {% endif %}
                             </td>
                             <td>
                                 <a class="btn btn-sm btn-warning btn-sm" href="{{ path('producto_edit', {'idproducto': producto.idproducto}) }}"> <i class="fa fa-edit" aria-hidden="true"> Editar</i> </a>
-                                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#myModal{{ producto.idproducto }}">
-                                    <i class="fa fa-eye-slash" aria-hidden="true"> Descripción </i>
-                                </button>
                             </td>
                         </tr>
-                        <div class="modal fade" id="myModal{{ producto.idproducto }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">{{ producto.nombre }}</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                    <textarea class="summernote">
-                                        {{ producto.descripcion }}
-                                    </textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     {% endfor %}
                 {% else %}
                     <tr>
                         <td>No se encontraron registros de productos</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

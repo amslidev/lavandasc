@@ -9,3 +9,8 @@ sucursal_new:
 sucursal_edit:
     path: /sucursales/edit/{id}
     defaults: { _controller: LavandaBundle:Sucursal:edit}
+
+sucursales_listado:
+    path: /sucursales/listado_pos
+    defaults: { _controller: LavandaBundle:Sucursal:listarSucursalesPOS }
+    methods: [GET]

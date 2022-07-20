@@ -1,11 +1,20 @@
 cortesia_index:
     path: /cortesias
     defaults: { _controller: LavandaBundle:Cortesias:index}
+    methods: [GET]
 
 cortesia_new:
     path: /cortesias/new
     defaults: { _controller: LavandaBundle:Cortesias:new}
+    methods: [GET, POST]
 
 cortesia_edit:
     path: /cortesias/edit/{idcortesia}
     defaults: { _controller: LavandaBundle:Cortesias:edit}
+    methods: [GET, POST]
+
+cortesia_listado_pos:
+    path: /cortesias/post/listado_cortesias
+    defaults: { _controller: LavandaBundle:Cortesias:listarCortesiasPOS }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

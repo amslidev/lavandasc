@@ -1,0 +1,55 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Categorias | Editar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-8">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Editar Bodega {{ bodega.nombre }}</h2>
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+
+                {{ form_end(form) }}
+                <span id="msg"></span>
+
+            </div>
+            <div class="panel-footer">
+                <ul>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('categorias_index') }}">Volver al listado</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

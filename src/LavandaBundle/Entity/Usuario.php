@@ -628,4 +628,33 @@ class Usuario implements UserInterface, AdvancedUserInterface, \Serializable
     {
         return $this->nombreimagen;
     }
+    /**
+     * @var \LavandaBundle\Entity\Sucursal
+     */
+    private $idsucursal;
+
+
+    /**
+     * Set idsucursal.
+     *
+     * @param \LavandaBundle\Entity\Sucursal|null $idsucursal
+     *
+     * @return Usuario
+     */
+    public function setIdsucursal(\LavandaBundle\Entity\Sucursal $idsucursal = null)
+    {
+        $this->idsucursal = $idsucursal;
+
+        return $this;
+    }
+
+    /**
+     * Get idsucursal.
+     *
+     * @return \LavandaBundle\Entity\Sucursal|null
+     */
+    public function getIdsucursal()
+    {
+        return $this->idsucursal;
+    }
 }

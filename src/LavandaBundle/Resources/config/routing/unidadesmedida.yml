@@ -1,0 +1,14 @@
+unidadesmedida_index:
+    path: /unidades_medida
+    defaults: { _controller: LavandaBundle:UnidadesMedida:index }
+    methods: [GET]
+
+unidadesmedida_new:
+    path: /unidadesmedida/new
+    defaults: { _controller: LavandaBundle:UnidadesMedida:new }
+    methods: [GET, POST]
+
+unidadesmedida_edit:
+    path: /unidadesmedida/edit/{id}
+    defaults: { _controller: LavandaBundle:UnidadesMedida:edit }
+    methods: [GET, POST]

@@ -18,3 +18,15 @@ cliente_procesos:
 cliente_new:
     path: /clientes/new/client
     defaults: { _controller: LavandaBundle:Clientes:add }
+
+cliente_listado_pos:
+    path: /clientes/pos/listado_clientes
+    defaults: { _controller: LavandaBundle:Clientes:listarClientesPOS }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+cliente_new_ajax:
+    path: /clientes/new/ajax
+    defaults: { _controller: LavandaBundle:Clientes:nuevoClientePOS }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"

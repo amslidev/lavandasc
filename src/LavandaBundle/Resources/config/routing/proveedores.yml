@@ -1,0 +1,14 @@
+proveedores_index:
+    path: /proveedores
+    defaults: { _controller: LavandaBundle:Proveedores:index, idproveedor: null }
+    methods: [GET]
+
+proveedores_registro:
+    path: /proveedores/new
+    defaults: { _controller: LavandaBundle:Proveedores:new }
+    methods: [GET, POST]
+
+proveedores_edit:
+    path: /proveedores/edit/{id}
+    defaults: { _controller: LavandaBundle:Proveedores:edit }
+    methods: [GET, POST]

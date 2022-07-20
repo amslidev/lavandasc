@@ -69,3 +69,43 @@ lavanda_fotosservicio:
 lavanda_anonimo:
     resource: "@LavandaBundle/Resources/config/routing/anonimos.yml"
     prefix: /
+
+lavanda_proveedores:
+    resource: "@LavandaBundle/Resources/config/routing/proveedores.yml"
+    prefix: /
+
+lavanda_bodegas:
+    resource: "@LavandaBundle/Resources/config/routing/bodegas.yml"
+    prefix: /
+
+lavanda_categorias:
+    resource: "@LavandaBundle/Resources/config/routing/categorias.yml"
+    prefix: /
+
+lavanda_unidadesmedida:
+    resource: "@LavandaBundle/Resources/config/routing/unidadesmedida.yml"
+    prefix: /
+
+lavanda_compras:
+    resource: "@LavandaBundle/Resources/config/routing/compras.yml"
+    prefix: /
+
+lavanda_servicioproducto:
+    resource: "@LavandaBundle/Resources/config/routing/servicioproducto.yml"
+    prefix: /
+
+lavanda_cortesiaproducto:
+    resource: "@LavandaBundle/Resources/config/routing/cortesiaproducto.yml"
+    prefix: /
+
+lavanda_bar:
+    resource: "@LavandaBundle/Resources/config/routing/bar.yml"
+    prefix: /
+
+lavanda_barventa:
+    resource: "@LavandaBundle/Resources/config/routing/barventa.yml"
+    prefix: /
+
+lavanda_detallebarventa:
+    resource: "@LavandaBundle/Resources/config/routing/detallebarventa.yml"
+    prefix: /

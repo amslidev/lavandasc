@@ -254,4 +254,241 @@ class Producto
     {
         return $this->disponible;
     }
+    /**
+     * @var int|null
+     */
+    private $stockmin;
+
+    /**
+     * @var int|null
+     */
+    private $stock;
+
+    /**
+     * @var \LavandaBundle\Entity\Bodegas
+     */
+    private $idbodega;
+
+    /**
+     * @var \LavandaBundle\Entity\Proveedor
+     */
+    private $idproveedor;
+
+    /**
+     * @var \LavandaBundle\Entity\Unidadesmedida
+     */
+    private $idunidadmedida;
+
+
+    /**
+     * Set stockmin.
+     *
+     * @param int|null $stockmin
+     *
+     * @return Producto
+     */
+    public function setStockmin($stockmin = null)
+    {
+        $this->stockmin = $stockmin;
+
+        return $this;
+    }
+
+    /**
+     * Get stockmin.
+     *
+     * @return int|null
+     */
+    public function getStockmin()
+    {
+        return $this->stockmin;
+    }
+
+    /**
+     * Set stock.
+     *
+     * @param int|null $stock
+     *
+     * @return Producto
+     */
+    public function setStock($stock = null)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get stock.
+     *
+     * @return int|null
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+    /**
+     * Set idbodega.
+     *
+     * @param \LavandaBundle\Entity\Bodegas|null $idbodega
+     *
+     * @return Producto
+     */
+    public function setIdbodega(\LavandaBundle\Entity\Bodegas $idbodega = null)
+    {
+        $this->idbodega = $idbodega;
+
+        return $this;
+    }
+
+    /**
+     * Get idbodega.
+     *
+     * @return \LavandaBundle\Entity\Bodegas|null
+     */
+    public function getIdbodega()
+    {
+        return $this->idbodega;
+    }
+
+    /**
+     * Set idproveedor.
+     *
+     * @param \LavandaBundle\Entity\Proveedor|null $idproveedor
+     *
+     * @return Producto
+     */
+    public function setIdproveedor(\LavandaBundle\Entity\Proveedor $idproveedor = null)
+    {
+        $this->idproveedor = $idproveedor;
+
+        return $this;
+    }
+
+    /**
+     * Get idproveedor.
+     *
+     * @return \LavandaBundle\Entity\Proveedor|null
+     */
+    public function getIdproveedor()
+    {
+        return $this->idproveedor;
+    }
+
+    /**
+     * Set idunidadmedida.
+     *
+     * @param \LavandaBundle\Entity\Unidadesmedida|null $idunidadmedida
+     *
+     * @return Producto
+     */
+    public function setIdunidadmedida(\LavandaBundle\Entity\Unidadesmedida $idunidadmedida = null)
+    {
+        $this->idunidadmedida = $idunidadmedida;
+
+        return $this;
+    }
+
+    /**
+     * Get idunidadmedida.
+     *
+     * @return \LavandaBundle\Entity\Unidadesmedida|null
+     */
+    public function getIdunidadmedida()
+    {
+        return $this->idunidadmedida;
+    }
+    /**
+     * @var \LavandaBundle\Entity\Categorias
+     */
+    private $idcategoria;
+
+
+    /**
+     * Set idcategoria.
+     *
+     * @param \LavandaBundle\Entity\Categorias|null $idcategoria
+     *
+     * @return Producto
+     */
+    public function setIdcategoria(\LavandaBundle\Entity\Categorias $idcategoria = null)
+    {
+        $this->idcategoria = $idcategoria;
+
+        return $this;
+    }
+
+    /**
+     * Get idcategoria.
+     *
+     * @return \LavandaBundle\Entity\Categorias|null
+     */
+    public function getIdcategoria()
+    {
+        return $this->idcategoria;
+    }
+    /**
+     * @var \LavandaBundle\Entity\Unidadesmedida
+     */
+    private $unidadmedida;
+
+
+    /**
+     * Set unidadmedida.
+     *
+     * @param \LavandaBundle\Entity\Unidadesmedida|null $unidadmedida
+     *
+     * @return Producto
+     */
+    public function setUnidadmedida(\LavandaBundle\Entity\Unidadesmedida $unidadmedida = null)
+    {
+        $this->unidadmedida = $unidadmedida;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadmedida.
+     *
+     * @return \LavandaBundle\Entity\Unidadesmedida|null
+     */
+    public function getUnidadmedida()
+    {
+        return $this->unidadmedida;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
+    /**
+     * @var bool|null
+     */
+    private $inventariocortesia;
+
+
+    /**
+     * Set inventariocortesia.
+     *
+     * @param bool|null $inventariocortesia
+     *
+     * @return Producto
+     */
+    public function setInventariocortesia($inventariocortesia = null)
+    {
+        $this->inventariocortesia = $inventariocortesia;
+
+        return $this;
+    }
+
+    /**
+     * Get inventariocortesia.
+     *
+     * @return bool|null
+     */
+    public function getInventariocortesia()
+    {
+        return $this->inventariocortesia;
+    }
 }

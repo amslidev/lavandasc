@@ -1,6 +1,10 @@
 LavandaBundle\Entity\Usuario:
     type: entity
     table: usuario
+    indexes:
+        sucursales_usuarios_fk_idx:
+            columns:
+                - idsucursal
     id:
         idusuario:
             type: integer
@@ -52,4 +56,15 @@ LavandaBundle\Entity\Usuario:
             options:
                 fixed: false
             column: nombreImagen
+    manyToOne:
+        idsucursal:
+            targetEntity: Sucursal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idsucursal:
+                    referencedColumnName: idSucursal
+            orphanRemoval: false
     lifecycleCallbacks: {  }

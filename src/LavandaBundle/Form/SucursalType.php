@@ -36,6 +36,10 @@ class SucursalType extends AbstractType
                 "label" => "Email de recepción de la sucursal",
                 "attr" => array("class"=>"form-control")
             ))
+            ->add('clave', TextType::class, [
+                "label" => "Ingrese la clave a tres letras para la sucursal",
+                "attr" => array("class"=>"form-control", "maxlength" => "3", "style" => "text-transform:uppercase;")
+            ])
             ->add('Guardar', SubmitType::class, array(
                 "attr" => array("class"=>"form-submit btn btn-success")
             ))

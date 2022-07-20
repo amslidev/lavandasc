@@ -1,0 +1,51 @@
+LavandaBundle\Entity\Bitacoraventas:
+    type: entity
+    table: bitacoraventas
+    indexes:
+        barventa_bitacoraventas_fk_idx:
+            columns:
+                - idbarventa
+        usuarios_bitacoraventas_fk_idx:
+            columns:
+                - idusuario
+    id:
+        idbitacoraventa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        evento:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        fecha:
+            type: datetime
+            nullable: false
+    manyToOne:
+        idbarventa:
+            targetEntity: Barventa
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idbarventa:
+                    referencedColumnName: idbarventa
+            orphanRemoval: false
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idusuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

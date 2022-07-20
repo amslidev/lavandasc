@@ -2,6 +2,8 @@
 
 namespace LavandaBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -11,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function foo\func;
 
 class UsuarioType extends AbstractType
 {
@@ -54,6 +57,16 @@ class UsuarioType extends AbstractType
                 "mapped"=>false,
                 "required"=>false
             ))
+            ->add('idsucursal', EntityType::class, [
+                "label" => "Sucursal a la que pertenece",
+                "placeholder" => "Seleccione un elemento",
+                "class" => "LavandaBundle\Entity\Sucursal",
+                "query_builder" => function(EntityRepository $er){
+                    return $er->createQueryBuilder('s')
+                        ->where('s.activo = 1');
+                },
+                "attr" => array("class"=>"form-control")
+            ])
             ->add('Guardar', SubmitType::class, array(
                 "label"=>"Guardar",
                 "attr"=> array("class"=>"form-submit btn btn-success")

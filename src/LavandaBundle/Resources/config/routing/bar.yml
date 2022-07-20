@@ -1,0 +1,4 @@
+bar_pos:
+    path: /punto_de_venta
+    defaults: { _controller: LavandaBundle:Bar:pos }
+    methods: [GET]

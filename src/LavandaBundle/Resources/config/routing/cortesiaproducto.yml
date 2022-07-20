@@ -1,0 +1,14 @@
+cortesiaproducto_index:
+    path: /listado_productos/cortesias/{idcortesia}
+    defaults: { _controller: LavandaBundle:CortesiaProducto:index }
+    methods: [GET]
+
+cortesiaproducto_save:
+    path: /listado_productos/cortesias/save
+    defaults: { _controller: LavandaBundle:CortesiaProducto:saveProducts }
+    condition: "request.isXmlHttpRequest()"
+
+cortesiaproducto_edit:
+    path: /listado_productos/cortesias/edit/{idcortesiaproducto}
+    defaults: { _controller: LavandaBundle:CortesiaProducto:edit }
+    methods: [GET, POST]

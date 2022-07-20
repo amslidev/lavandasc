@@ -1,14 +1,17 @@
 empleado_index:
     path: /empleados
     defaults: { _controller: "LavandaBundle:Empleado:index"}
+    methods: [GET]
 
 empleado_new:
     path: /empleados/new
     defaults: { _controller: "LavandaBundle:Empleado:new"}
+    methods: [GET, POST]
 
 empleado_edit:
     path: /empleados/edit/{idempleado}
     defaults: { _controller: "LavandaBundle:Empleado:edit"}
+    methods: [GET, POST]
 
 empleado_sucursal:
     path: /empleados/sucursal

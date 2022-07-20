@@ -33,7 +33,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-    trusted_hosts: ['^arsaludcapilar\.com$', 'localhost', '192.168.1.74']
+    trusted_hosts: ['^arsaludcapilar\.com$', 'localhost', '192.168.1.76']
 
 # Twig Configuration
 twig:
@@ -91,7 +91,7 @@ fm_summernote:
       para: ['ul', 'ol', 'paragraph']
     width: 700
     height: 100
-    language: 'es-ES' # define language (with language culture code like de-DE, fr-FR, etc.) by default, it is in english
+    #language: 'es-ES' # define language (with language culture code like de-DE, fr-FR, etc.) by default, it is in english
     include_jquery: false #include js libraries, if your template already have them, set to false
     include_bootstrap: false
     include_fontawesome: true

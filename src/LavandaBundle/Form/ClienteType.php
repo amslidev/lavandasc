@@ -41,16 +41,16 @@ class ClienteType extends AbstractType
                 "attr" => $cssClas,
                 "required" => false
             ))
-            ->add('email', EmailType::class, array(
-                "label" => "Email",
-                "attr" => $cssClas
-            ))
-            /*->add('fechanacimiento', DateType::class, array(
-                "label" => "Fecha de nacimiento",
-                "widget" => "single_text",
-                "attr" => $cssClas
-            ))*/
-            ->add('username',TextType::class, array(
+            /* ->add('email', EmailType::class, array(
+                 "label" => "Email",
+                 "attr" => $cssClas
+             ))
+             ->add('fechanacimiento', DateType::class, array(
+                 "label" => "Fecha de nacimiento",
+                 "widget" => "single_text",
+                 "attr" => $cssClas
+             ))*/
+            /*->add('username',TextType::class, array(
                 "label" => "Ingrese el nombre de usuario",
                 "attr" => array("class"=>"form-control"),
                 "mapped" => false,
@@ -69,7 +69,7 @@ class ClienteType extends AbstractType
                     "attr"=>array("class"=>"form-control")
                 ),
                 "required"=>false
-            ))
+            ))*/
             ->add('Guardar', SubmitType::class, array(
                 "attr" => array("class" => "form-submit btn btn-success")
             ))

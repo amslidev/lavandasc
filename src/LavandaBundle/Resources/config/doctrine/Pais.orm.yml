@@ -1,0 +1,117 @@
+LavandaBundle\Entity\Pais:
+    type: entity
+    table: pais
+    id:
+        paiscodigo:
+            type: string
+            nullable: false
+            length: 3
+            options:
+                fixed: true
+                default: ''
+            id: true
+            column: PaisCodigo
+            generator:
+                strategy: IDENTITY
+    fields:
+        paisnombre:
+            type: string
+            nullable: false
+            length: 52
+            options:
+                fixed: true
+                default: ''
+            column: PaisNombre
+        paiscontinente:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                default: Asia
+            column: PaisContinente
+        paisregion:
+            type: string
+            nullable: false
+            length: 26
+            options:
+                fixed: false
+                default: ''
+            column: PaisRegion
+        paisarea:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+            column: PaisArea
+        paisindependencia:
+            type: smallint
+            nullable: true
+            options:
+                unsigned: false
+            column: PaisIndependencia
+        paispoblacion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: PaisPoblacion
+        paisexpectativadevida:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: PaisExpectativaDeVida
+        paisproductointernobruto:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: PaisProductoInternoBruto
+        paisproductointernobrutoantiguo:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: PaisProductoInternoBrutoAntiguo
+        paisnombrelocal:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+                default: ''
+            column: PaisNombreLocal
+        paisgobierno:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+                default: ''
+            column: PaisGobierno
+        paisjefedeestado:
+            type: string
+            nullable: true
+            length: 60
+            options:
+                fixed: false
+            column: PaisJefeDeEstado
+        paiscapital:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: PaisCapital
+        paiscodigo2:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: true
+                default: ''
+            column: PaisCodigo2
+    lifecycleCallbacks: {  }

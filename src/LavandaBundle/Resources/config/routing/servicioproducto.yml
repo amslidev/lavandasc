@@ -1,0 +1,19 @@
+servicioproducto_index:
+    path: /listado_productos/{idservicio}
+    defaults: { _controller: LavandaBundle:ServicioProducto:index }
+    methods: [GET]
+
+servicioproducto_save:
+    path: /listado_productos/save
+    defaults: { _controller: LavandaBundle:ServicioProducto:saveProducts }
+    condition: "request.isXmlHttpRequest()"
+
+servicioproducto_edit:
+    path: /listado_productos/edit/{idservicioproducto}
+    defaults: { _controller: LavandaBundle:ServicioProducto:edit }
+    methods: [GET, POST]
+
+servicioproducto_delete:
+    path: /listado_productos/delete/{idservicioproducto}/{idservicio}
+    defaults: { _controller: LavandaBundle:ServicioProducto:delete }
+    methods: [GET]

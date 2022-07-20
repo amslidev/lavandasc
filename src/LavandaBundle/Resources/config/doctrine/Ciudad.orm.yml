@@ -1,0 +1,56 @@
+LavandaBundle\Entity\Ciudad:
+    type: entity
+    table: ciudad
+    indexes:
+        pais_ciudad_fk_idx:
+            columns:
+                - PaisCodigo
+        ciudadnombre_idx:
+            columns:
+                - CiudadNombre
+    id:
+        ciudadid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: CiudadID
+            generator:
+                strategy: IDENTITY
+    fields:
+        ciudadnombre:
+            type: string
+            nullable: false
+            length: 35
+            options:
+                fixed: true
+                default: ''
+            column: CiudadNombre
+        ciudaddistrito:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: true
+                default: ''
+            column: CiudadDistrito
+        ciudadpoblacion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: CiudadPoblacion
+    manyToOne:
+        paiscodigo:
+            targetEntity: Pais
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                PaisCodigo:
+                    referencedColumnName: PaisCodigo
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

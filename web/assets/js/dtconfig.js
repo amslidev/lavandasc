@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#datatable-responsive").DataTable({
+    $("#datatable-responsive, #datatable").DataTable({
         "language": {
             "decimal":        "",
             "emptyTable":     "No se encontraron registros",

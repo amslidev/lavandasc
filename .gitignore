@@ -18,3 +18,5 @@ build.xml
 /web/bundles/
 /web/assets/vendors
 !composer.lock
+!/web/uploads
+/web/uploads/*

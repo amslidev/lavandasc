@@ -1,0 +1,47 @@
+LavandaBundle\Entity\Cortesiaproducto:
+    type: entity
+    table: cortesiaproducto
+    indexes:
+        cortesias_cortesiaproducto_fk_idx:
+            columns:
+                - idcortesia
+        productos_cortesiasproductos_fk_idx:
+            columns:
+                - idproducto
+    id:
+        idcortesiaproducto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        idcortesia:
+            targetEntity: Cortesias
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcortesia:
+                    referencedColumnName: idCortesia
+            orphanRemoval: false
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproducto:
+                    referencedColumnName: idProducto
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

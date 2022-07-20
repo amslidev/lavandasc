@@ -9,3 +9,15 @@ producto_new:
 producto_edit:
     path: /productos/edit/{idproducto}
     defaults: { _controller: LavandaBundle:Productos:edit}
+
+producto_listado:
+    path: /productos/listado
+    defaults: { _controller: LavandaBundle:Productos:listarProductos }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+producto_listado_cortesias:
+    path: /productos/listado/cortesias
+    defaults: { _controller: LavandaBundle:Productos:listarProductosCortesias }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

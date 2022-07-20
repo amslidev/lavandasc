@@ -1,0 +1,14 @@
+categorias_index:
+    path: /categorias
+    defaults: { _controller: LavandaBundle:Categorias:index }
+    methods: [GET]
+
+categorias_new:
+    path: /categorias/new
+    defaults: { _controller: LavandaBundle:Categorias:new }
+    methods: [GET, POST]
+
+categorias_edit:
+    path: /categorias/edit/{id}
+    defaults: { _controller: LavandaBundle:Categorias:edit }
+    methods: [GET, POST]

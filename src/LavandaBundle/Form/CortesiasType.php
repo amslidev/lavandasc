@@ -3,7 +3,10 @@
 namespace LavandaBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +28,15 @@ class CortesiasType extends AbstractType
                 "label"=>"Descripción de la cortesía",
                 "attr"=>array("class"=>"form-control")
             ))
+            ->add('precio', MoneyType::class, [
+                "label" => "Precio",
+                "currency" => "MXN",
+                "attr" => array("class"=>"form-control")
+            ])
+            ->add('cantidadcortesia', NumberType::class, [
+                "label" => "Cantidad que se ofrece antes de cobrar",
+                "attr" => array("class"=>"form-control")
+            ])
             /*->add('disponible')
             ->add('fechaingreso')
             ->add('fechasalida')

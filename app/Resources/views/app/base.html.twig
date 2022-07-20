@@ -21,6 +21,10 @@
     <!-- Toastr-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.10.0/css/selectize.bootstrap3.css" integrity="sha512-3M/64KYV6e/+VeFhlv+8k3sXTm38kMKdQ8rWDcQDOFo+UlVofrkgXNQRQy7AxlJiqV4bYbqKaPCHs14UeONEXw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 {% endblock stylesheets %}
 
     <!-- Custom Theme Style -->
@@ -79,6 +83,7 @@
 {% block javascripts %}
     <!-- jQuery -->
     <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- FastClick -->
@@ -89,6 +94,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--TOASTR-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="{{ asset('assets/vendors/selectize.js-master/dist/js/standalone/selectize.js') }}"></script>
 
 
 

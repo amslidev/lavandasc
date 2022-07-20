@@ -5,6 +5,7 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Cortesias;
 use LavandaBundle\Form\CortesiasType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -139,5 +140,22 @@ class CortesiasController extends Controller
              "form"=>$form->createView(),
              "cortesia"=>$cortesia
          ));
+     }
+
+     public function listarCortesiasPOSAction(){
+         $em = $this->getDoctrine()->getManager();
+
+         $cortesias = $em->getRepository('LavandaBundle:Cortesias')->findAll();
+
+         $arrCortesias = [];
+
+         foreach ($cortesias as $cortesia){
+             $arrCortesias[] = [
+                 "idcortesia" => $cortesia->getIdcortesia(),
+                 "nombre" => $cortesia->getNombre()
+             ];
+         }
+
+         return new JsonResponse($arrCortesias);
      }
 }

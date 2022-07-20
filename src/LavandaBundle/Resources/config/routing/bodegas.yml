@@ -1,0 +1,14 @@
+bodegas_index:
+    path: /bodegas
+    defaults: { _controller: LavandaBundle:Bodega:index }
+    methods: [GET]
+
+bodegas_new:
+    path: /bodegas/new
+    defaults: { _controller: LavandaBundle:Bodega:new }
+    methods: [GET, POST]
+
+bodegas_edit:
+    path: /bodegas/edit/{id}
+    defaults: { _controller: LavandaBundle:Bodega:edit }
+    methods: [GET, POST]

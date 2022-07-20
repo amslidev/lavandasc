@@ -1,0 +1,91 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+
+    <style>
+        .selectize-control.movies .selectize-dropdown [data-selectable] {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 10px;
+
+            position: relative;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px 10px 10px 60px;
+        }
+        .selectize-control.movies .selectize-dropdown [data-selectable]:last-child {
+            border-bottom: 0 none;
+        }
+        .selectize-control.movies .selectize-dropdown{
+            font-size: 15px;
+        }
+        .selectize-input{
+            background-color: white;
+            color: black;
+            padding: 1px;
+            width: 840px;
+            border: groove;
+            font-size: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: textfield;
+            outline: none;
+        }
+    </style>
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Proveedores | Editar
+    </title>
+{% endblock top_content_header%}
+
+{% block page_content %}
+    <div class="col-lg-8">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Editar Proveedor {{ proveedor.nombre }}</h2>
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+
+                {{ form_end(form) }}
+                <span id="msg"></span>
+
+            </div>
+            <div class="panel-footer">
+                <ul>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('proveedores_index') }}">Volver al listado</a>
+                    </li>
+                    <li>
+                        <a style="font-size: medium" href="{{ path('proveedores_index', {"id": proveedor.idproveedor }) }}">Volver al proveedor</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $("#lavandabundle_proveedor_idciudad").selectize();
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

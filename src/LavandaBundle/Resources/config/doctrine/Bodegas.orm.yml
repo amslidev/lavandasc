@@ -1,0 +1,38 @@
+LavandaBundle\Entity\Bodegas:
+    type: entity
+    table: bodegas
+    indexes:
+        sucursal_bodegas_fk_idx:
+            columns:
+                - idsucursal
+    id:
+        idbodega:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        estado:
+            type: boolean
+            nullable: true
+    manyToOne:
+        idsucursal:
+            targetEntity: Sucursal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idsucursal:
+                    referencedColumnName: idSucursal
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

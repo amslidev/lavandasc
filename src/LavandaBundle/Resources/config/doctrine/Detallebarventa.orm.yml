@@ -1,0 +1,52 @@
+LavandaBundle\Entity\Detallebarventa:
+    type: entity
+    table: detallebarventa
+    indexes:
+        barventa_detallebarventa_fk_idx:
+            columns:
+                - idbarventa
+        cortesias_detallebarventa_fk_idx:
+            columns:
+                - idcortesia
+    id:
+        iddetallebarventa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        subtotal:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        idbarventa:
+            targetEntity: Barventa
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idbarventa:
+                    referencedColumnName: idbarventa
+            orphanRemoval: false
+        idcortesia:
+            targetEntity: Cortesias
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcortesia:
+                    referencedColumnName: idCortesia
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

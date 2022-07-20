@@ -1,0 +1,35 @@
+barventa_listado_ordenes:
+    path: /barventa/listado_ordenes
+    defaults: { _controller: LavandaBundle:BarVenta:listarOrdenes }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+barventa_registro_orden:
+    path: /barventa/registro_orden
+    defaults: { _controller: LavandaBundle:BarVenta:registroOrden }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+
+barventa_mostrar_total:
+    path: /barventa/mostrar_total
+    defaults: { _controller: LavandaBundle:BarVenta:mostrarMontosOrden }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+barventa_editar_descuento:
+    path: /barventa/editar_descuento
+    defaults: { _controller: LavandaBundle:BarVenta:actualizarDescuento }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+
+barventa_cancelar_orden:
+    path: /barventa/cancelar_orden
+    defaults: { _controller: LavandaBundle:BarVenta:cancelarOrden }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+
+barventa_mostrar_info:
+    path: /barventa/mostrar_info
+    defaults: { _controller: LavandaBundle:BarVenta:mostrarInfoOrden }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

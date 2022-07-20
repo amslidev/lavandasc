@@ -30,7 +30,7 @@
                                 {% if ("" | empresa_registrada == false) %}
                                     <p></p>
                                 {% else %}
-                                    <img width="150px" height="150px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
+                                    <img width="180px" height="180px" src="{{ asset('uploads/empresa/logo/logo.png') }}" >
                                 {% endif %}
 
                             </div>
@@ -56,14 +56,16 @@
                                         </script>
                                     {% endif %}
                                 </div>
+
+                                <!--
                                 <hr/>
                                 <div class="col-md-12 text-center ">
                                     <p>Si aún no tiene cuenta, puede registrarse</p>
                                     <a href="{{ path('arsc_registro_anonimo') }}" class=" btn btn-block mybtn btn-dark tx-tfm" >Registrarse</a>
-                                </div>
+                                </div>-->
                                 <hr/>
                                 <div class="col-md-12 text-center ">
-                                    <p>Si no desea registrarse, puede contactarse con nosotros</p>
+                                    <p>Contáctese con nosotros</p>
                                     <a href="{{ path('arsc_contacto') }}" class=" btn btn-block mybtn btn-dark tx-tfm" > Contacto</a>
                                 </div>
 

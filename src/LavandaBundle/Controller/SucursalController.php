@@ -5,6 +5,7 @@ namespace LavandaBundle\Controller;
 use LavandaBundle\Entity\Sucursal;
 use LavandaBundle\Form\SucursalType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -56,25 +57,27 @@ class SucursalController extends Controller
 
         if($form->isSubmitted()){
             if($form->isValid()){
+                try {
+                    $clave = $form->get('clave')->getData();
+                    $sucursal->setClave(strtoupper($clave));
 
-                $em->persist($sucursal);
+                    $em->persist($sucursal);
 
-                $flush = $em->flush();
+                    $flush = $em->flush();
 
-                if($flush == null){
                     $status = "Sucursal registrada correctamente";
                     $this->session->getFlashBag()->add("info","success");
-                }else{
-                    $status = "Error al intentar registrar la Sucursal";
+                }catch (\Exception $e){
+                    $status = "Error al intentar registrar la sucursal";
                     $this->session->getFlashBag()->add("info","error");
                 }
-
-                $this->session->getFlashBag()->add("status",$status);
-                return $this->redirectToRoute("sucursal_index");
-
+            }else{
+                $status = "Error al intentar registrar la sucursal, algunos datos no son válidos";
+                $this->session->getFlashBag()->add("info","error");
             }
+            $this->session->getFlashBag()->add("status",$status);
+            return $this->redirectToRoute("sucursal_index");
         }
-
         return $this->render('LavandaBundle:Sucursales:new.html.twig', array(
             "form" => $form->createView()
         ));
@@ -99,27 +102,50 @@ class SucursalController extends Controller
 
         if($form->isSubmitted()){
             if($form->isValid()){
+                try {
+                    $clave = $form->get('clave')->getData();
+                    $sucursal->setClave(strtoupper($clave));
 
-                $em->persist($sucursal);
+                    $em->persist($sucursal);
 
-                $flush = $em->flush();
+                    $flush = $em->flush();
 
-                if($flush == null){
                     $status = "Sucursal editada correctamente";
                     $this->session->getFlashBag()->add("info","success");
-                }else{
-                    $status = "Error al intentar editar la Sucursal";
+                }catch (\Exception $e){
+                    $status = "Error al intentar editar la sucursal";
                     $this->session->getFlashBag()->add("info","error");
                 }
-
-                $this->session->getFlashBag()->add("status",$status);
-                return $this->redirectToRoute("sucursal_index");
-
+            }else{
+                $status = "Error al intentar editar la sucursal, algunos datos no son válidos";
+                $this->session->getFlashBag()->add("info","error");
             }
+            $this->session->getFlashBag()->add("status",$status);
+            return $this->redirectToRoute("sucursal_index");
         }
 
         return $this->render('LavandaBundle:Sucursales:new.html.twig', array(
             "form" => $form->createView()
         ));
+    }
+
+    public function listarSucursalesPOSAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $sucursales = $em->getRepository('LavandaBundle:Sucursal')->findBy([
+            "activo" => 1
+        ]);
+
+        $arrSucursales = [];
+
+        foreach ($sucursales as $sucursal){
+            $arrSucursales[] = [
+                "idsucursal" => $sucursal->getIdsucursal(),
+                "nombre" => $sucursal->getNombre()
+            ];
+        }
+
+        return new JsonResponse($arrSucursales);
     }
 }

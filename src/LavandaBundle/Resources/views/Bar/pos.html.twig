@@ -1,0 +1,814 @@
+
+{% extends ":app:base.html.twig"%}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <!-- NProgress -->
+    <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ asset('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
+    <style>
+        .selectize-control.movies .selectize-dropdown [data-selectable] {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 10px;
+
+            position: relative;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px 10px 10px 60px;
+        }
+        .selectize-control.movies .selectize-dropdown [data-selectable]:last-child {
+            border-bottom: 0 none;
+        }
+        .selectize-control.movies .selectize-dropdown{
+            font-size: 15px;
+        }
+        .selectize-input{
+            background-color: white;
+            color: black;
+            padding: 1px;
+            width: 100%;
+            border: groove;
+            font-size: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: textfield;
+            outline: none;
+        }
+    </style>
+
+{% endblock stylesheets %}
+
+{% block top_content_header %}
+    <title class="label-notifications-2">
+        {{ "" | nombre_empresa}}  | Barra | Punto de Venta
+    </title>
+{% endblock top_content_header%}
+
+
+{% block page_content %}
+    <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Órdenes abiertas <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button onclick="actualizarOrdenes();"><i class="fa fa-refresh"></i> </button> </li>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div id="tarjetas"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-sm-6 col-xs-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Punto de Venta <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li> <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#nuevoCliente">
+                            <i class="fa fa-plus" aria-hidden="true"> Cliente</i>
+                        </button></li>
+                    <li><button class="btn btn-warning btn-sm"  onclick="nuevaOrden()"><i class="fa fa-trash"> Limpiar campos</i> </button> </li>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div id="contenidoPOS" class="x_content">
+                <h4>Encabezado de la orden</h4>
+                <div class="col-md-6 {% if is_granted('ROLE_USER') %} hidden {% endif %} ">
+                    <label for="selsucursales">Sucursal</label>
+                    <select class="form-control" id="selsucursales"></select>
+                </div>
+                <div class="col-md-6">
+                    <label for="selclientes">Cliente</label>
+                    <input type="text" class="movies form-control" id="selclientes" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-6">
+                    <button type="button" id="btngeneraorden" class="btn btn-success"> <i class="fa fa-save" aria-hidden="true"> Guardar</i> </button>
+                </div>
+                <br/>
+                <hr/>
+                <h4 id="titlecuerpo">Cuerpo de la orden</h4>
+                <div class="col-md-8">
+                    <label for="selproductos">Catálogo de Productos</label>
+                    <input type="text" class="movies form-control" id="selproductos"></input>
+                </div>
+                <div class="col-md-2">
+                    <label for="selproductos">Cantidad</label>
+                    <input type="number" class="form-control" id="txtcantidad"></input>
+                </div>
+                <div class="col-md-2">
+                    <br/>
+                    <input type="hidden" id="txtidorden">
+                    <button type="button" id="btnagregaprod" style="margin-top: 2px; margin-bottom: -15px;" class="btn btn-primary"><i class="fa fa-plus"> Agregar</i> </button>
+                </div>
+                <div class="clearfix"></div>
+                <br/>
+                <br/>
+                <table id="tblproductos" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <!-- accepted payments column -->
+                    <div class="col-xs-6">
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-6">
+                        <p class="lead">Fecha de compra {{ "now" | date('d-m-Y') }}</p>
+                        <div class="table-responsive">
+                            <table id="tbltotal" class="table">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+        <div class="modal fade" id="nuevoCliente" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3>Registrar nuevo cliente</h3>
+                    </div>
+                    <div class="modal-body">
+                        <label for="txtnombre">Nombre del Cliente</label>
+                        <input  type="text" id="txtnombre" class="form-control">
+                        <label for="txtapellido">Apellido del Cliente</label>
+                        <input  type="text" id="txtapellido" class="form-control">
+                        <label for="txttelefono">Teléfono</label>
+                        <input  type="text" id="txttelefono" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btnnuevocliente" onclick="nuevoCliente()">  Guardar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="editarDetalleProducto" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 id="titleeditardetalle"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="titleproducto"></h4>
+                        <label for="txtcantidadproductodetale">Cantidad</label>
+                        <input  type="number" id="txtcantidadproductodetalle" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btneditardetalle" onclick="editarDetalle()">  Guardar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="eliminarDetalleProducto" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 id="titleeliminardetalle"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="titleconfirmaeliminar"></h4>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btneliminardetalle" onclick="eliminarDetalle()">  Guardar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="cancelarOrden" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 id="titlecancelarorden"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="titlemsgcancelarorden"></h4>
+                        <p id="pcliente"></p>
+                        <p id="pfecha"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btncancelarorden" onclick="cancelarOrden()">  Confirmar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function (){
+           actualizarOrdenes();
+           listarSucursales();
+           listarClientes();
+           listarProductos();
+           validarNoOrden();
+        });
+    </script>
+
+    <script>
+        /*
+        *
+        * VARIABLES GLOBALES
+        *
+         */
+        let options = {style: 'currency', currency: 'MXN'};
+        let mxnLocale = new Intl.NumberFormat('es-MX', options);
+        let idordenbarventa = 0;
+
+        /*
+
+        * SECCIÓN DE FUNCIONES
+        *
+        * */
+        function validarNoOrden(){
+            let idorden = $("#txtidorden").val();
+            idorden !== "" ? $("#btnagregaprod").attr("disabled", false) : $("#btnagregaprod").attr("disabled", true);
+        }
+
+        function nuevoCliente(){
+            let nombre = $("#txtnombre").val();
+            let apellido = $("#txtapellido").val();
+            let telefono = $("#txttelefono").val();
+            let datos = {};
+
+
+            if(nombre !== "" && apellido !== "" && telefono !== ""){
+                datos.nombre = nombre;
+                datos.apellido = apellido;
+                datos.telefono = telefono;
+                $.ajax({
+                   type: 'POST',
+                   url: '{{ path('cliente_new_ajax') }}',
+                    data: datos,
+                    success: function (response){
+                        $("#txtnombre").val("");
+                        $("#txtapellido").val("");
+                        $("#txttelefono").val("");
+                        toastr.success("Cliente registrado correctamente", "¡Éxito!");
+                        $("#nuevoCliente").modal('hide');
+                        listarClientes();
+                    },
+                    error: function (response){
+                       toastr.error(response.message, "¡Error!");
+                    }
+                });
+            }else{
+                toastr.error("Faltan datos para registrar al cliente", "¡Error!");
+            }
+        }
+
+        function actualizarOrdenes(){
+            let listado = null;
+            let tarjetaDiv = $("#tarjetas");
+            tarjetaDiv.html("");
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('barventa_listado_ordenes') }}',
+               success: function (ordenes) {
+                   listado = ordenes;
+                   let total = listado.length;
+                   if(total > 0){
+                       for(let i = 0; i < total; i++){
+                           tarjetaDiv.append(
+                               $('<div/>').attr("id", listado[i].idorden).addClass("col-md-6 col-sm-6 col-xs-10 profile_details")
+                                   .append($('<div/>').addClass("well profile_view")
+                                       .append($('<div/>').addClass("col-sm-12")
+                                           .append($('<h4>').addClass("brief").text("No. Orden: " + listado[i].noorden))
+                                           .append($('<div/>').addClass("left col-xs-10")
+                                               .append($('<div/>').text("Cliente"))
+                                               .append($('<p/>')
+                                                   .append($('<strong/>').text(listado[i].cliente))
+                                               )
+                                               .append($('<p/>')
+                                                   .append($('<small/>').text(listado[i].fecha))
+                                               )
+                                           )
+                                       )
+                                       .append($('<div/>').addClass("col-xs-12 bottom ")
+                                           .append($('<div/>').addClass("col-xs-12 col-sm-12 emphasis")
+                                               .append($('<button/>')
+                                                   .attr("type", "submit")
+                                                   .attr("data-id", listado[i].idorden )
+                                                   .addClass("btn btn-warning btneditar btn-xs ")
+                                                   .append($('<i/>').addClass("fa fa-edit").text(" Editar"))
+                                               )
+                                               .append($('<button/>')
+                                                   .attr("type", "submit")
+                                                   .attr("data-id", listado[i].idorden )
+                                                   .addClass("btn btn-success btncerrar btn-xs")
+                                                   .append($('<i/>').addClass("fa fa-check-circle").text(" Cerrar"))
+                                               )
+                                               .append($('<button/>')
+                                                   .attr("type", "submit")
+                                                   .attr("data-id", listado[i].idorden )
+                                                   .addClass("btn btn-danger btncancelada btn-xs")
+                                                   .append($('<i/>').addClass("fa fa-close").text(" Cancelar"))
+                                               )
+                                               .append($('<button/>')
+                                                   .attr("type", "submit")
+                                                   .attr("data-id", listado[i].idorden )
+                                                   .addClass("btn btn-primary btnimprimir btn-xs")
+                                                   .append($('<i/>').addClass("fa fa-print").text(" Ticket"))
+                                               )
+                                           )
+                                       )
+                                   )
+                           );
+                       }
+                   }else{
+                        toastr.info("No se encontraron órdenes abiertas", "¡Info!");
+                   }
+               },
+               error: function () {
+                   toastr.error("Error al cargar las órdenes", '¡Error!');
+               }
+            });
+        }
+
+        function nuevaOrden(){
+            listarSucursales();
+            listarClientes();
+            listarProductos();
+            $("#txtidorden").val("");
+            $("#btngeneraorden").attr("disabled", false);
+            $("#btnagregaprod").attr("disabled", true);
+        }
+
+        function listarSucursales(){
+            let selectSucursales = $("#selsucursales");
+            selectSucursales.html("");
+            let sucursales = [];
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('sucursales_listado') }}',
+               success: function (listaSucursales) {
+                   sucursales = listaSucursales;
+                   let total = sucursales.length;
+                   if(total > 0){
+                       selectSucursales.append('<option value="">Seleccione una sucursal</option>');
+                       for(let i = 0; i < total; i ++){
+                           selectSucursales.append('<option value="'+ sucursales[i].idsucursal +'">' + sucursales[i].nombre + '</option>');
+                       }
+                   }else{
+                       selectSucursales.append('<option value=""> No se encontraron sucursales registradas</option>');
+                   }
+               },
+               error: function (){
+                   toastr.error("Error en la carga de las sucursales", "¡Error!");
+               }
+            });
+        }
+
+        function listarClientes(){
+            let selectClientes = $("#selclientes").selectize({
+                maxItems: 1,
+                placeholder: "Seleccione un cliente"
+            });
+            let clientes = [];
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('cliente_listado_pos') }}',
+                success: function (listaClientes){
+                    let selectize = selectClientes[0].selectize;
+                    selectize.clear();
+                    clientes = listaClientes;
+                    let total = clientes.length;
+                    if(total > 0){
+                        for (let i = 0; i < total; i++){
+                            selectize.addOption({
+                                value : clientes[i].idcliente,
+                                text : clientes[i].idcliente + " - " + clientes[i].nombre
+                            });
+                            selectize.refreshOptions();
+                        }
+
+                    }else{
+                        toastr.info("No se encontraron clientes registrados", "¡Atención!");
+                    }
+                },
+                error: function (){
+                    toastr.error("Error en la carga de los clientes", "¡Error!");
+                }
+            });
+        }
+
+        function listarProductos(){
+            let selproductos = $("#selproductos").selectize({
+                maxItems: 1,
+                placeholder: "Seleccione un producto"
+            });
+            let productos = [];
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('cortesia_listado_pos') }}',
+                success: function (productosAjax){
+                   let selectize = selproductos[0].selectize;
+                   selectize.clear();
+                    productos = productosAjax;
+                    let total = productos.length;
+                    if(total > 0){
+                        for(let i = 0; i <total; i++){
+                            selectize.addOption({
+                                value : productos[i].idcortesia,
+                                text : productos[i].nombre
+                            });
+                            selectize.refreshOptions();
+                        }
+                    }else{
+                        toastr.info("No se han registrado productos", "¡Atención!");
+                    }
+                },
+                error: function () {
+                    toastr.error("Error en la carga de productos", '¡Error!');
+                }
+            });
+        }
+
+        function listarCortesias(idorden){
+            let datos = {};
+            let cortesias = [];
+            datos.idorden = idorden;
+            $("#tblproductos>tbody").empty();
+
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('detallebarventa_listar_cortesias') }}',
+               data: datos,
+               success: function (listadoCortesias){
+                   cortesias = listadoCortesias;
+                   for(let i = 0; i < cortesias.length; i++){
+                       $("#tblproductos>tbody").append("<tr id='fila"+ cortesias[i].iddetalle + "'>" +
+                           "<td>" + cortesias[i].nombre + "</td>" +
+                           "<td>" + cortesias[i].cantidad + "</td>" +
+                           "<td>" + mxnLocale.format(cortesias[i].precio) + "</td>" +
+                           "<td>" + mxnLocale.format(cortesias[i].subtotal) + "</td>" +
+                           "<td>" +
+                           "<button type='button' class='btn btn-warning btn-sm btneditarcortesia' data-id='" + cortesias[i].iddetalle + "'><i class='fa fa-edit'> Editar</i>  </button>" +
+                           "<button type='button' class='btn btn-danger btn-sm btneliminarcortesia' data-id='" + cortesias[i].iddetalle + "'><i class='fa fa-edit'> Eliminar</i>  </button>" +
+                           " </td>"
+                       );
+                   }
+                   cargarTotal();
+               },
+               error: function(){
+                   toastr.error("Error al intentar cargar el listado de productos", "¡Error!");
+               }
+            });
+        }
+
+        function editarDetalle(){
+            let cantidad = $("#txtcantidadproductodetalle").val();
+            let idorden = $("#txtidorden").val();
+            let datos = {};
+            datos.iddetalle = iddetallebarventa;
+            datos.cantidad = cantidad;
+            $.ajax({
+               type: 'POST',
+               url: '{{ path('detallebarventa_editar_detalle') }}',
+               data: datos,
+               success: function (response) {
+                   toastr.success("Cantidad editada correctamente", "¡Éxito!");
+                   $("#editarDetalleProducto").modal('hide');
+                   $("#txtcantidadproductodetalle").val("");
+                   listarCortesias(idorden);
+               },
+               error: function () {
+                    toastr.error("Error al intentar editar la cantidad", "¡Error!");
+               }
+            });
+        }
+
+        function eliminarDetalle(){
+            let idorden = $("#txtidorden").val();
+            let datos = {};
+            datos.iddetalle = iddetallebarventa;
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('detallebarventa_eliminar_detalle') }}',
+               data: datos,
+               success: function () {
+                   toastr.success("Producto eliminado correctamente", "¡Éxito!");
+                   $("#eliminarDetalleProducto").modal('hide');
+                   listarCortesias(idorden);
+               },
+               error: function () {
+                   toastr.error("Error al intentar eliminar el producto", "¡Error!");
+               }
+            });
+        }
+
+        function cargarTotal(){
+            let idorden = $("#txtidorden").val();
+            let datos = {};
+            datos.idorden = idorden;
+            $("#tbltotal>tbody").empty();
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('barventa_mostrar_total') }}',
+               data: datos,
+               success: function (informacion) {
+                   console.log(informacion);
+                    let info = informacion[0].data;
+                    console.log(info);
+                   $("#tbltotal tbody").append("<tr>" +
+                       "<th style='width: 50%'> Subtotal </th>" +
+                       "<td>" + mxnLocale.format(info.subtotal) + "</td>" +
+                       "<tr/>" +
+                       "<tr>" +
+                       "<th style='width: 50%'> Descuento %</th>" +
+                       "<td> <input type='number' id='txtdescuento' min='1' max='100' value='"+ info.descuento +"' class='form-control' </td>" +
+                       "</tr>" +
+                       "<tr>" +
+                       "<th style='width: 50%'> Total </th>" +
+                       "<td>" + mxnLocale.format(info.total) + "</td>" +
+                       "<tr/>" +
+                       "<tr>"
+                   );
+               },
+               error: function (){
+                   toastr.error("Error al intentar cargar el total de la orden", "¡Error!");
+               }
+            });
+        }
+
+        function cancelarOrden(){
+            let datos = {};
+            datos.idorden = idordenbarventa;
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('barventa_cancelar_orden') }}',
+               data: datos,
+               success: function (data) {
+                   if(data[0].status === "success"){
+                       toastr.success(data[0].data, "¡Éxito!");
+                       $("#cancelarOrden").modal('hide');
+                       actualizarOrdenes();
+                   }else{
+                       toastr.error(data[0].data, "¡Error!");
+                   }
+               },
+               error: function () {
+                   toastr.error("Error al intentar cancelar la orden", "¡Error!");
+               }
+            });
+        }
+
+        /*
+        *
+        * SECCIÓN DE LOS EVENTOS CLIC DE LOS BOTONES
+        *
+        * */
+
+        $(document).on("click", '.btneditar', function (){
+            let idorden = $(this).attr("data-id");
+            console.log(idorden);
+        });
+
+        $(document).on("click", '.btncancelada', function (){
+            let idorden = $(this).attr("data-id");
+            $("#cancelarOrden").modal('show');
+            let datos = {};
+            datos.idorden = idorden;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('barventa_mostrar_info') }}',
+                data: datos,
+                success: function (data) {
+                    let info = data[0].data;
+                    if(data[0].status === "success"){
+                        $("#titlecancelarorden").html("Cancelar Orden: " + info.noorden);
+                        $("#titlemsgcancelarorden").html("¿Confirma que desea cancelar la orden no: " + info.noorden + "?");
+                        $("#pcliente").html("Cliente: " + info.cliente);
+                        $("#pfecha").html("Fecha: " + info.fecha);
+                        idordenbarventa = info.idorden;
+                    }else{
+                        toastr.error(data[0].data, "¡Error!");
+                    }
+                },
+                error: function () {
+                    toastr.error("No se pudo encontrar información de la orden");
+                }
+            })
+        });
+
+        let iddetallebarventa = 0;
+        $(document).on("click", '.btneditarcortesia', function (){
+            let iddetalle = $(this).attr("data-id");
+            $("#editarDetalleProducto").modal('show');
+            let datos = {};
+            datos.iddetalle = iddetalle;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('detallebarventa_cargar_info') }}',
+                data: datos,
+                success: function (data) {
+                    let info = data[0].data;
+                    iddetallebarventa = info.iddetalle;
+                    $("#titleeditardetalle").html("No. Orden: " + info.noorden);
+                    $("#titleproducto").html("Producto: " + info.producto);
+                    let cantidad = info.cantidad;
+                    $("#txtcantidadproductodetalle").val(cantidad);
+
+                },
+                error: function (){
+                    toastr.error("Error al intentar cargar los datos del producto", "¡Error!");
+                }
+            });
+        });
+
+        $(document).on("click", '.btneliminarcortesia', function (){
+            let iddetalle = $(this).attr("data-id");
+            $("#titleeliminardetalle").html("");
+            $("#titleconfirmaeliminar").html("");
+            $("#eliminarDetalleProducto").modal("show");
+            iddetallebarventa = iddetalle;
+            let datos = {};
+            datos.iddetalle = iddetalle;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('detallebarventa_cargar_info') }}',
+                data: datos,
+                success: function (data) {
+                    let info = data[0].data;
+                    $("#titleeliminardetalle").html("Eliminar producto: " + info.producto + ". Orden: " + info.noorden);
+                    $("#titleconfirmaeliminar").html("¿Confirma que desea eliminar el producto?")
+
+                },
+                error: function (){
+                    toastr.error("Error al intentar cargar los datos del producto", "¡Error!");
+                }
+            });
+        });
+
+        $("#btngeneraorden").on("click", function () {
+            let idsucursal = $("#selsucursales").val();
+            let idcliente = $("#selclientes").val();
+            if(idsucursal !== "" && idcliente !== ""){
+                let datos = {};
+                datos.idsucursal = idsucursal;
+                datos.idcliente = idcliente;
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('barventa_registro_orden') }}',
+                    data: datos,
+                    success:  function (response) {
+                        let cadena = response.split('.');
+
+                        $("#txtidorden").val(cadena[0]);
+                        $("#titlecuerpo").html("Cuerpo de la orden " + cadena[1]);
+                        $("#btngeneraorden").attr("disabled", true);
+                        $("#btnagregaprod").attr("disabled", false);
+                        actualizarOrdenes();
+                    },
+                    error: function () {
+                        toastr.error("Error al intentar registrar la orden", "¡Error!");
+                    }
+                });
+            }else{
+                toastr.error("Faltan datos", "¡Error!");
+            }
+
+        });
+
+        $("#btnagregaprod").on("click", function () {
+           let idorden = $("#txtidorden").val();
+           let idcortesia = $("#selproductos").val();
+           let cantidad = $("#txtcantidad").val();
+           let datos = {};
+           datos.idorden = idorden;
+           datos.idcortesia = idcortesia;
+           datos.cantidad = cantidad;
+           $.ajax({
+              type: 'POST',
+              url: '{{ path('detallebarventa_registrar_cortesias') }}',
+              data: datos,
+              success: function (data) {
+                  if(data[0].status !== "Error"){
+                      toastr.success(data[0].mensaje, "¡Éxito!");
+                      listarCortesias(idorden);
+                  }else{
+                      toastr.error(data[0].mensaje, "¡Éxito!");
+                  }
+
+              },
+              error: function (data) {
+                  toastr.error(data[0].mensaje, "¡Error!");
+              }
+           });
+         });
+
+        $(document).on("change", '#txtdescuento', function () {
+            let idorden = $("#txtidorden").val();
+            let descuento = $(this).val();
+
+            if(idorden !== "" && descuento !== ""){
+                let datos = {};
+                datos.idorden = idorden;
+                datos.descuento = descuento;
+                $.ajax({
+                   type: 'POST',
+                   url: '{{ path('barventa_editar_descuento') }}',
+                   data: datos,
+                   success: function (data) {
+                       let info = data[0].data;
+                       toastr.success(info.mensaje, "¡Éxito!");
+                       cargarTotal();
+                   },
+                   error: function (data) {
+                       let info = data[0].data;
+                       toastr.error(info.mensaje, "¡Error!");
+                   }
+                });
+            }else{
+                toastr.error("Faltan datos", "¡Error!");
+            }
+        })
+    </script>
+
+    <!-- iCheck -->
+    <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Datatables -->
+    <script src="{{ asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('assets/js/dtconfig.js') }}"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{% endblock javascripts %}

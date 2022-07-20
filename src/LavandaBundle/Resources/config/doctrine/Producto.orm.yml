@@ -1,6 +1,16 @@
 LavandaBundle\Entity\Producto:
     type: entity
     table: producto
+    indexes:
+        categoria_producto_fk_idx:
+            columns:
+                - idcategoria
+        bodega_producto_fk_idx:
+            columns:
+                - idbodega
+        unidadmedida_producto_fk_idx:
+            columns:
+                - unidadmedida
     id:
         idproducto:
             type: integer
@@ -24,21 +34,16 @@ LavandaBundle\Entity\Producto:
             length: 65535
             options:
                 fixed: false
-        precio:
-            type: float
-            nullable: false
-            precision: 10
-            scale: 0
         rutaimagen:
             type: string
-            nullable: false
+            nullable: true
             length: 150
             options:
                 fixed: false
             column: rutaImagen
         nombreimagen:
             type: string
-            nullable: false
+            nullable: true
             length: 100
             options:
                 fixed: false
@@ -54,4 +59,49 @@ LavandaBundle\Entity\Producto:
         disponible:
             type: boolean
             nullable: false
+        stockmin:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        stock:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        inventariocortesia:
+            type: boolean
+            nullable: true
+            column: inventarioCortesia
+    manyToOne:
+        idbodega:
+            targetEntity: Bodegas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idbodega:
+                    referencedColumnName: idbodega
+            orphanRemoval: false
+        idcategoria:
+            targetEntity: Categorias
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcategoria:
+                    referencedColumnName: idcategorias
+            orphanRemoval: false
+        unidadmedida:
+            targetEntity: Unidadesmedida
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                unidadmedida:
+                    referencedColumnName: idunidadesmedida
+            orphanRemoval: false
     lifecycleCallbacks: {  }

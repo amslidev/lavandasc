@@ -49,4 +49,15 @@ LavandaBundle\Entity\Cortesias:
             options:
                 fixed: false
             column: nombreImagen
+        precio:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        cantidadcortesia:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cantidadCortesia
     lifecycleCallbacks: {  }

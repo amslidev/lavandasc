@@ -1,0 +1,80 @@
+LavandaBundle\Entity\Comprasproducto:
+    type: entity
+    table: comprasproducto
+    indexes:
+        producto_comprasproducto_fk_idx:
+            columns:
+                - idproducto
+        proveedor_comprasproducto_fk_idx:
+            columns:
+                - idproveedor
+    id:
+        idcomprasproducto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idcomprasProducto
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        precio:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        fecha:
+            type: datetime
+            nullable: true
+        rutaarchivo:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        nombrearchivo:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        rutaxml:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        nombrexml:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+    manyToOne:
+        idproducto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproducto:
+                    referencedColumnName: idProducto
+            orphanRemoval: false
+        idproveedor:
+            targetEntity: Proveedor
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproveedor:
+                    referencedColumnName: idproveedor
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
