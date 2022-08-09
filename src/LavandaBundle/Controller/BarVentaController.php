@@ -57,6 +57,7 @@ class BarVentaController extends Controller
                 "fecha" => date_format($orden->getFecha(), "d-m-Y")
             ];
         }
+        rsort($arrOrdenes);
 
         return new JsonResponse($arrOrdenes);
     }
@@ -315,9 +316,69 @@ class BarVentaController extends Controller
                         "idorden" => $orden->getIdbarventa(),
                         "noorden" => $orden->getNoorden(),
                         "cliente" => $orden->getIdcliente()->getNombre()." ".$orden->getIdcliente()->getApellido(),
-                        "fecha" => date_format($orden->getFecha(),"d-m-Y H:i")
+                        "fecha" => date_format($orden->getFecha(),"d-m-Y H:i"),
+                        "total" => $orden->getTotal()
                     ]
                 ];
+            }else{
+                $data[] = [
+                    "status" => "Error",
+                    "data" => "No se encontró información"
+                ];
+            }
+        }else{
+            $data[] = [
+                "status" => "Error",
+                "data" => "Faltan datos"
+            ];
+        }
+        return new JsonResponse($data);
+    }
+
+    public function cerrarOrdenAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $idorden = $request->get('idorden');
+        $idforma = $request->get('idforma');
+
+        $data = [];
+
+        if($idorden != ""){
+            $orden = $em->getRepository('LavandaBundle:Barventa')->find($idorden);
+            if($orden != null){
+                try {
+                    //Buscar el estatus de Cerrada para la orden
+                    $estatus = $em->getRepository('LavandaBundle:Estatusventa')->findOneBy([
+                        "clave" => "EV2"
+                    ]);
+
+                    //Buscar la forma de pago seleccionada
+                    $forma = $em->getRepository('LavandaBundle:Formaspago')->find($idforma);
+
+                    $orden->setIdformapago($forma);
+                    $orden->setIdestatus($estatus);
+                    $orden->setFechacierre(new \DateTime("now"));
+                    $em->persist($orden);
+                    $em->flush();
+
+                    $user = $this->getUser();
+
+                    $bitacora = $this->get('arsc.bitacora_ventas');
+                    $evento = "Se cerró la orden de venta no: " . $orden->getNoorden()." por el usuario " . $user->getUsername();
+                    $bitacora->registrarEvento($orden, $evento, $user->getIdusuario());
+
+                    $data [] = [
+                        "status" => "success",
+                        "data" => "Orden cerrada correctamente"
+                    ];
+
+                }catch (\Exception $e){
+                    $data[] = [
+                        "status" => "Error",
+                        "data" => $e->getMessage()
+                    ];
+                }
             }else{
                 $data[] = [
                     "status" => "Error",

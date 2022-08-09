@@ -2,21 +2,21 @@ LavandaBundle\Entity\Barventa:
     type: entity
     table: barventa
     indexes:
-        sucursales_barventa_fk_idx:
-            columns:
-                - idsucursal
-        formaspago_barventa_fk_idx:
-            columns:
-                - idformapago
-        clientes_barventa_fk_idx:
-            columns:
-                - idcliente
         estatusventa_barventa_fk_idx:
             columns:
                 - idestatus
         usuarios_barventa_fk_idx:
             columns:
                 - idusuario
+        clientes_barventa_fk_idx:
+            columns:
+                - idcliente
+        sucursales_barventa_fk_idx:
+            columns:
+                - idsucursal
+        formaspago_barventa_fk_idx:
+            columns:
+                - idformapago
     uniqueConstraints:
         noorden_UNIQUE:
             columns:
@@ -50,6 +50,9 @@ LavandaBundle\Entity\Barventa:
             nullable: true
             options:
                 unsigned: false
+        fechacierre:
+            type: datetime
+            nullable: true
     manyToOne:
         idcliente:
             targetEntity: Cliente

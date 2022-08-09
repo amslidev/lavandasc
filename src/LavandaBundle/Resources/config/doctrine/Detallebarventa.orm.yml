@@ -2,12 +2,12 @@ LavandaBundle\Entity\Detallebarventa:
     type: entity
     table: detallebarventa
     indexes:
-        barventa_detallebarventa_fk_idx:
-            columns:
-                - idbarventa
         cortesias_detallebarventa_fk_idx:
             columns:
                 - idcortesia
+        barventa_detallebarventa_fk_idx:
+            columns:
+                - idbarventa
     id:
         iddetallebarventa:
             type: integer

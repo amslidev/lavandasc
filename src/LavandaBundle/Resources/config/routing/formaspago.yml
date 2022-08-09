@@ -1,0 +1,5 @@
+formaspago_listar:
+    path: /formas_pago/listar
+    defaults: { _controller: LavandaBundle:FormasPago:listarFormas }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

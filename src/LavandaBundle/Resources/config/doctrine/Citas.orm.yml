@@ -2,24 +2,24 @@ LavandaBundle\Entity\Citas:
     type: entity
     table: citas
     indexes:
-        estatuscita_citas_fk:
-            columns:
-                - idEstatus
-        servicio_citas_fk:
-            columns:
-                - idServicio
-        empleado_citas_fk:
-            columns:
-                - idEmpleado
-        cortesias_citas_fk:
-            columns:
-                - idCortesia
         cliente_citas_fk:
             columns:
                 - idCliente
         serviciolongitud_citas_fk:
             columns:
                 - idServicioLongitud
+        cortesias_citas_fk:
+            columns:
+                - idCortesia
+        servicio_citas_fk:
+            columns:
+                - idServicio
+        empleado_citas_fk:
+            columns:
+                - idEmpleado
+        estatuscita_citas_fk:
+            columns:
+                - idEstatus
     id:
         idcita:
             type: integer

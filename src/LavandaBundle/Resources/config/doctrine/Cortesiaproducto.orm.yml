@@ -2,12 +2,12 @@ LavandaBundle\Entity\Cortesiaproducto:
     type: entity
     table: cortesiaproducto
     indexes:
-        cortesias_cortesiaproducto_fk_idx:
-            columns:
-                - idcortesia
         productos_cortesiasproductos_fk_idx:
             columns:
                 - idproducto
+        cortesias_cortesiaproducto_fk_idx:
+            columns:
+                - idcortesia
     id:
         idcortesiaproducto:
             type: integer

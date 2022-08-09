@@ -55,7 +55,7 @@
 
 
 {% block page_content %}
-    <div class="col-md-4 col-sm-6 col-xs-6">
+    <div class="col-md-3 col-sm-6 col-xs-6">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Órdenes abiertas <small></small></h2>
@@ -67,12 +67,14 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div id="tarjetas"></div>
+                <div id="tarjetas" class="mistarjetas"></div>
+                <div class="clearfix"></div>
+                <div id="pagination"></div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-8 col-sm-6 col-xs-6">
+    <div class="col-md-9 col-sm-6 col-xs-6">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Punto de Venta <small></small></h2>
@@ -103,54 +105,42 @@
                 <br/>
                 <hr/>
                 <h4 id="titlecuerpo">Cuerpo de la orden</h4>
-                <div class="col-md-8">
+                <div class="col-md-6">
+                    <input type="hidden" id="txtidorden">
                     <label for="selproductos">Catálogo de Productos</label>
                     <input type="text" class="movies form-control" id="selproductos"></input>
-                </div>
-                <div class="col-md-2">
                     <label for="selproductos">Cantidad</label>
                     <input type="number" class="form-control" id="txtcantidad"></input>
-                </div>
-                <div class="col-md-2">
                     <br/>
-                    <input type="hidden" id="txtidorden">
                     <button type="button" id="btnagregaprod" style="margin-top: 2px; margin-bottom: -15px;" class="btn btn-primary"><i class="fa fa-plus"> Agregar</i> </button>
                 </div>
-                <div class="clearfix"></div>
-                <br/>
-                <br/>
-                <table id="tblproductos" class="table table-striped">
-                    <thead>
+                <div class="col-md-6">
+                    <table id="tblproductos" class="table table-striped">
+                        <thead>
                         <tr>
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
-                            <th>Subtotal</th>
                             <th>Acciones</th>
                         </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <div class="clearfix"></div>
-                <br/>
-                <br/>
-                <div class="row">
-                    <!-- accepted payments column -->
-                    <div class="col-xs-6">
+                        </thead>
+                        <tbody></tbody>
+                    </table>
 
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-6">
-                        <p class="lead">Fecha de compra {{ "now" | date('d-m-Y') }}</p>
-                        <div class="table-responsive">
-                            <table id="tbltotal" class="table">
-                                <tbody>
-                                </tbody>
-                            </table>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table id="tbltotal" class="table">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
                 </div>
+
                 <!-- /.row -->
             </div>
         </div>
@@ -248,6 +238,33 @@
 
             </div>
         </div>
+
+        <div class="modal fade" id="cerrarOrden" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 id="titlecerrarorden"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="titlemsgcerrarorden"></h4>
+                        <p id="pclientecerrar"></p>
+                        <p id="pfechacerrar"></p>
+                        <p id="ptotal"></p>
+                        <hr/>
+                        <label for="selformas">Seleccione la forma de pago</label>
+                        <select id="selformas" class="form-control"></select>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btncerrarorden" onclick="cerrarOrden()">  Confirmar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 {% endblock %}
@@ -319,6 +336,7 @@
         }
 
         function actualizarOrdenes(){
+            $(".profile_details").slice(4).hide();
             let listado = null;
             let tarjetaDiv = $("#tarjetas");
             tarjetaDiv.html("");
@@ -331,51 +349,58 @@
                    if(total > 0){
                        for(let i = 0; i < total; i++){
                            tarjetaDiv.append(
-                               $('<div/>').attr("id", listado[i].idorden).addClass("col-md-6 col-sm-6 col-xs-10 profile_details")
-                                   .append($('<div/>').addClass("well profile_view")
-                                       .append($('<div/>').addClass("col-sm-12")
-                                           .append($('<h4>').addClass("brief").text("No. Orden: " + listado[i].noorden))
-                                           .append($('<div/>').addClass("left col-xs-10")
-                                               .append($('<div/>').text("Cliente"))
-                                               .append($('<p/>')
-                                                   .append($('<strong/>').text(listado[i].cliente))
-                                               )
-                                               .append($('<p/>')
-                                                   .append($('<small/>').text(listado[i].fecha))
-                                               )
+                               $('<div/>').attr("id", listado[i].idorden).addClass("col-md-6 col-sm-5 col-xs-12")
+                                   .append($('<div/>').addClass("panel panel-default tarjetaspanel")
+                                       .append($('<div/>').addClass("panel-heading")
+                                           .append($('<h4>').text("No. Orden: " + listado[i].noorden))
+                                       )
+                                       .append($('<div/>').addClass("panel-body")
+                                           .append($('<p/>').text("Cliente"))
+                                           .append($('<p/>')
+                                               .append($('<strong/>').text(listado[i].cliente))
+                                           )
+                                           .append($('<p/>')
+                                               .append($('<small/>').text(listado[i].fecha))
                                            )
                                        )
-                                       .append($('<div/>').addClass("col-xs-12 bottom ")
-                                           .append($('<div/>').addClass("col-xs-12 col-sm-12 emphasis")
-                                               .append($('<button/>')
-                                                   .attr("type", "submit")
-                                                   .attr("data-id", listado[i].idorden )
-                                                   .addClass("btn btn-warning btneditar btn-xs ")
-                                                   .append($('<i/>').addClass("fa fa-edit").text(" Editar"))
-                                               )
-                                               .append($('<button/>')
-                                                   .attr("type", "submit")
-                                                   .attr("data-id", listado[i].idorden )
-                                                   .addClass("btn btn-success btncerrar btn-xs")
-                                                   .append($('<i/>').addClass("fa fa-check-circle").text(" Cerrar"))
-                                               )
-                                               .append($('<button/>')
-                                                   .attr("type", "submit")
-                                                   .attr("data-id", listado[i].idorden )
-                                                   .addClass("btn btn-danger btncancelada btn-xs")
-                                                   .append($('<i/>').addClass("fa fa-close").text(" Cancelar"))
-                                               )
-                                               .append($('<button/>')
-                                                   .attr("type", "submit")
-                                                   .attr("data-id", listado[i].idorden )
-                                                   .addClass("btn btn-primary btnimprimir btn-xs")
-                                                   .append($('<i/>').addClass("fa fa-print").text(" Ticket"))
-                                               )
+                                       .append($('<div/>').addClass("panel-footer")
+                                           .append($('<button/>')
+                                               .attr("type", "submit")
+                                               .attr("data-id", listado[i].idorden )
+                                               .addClass("btn btn-warning btneditar btn-xs ")
+                                               .append($('<i/>').addClass("fa fa-edit").text(" Editar"))
+                                           )
+                                           .append($('<button/>')
+                                               .attr("type", "submit")
+                                               .attr("data-id", listado[i].idorden )
+                                               .addClass("btn btn-success btncerrar btn-xs")
+                                               .append($('<i/>').addClass("fa fa-check-circle").text(" Cerrar"))
+                                           )
+                                           .append($('<button/>')
+                                               .attr("type", "submit")
+                                               .attr("data-id", listado[i].idorden )
+                                               .addClass("btn btn-danger btncancelada btn-xs")
+                                               .append($('<i/>').addClass("fa fa-close").text(" Cancelar"))
+                                           )
+                                           .append($('<button/>')
+                                               .attr("type", "submit")
+                                               .attr("data-id", listado[i].idorden )
+                                               .addClass("btn btn-primary btnimprimir btn-xs")
+                                               .append($('<i/>').addClass("fa fa-print").text(" Ticket"))
                                            )
                                        )
                                    )
                            );
                        }
+                       $(".tarjetaspanel").slice(4).hide();
+                        $("#pagination").pagination({
+                           items: total,
+                           itemsOnPage: 4,
+                           onPageClick: function (noofele) {
+                               $(".tarjetaspanel").hide()
+                                   .slice(4*(noofele-1), 4 + 4* (noofele - 1)).show();
+                           }
+                        });
                    }else{
                         toastr.info("No se encontraron órdenes abiertas", "¡Info!");
                    }
@@ -390,7 +415,11 @@
             listarSucursales();
             listarClientes();
             listarProductos();
+            listarCortesias();
+            //cargarTotal();()
+            $("#titlecuerpo").html("Cuerpo de la orden");
             $("#txtidorden").val("");
+            $("#txtcantidad").val("");
             $("#btngeneraorden").attr("disabled", false);
             $("#btnagregaprod").attr("disabled", true);
         }
@@ -502,7 +531,6 @@
                            "<td>" + cortesias[i].nombre + "</td>" +
                            "<td>" + cortesias[i].cantidad + "</td>" +
                            "<td>" + mxnLocale.format(cortesias[i].precio) + "</td>" +
-                           "<td>" + mxnLocale.format(cortesias[i].subtotal) + "</td>" +
                            "<td>" +
                            "<button type='button' class='btn btn-warning btn-sm btneditarcortesia' data-id='" + cortesias[i].iddetalle + "'><i class='fa fa-edit'> Editar</i>  </button>" +
                            "<button type='button' class='btn btn-danger btn-sm btneliminarcortesia' data-id='" + cortesias[i].iddetalle + "'><i class='fa fa-edit'> Eliminar</i>  </button>" +
@@ -614,6 +642,58 @@
             });
         }
 
+        function listarFormasPago(){
+            let selectFormas = $("#selformas");
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('formaspago_listar') }}',
+               success: function (formas) {
+                   selectFormas.html("");
+                   let total = formas.length;
+                   if(total > 0){
+                       selectFormas.append('<option value="">Seleccione la forma de pago </option>');
+                       for(let i = 0; i<total; i++){
+                           selectFormas.append('<option value="' + formas[i].idforma + '">' + formas[i].nombre + '</option>');
+                       }
+                   }else{
+                       selectFormas.append('<option value=""> No se han registrado formas de pago </option>');
+                   }
+               },
+               error: function () {
+                   toastr.error("Error al cargar las formas de pago", "¡Error!");
+               }
+            });
+        }
+
+        function cerrarOrden(){
+            let idforma = $("#selformas").val();
+            if(idforma !== ""){
+                let datos = {};
+                datos.idorden = idordenbarventa;
+                datos.idforma = idforma;
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('barventa_cerrar_orden') }}',
+                    data: datos,
+                    success: function (data) {
+                        if(data[0].status === "success"){
+                            toastr.success(data[0].data, "¡Éxito!");
+                            $("#cerrarOrden").modal('hide');
+                            actualizarOrdenes();
+                        }else{
+                            toastr.error(data[0].data, "¡Error!");
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Error al intentar cerrar la orden", "¡Error!");
+                    }
+                });
+            }else{
+                toastr.error("Debe seleccionar la forma de pago", "¡Error!");
+            }
+
+        }
+
         /*
         *
         * SECCIÓN DE LOS EVENTOS CLIC DE LOS BOTONES
@@ -623,6 +703,36 @@
         $(document).on("click", '.btneditar', function (){
             let idorden = $(this).attr("data-id");
             console.log(idorden);
+        });
+
+
+        $(document).on("click", '.btncerrar', function () {
+           let idorden = $(this).attr("data-id");
+           let datos = {};
+           datos.idorden = idorden;
+           $("#cerrarOrden").modal('show');
+           $.ajax({
+               type: 'GET',
+               url: '{{ path('barventa_mostrar_info') }}',
+               data: datos,
+               success: function (data) {
+                   let info = data[0].data;
+                   if(data[0].status === "success"){
+                       $("#titlecerrarorden").html("Cerrar Orden: " + info.noorden);
+                       $("#titlemsgcerrarorden").html("¿Confirma que desea cerrar la orden número: " + info.noorden + "?");
+                       $("#pclientecerrar").html("Cliente: " + info.cliente);
+                       $("#pfechacerrar").html("Fecha de apertura: " + info.fecha);
+                       $("#ptotal").html("Total de la cuenta: " + mxnLocale.format(info.total));
+                       listarFormasPago();
+                       idordenbarventa = info.idorden;
+                   }else{
+                       toastr.error(data[0].data, "¡Error!");
+                   }
+               },
+               error: function () {
+                   toastr.error("No se encontró información de la orden");
+               }
+           });
         });
 
         $(document).on("click", '.btncancelada', function (){
@@ -640,14 +750,14 @@
                         $("#titlecancelarorden").html("Cancelar Orden: " + info.noorden);
                         $("#titlemsgcancelarorden").html("¿Confirma que desea cancelar la orden no: " + info.noorden + "?");
                         $("#pcliente").html("Cliente: " + info.cliente);
-                        $("#pfecha").html("Fecha: " + info.fecha);
+                        $("#pfecha").html("Fecha de apertura: " + info.fecha);
                         idordenbarventa = info.idorden;
                     }else{
                         toastr.error(data[0].data, "¡Error!");
                     }
                 },
                 error: function () {
-                    toastr.error("No se pudo encontrar información de la orden");
+                    toastr.error("No se encontró información de la orden");
                 }
             })
         });

@@ -2,12 +2,12 @@ LavandaBundle\Entity\Comprasproducto:
     type: entity
     table: comprasproducto
     indexes:
-        producto_comprasproducto_fk_idx:
-            columns:
-                - idproducto
         proveedor_comprasproducto_fk_idx:
             columns:
                 - idproveedor
+        producto_comprasproducto_fk_idx:
+            columns:
+                - idproducto
     id:
         idcomprasproducto:
             type: integer

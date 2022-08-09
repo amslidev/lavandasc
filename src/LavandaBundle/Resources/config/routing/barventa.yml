@@ -33,3 +33,9 @@ barventa_mostrar_info:
     defaults: { _controller: LavandaBundle:BarVenta:mostrarInfoOrden }
     methods: [GET]
     condition: "request.isXmlHttpRequest()"
+
+barventa_cerrar_orden:
+    path: /barventa/cerrar_orden
+    defaults: { _controller: LavandaBundle:BarVenta:cerrarOrden }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

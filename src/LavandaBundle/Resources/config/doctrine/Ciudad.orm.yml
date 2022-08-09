@@ -2,12 +2,12 @@ LavandaBundle\Entity\Ciudad:
     type: entity
     table: ciudad
     indexes:
-        pais_ciudad_fk_idx:
-            columns:
-                - PaisCodigo
         ciudadnombre_idx:
             columns:
                 - CiudadNombre
+        pais_ciudad_fk_idx:
+            columns:
+                - PaisCodigo
     id:
         ciudadid:
             type: integer

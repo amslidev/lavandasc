@@ -68,7 +68,7 @@ class ProductoType extends AbstractType
                 "data_class"=>null
             ))
             ->add('inventariocortesia', CheckboxType::class, [
-                "label" => "¿El producto se utiliza para las cortesías?",
+                "label" => "¿Será utilizado como Producto para el Bar?",
                 "attr" => array("class"=>"form-control")
             ])
             ->add('Guardar', SubmitType::class, array(

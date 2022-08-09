@@ -283,4 +283,33 @@ class Barventa
     {
         return $this->descuento;
     }
+    /**
+     * @var \DateTime|null
+     */
+    private $fechacierre;
+
+
+    /**
+     * Set fechacierre.
+     *
+     * @param \DateTime|null $fechacierre
+     *
+     * @return Barventa
+     */
+    public function setFechacierre($fechacierre = null)
+    {
+        $this->fechacierre = $fechacierre;
+
+        return $this;
+    }
+
+    /**
+     * Get fechacierre.
+     *
+     * @return \DateTime|null
+     */
+    public function getFechacierre()
+    {
+        return $this->fechacierre;
+    }
 }

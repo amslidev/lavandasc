@@ -2,12 +2,12 @@ LavandaBundle\Entity\Cobranza:
     type: entity
     table: cobranza
     indexes:
-        citas_cobranza_fk:
-            columns:
-                - idCita
         usuario_cobranza_fk:
             columns:
                 - idUsuario
+        citas_cobranza_fk:
+            columns:
+                - idCita
     id:
         idcobranza:
             type: integer

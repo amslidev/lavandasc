@@ -2,12 +2,12 @@ LavandaBundle\Entity\Bitacoraventas:
     type: entity
     table: bitacoraventas
     indexes:
-        barventa_bitacoraventas_fk_idx:
-            columns:
-                - idbarventa
         usuarios_bitacoraventas_fk_idx:
             columns:
                 - idusuario
+        barventa_bitacoraventas_fk_idx:
+            columns:
+                - idbarventa
     id:
         idbitacoraventa:
             type: integer
