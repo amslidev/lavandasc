@@ -1,0 +1,60 @@
+LavandaBundle\Entity\Paquetes:
+    type: entity
+    table: paquetes
+    indexes:
+        servicios_paquetes_fk_idx:
+            columns:
+                - idservicio
+        clientes_paquetes_fk_idx:
+            columns:
+                - idcliente
+    id:
+        idpaquete:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidad:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        precio:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        fechainicio:
+            type: datetime
+            nullable: true
+            column: fechaInicio
+        fechafin:
+            type: datetime
+            nullable: true
+            column: fechaFin
+    manyToOne:
+        idcliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idcliente:
+                    referencedColumnName: idCliente
+            orphanRemoval: false
+        idservicio:
+            targetEntity: Servicio
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idservicio:
+                    referencedColumnName: idServicio
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

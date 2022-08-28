@@ -1,0 +1,44 @@
+LavandaBundle\Entity\Logs:
+    type: entity
+    table: logs
+    indexes:
+        usuarios_logs_fk_idx:
+            columns:
+                - idusuario
+    id:
+        idlogs:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        modulo:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        evento:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        fecha:
+            type: datetime
+            nullable: true
+    manyToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idusuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

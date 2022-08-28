@@ -33,7 +33,6 @@ class UsuariosController extends Controller
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-
         return $this->render("LavandaBundle:Usuarios:login.html.twig", array(
             "error" => $error,
             "last_Username" => $lastUsername

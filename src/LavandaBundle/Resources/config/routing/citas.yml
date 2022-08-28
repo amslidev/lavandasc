@@ -40,3 +40,9 @@ citas_cliente_listado:
 citas_cliente_registro:
     path: /citas/miscitas/registro
     defaults: { _controller: LavandaBundle:Citas:registrarCitaCliente }
+
+citas_detalle:
+    path: /citas/detalle
+    defaults: { _controller: LavandaBundle:Citas:buscarDetalleCita }
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"

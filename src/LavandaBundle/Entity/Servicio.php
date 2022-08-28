@@ -259,4 +259,37 @@ class Servicio
     {
         return $this->activo;
     }
+
+    /**
+     * @var bool|null
+     */
+    private $predeterminado;
+
+
+    /**
+     * Set predeterminado.
+     *
+     * @param bool|null $predeterminado
+     *
+     * @return Servicio
+     */
+    public function setPredeterminado($predeterminado = null)
+    {
+        $this->predeterminado = $predeterminado;
+
+        return $this;
+    }
+
+    /**
+     * Get predeterminado.
+     *
+     * @return bool|null
+     */
+    public function getPredeterminado()
+    {
+        return $this->predeterminado;
+    }
+    /**
+     * @var bool|null
+     */
 }

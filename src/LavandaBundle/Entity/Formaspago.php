@@ -80,4 +80,9 @@ class Formaspago
     {
         return $this->clave;
     }
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 }

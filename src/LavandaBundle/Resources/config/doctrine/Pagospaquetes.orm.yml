@@ -1,0 +1,50 @@
+LavandaBundle\Entity\Pagospaquetes:
+    type: entity
+    table: pagospaquetes
+    indexes:
+        formaspago_pagopaquetes_fk_idx:
+            columns:
+                - idformapago
+        paquetes_pagospaquetes_fk_idx:
+            columns:
+                - idpaquete
+    id:
+        idpagopaquete:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        cantidadabonada:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        fechapago:
+            type: datetime
+            nullable: true
+    manyToOne:
+        idformapago:
+            targetEntity: Formaspago
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idformapago:
+                    referencedColumnName: idformaspago
+            orphanRemoval: false
+        idpaquete:
+            targetEntity: Paquetes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idpaquete:
+                    referencedColumnName: idpaquete
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -22,7 +22,7 @@
 
 {% block top_content_header %}
     <title class="label-notifications-2">
-        {{ "" | nombre_empresa}}  | Servicios
+        {{ "" | nombre_empresa}}  | Paquetes de Servicios
     </title>
 {% endblock top_content_header%}
 
@@ -31,7 +31,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Servicios <small></small></h2>
+            <h2>Paquetes de Servicios <small></small></h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -40,69 +40,56 @@
         </div>
         <div class="x_content">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ path('servicio_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
+                <a  class="btn btn-primary" href="{{ path('paquetes_new') }}"><i class="fa fa-plus"> Nuevo</i> </a>
             </div>
             <br/>
-            <br/>
-            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+            <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Tiempo (Min.)</th>
+                    <th>Cliente</th>
+                    <th>Servicio</th>
+                    <th>Cantidad de sesiones</th>
+                    <th>Sesiones realizadas</th>
                     <th>Precio</th>
-                    <th>Cobro long.</th>
-                    <th>Activo</th>
-                    <th>Predeterminado</th>
+                    <th>Fecha Apertura</th>
+                    <th>Fecha Conclusión</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for servicio in servicios %}
-                    <tr>
-                        <td>{{ servicio.nombre }}</td>
-                        <td>{{ servicio.tiempo }}</td>
-                        <td>
-                            {% if servicio.cobraronza == false %}
-                                ${{ servicio.precio | number_format(2, ".",",") }}
-                            {% else %}
-                                <p>Se cobra por longitud</p>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if servicio.cobraronza == 1 %}
-                                <i class="fa fa-check-square-o" style="color: green"></i>
-                            {% else %}
-                                <i class="fa fa-close" style="color: red"></i>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if servicio.activo == 1 %}
-                                <i class="fa fa-check-square-o" style="color: green"></i>
-                            {% else %}
-                                <i class="fa fa-close" style="color: red"></i>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if servicio.predeterminado == 1 %}
-                                <i class="fa fa-check-square-o" style="color: green"></i>
-                            {% else %}
-                                <i class="fa fa-close" style="color: red"></i>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a class="btn btn-sm btn-warning btn-sm" href="{{ path('servicio_edit', { 'idservicio': servicio.idservicio }) }}"> <i class="fa fa-edit" > Editar</i> </a>
-                            {% if servicio.cobraronza == 1 %}
-                                <a href="{{ path('serviciolongitud_index', {'idservicio': servicio.idservicio}) }}" class="btn btn-primary btn-sm"><i class="fa fa-cog"> Longitudes</i> </a>
-                            {% endif %}
-                            <a class="btn btn-sm btn-dark btn-sm" href="{{ path('servicioproducto_index', {'idservicio': servicio.idservicio }) }}"> <i class="fa fa-list-ol" > Productos</i> </a>
-                        </td>
-                    </tr>
+                {% if (paquetes != null) %}
+                    {% for paquete in paquetes %}
+                        <tr>
+                            <td>{{ paquete.idcliente.nombre }} {{ paquete.idcliente.apellido }}</td>
+                            <td>{{ paquete.idservicio.nombre }} </td>
+                            <td>{{ paquete.cantidad }} </td>
+                            <td> </td>
+                            <td>${{ paquete.precio | number_format(2,'.',',') }} </td>
+                            <td>{{ paquete.fechainicio != null ? paquete.fechainicio | date('d-m-Y') : "" }}</td>
+                            <td>{{ paquete.fechafin != null ? paquete.fechafin | date('d-m-Y') : "" }}</td>
+                            <td>
+                                {% if paquete.fechafin == null %}
+                                    <a class="btn btn-sm btn-warning" href="{{ path('paquetes_edit', {'idpaquete': paquete.idpaquete}) }}"> <i class="fa fa-edit"> Editar</i> </a>
+                                {% endif %}
+                                <a class="btn btn-sm btn-success" href="{{ path('pagospaquetes_index', {'idpaquete': paquete.idpaquete}) }}"> <i class="fa fa-money"> Pagos</i> </a>
 
-                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No se encontraron registros de paquetes</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
-
-
         </div>
     </div>
 </div>
@@ -111,9 +98,9 @@
 
 {% block javascripts %}
 
-{{ parent() }}
+    {{ parent() }}
 
-    {{ summernote_init() }}
+
 
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
@@ -133,10 +120,11 @@
     <script src="{{ asset('assets/vendors/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
     <script src="{{ asset('assets/js/dtconfig.js') }}"></script>
 
 
-<!-- Custom Theme Scripts -->
-<script src="{{ asset('assets/js/custom.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
 {% endblock javascripts %}

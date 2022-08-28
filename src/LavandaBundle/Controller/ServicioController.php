@@ -4,6 +4,7 @@ namespace LavandaBundle\Controller;
 
 use LavandaBundle\Entity\Servicio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -50,6 +51,7 @@ class ServicioController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         if($user->getRole() == "ROLE_ADMIN"){
             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
@@ -80,7 +82,23 @@ class ServicioController extends Controller
                 $foto->move($path, $file_name);
             }
 
-            $em = $this->getDoctrine()->getManager();
+            //Validar el está selecciona la opción de predeterminado
+            $default = $form->get('predeterminado')->getData();
+            if($default){
+                $servicioDefault = $em->getRepository('LavandaBundle:Servicio')->findOneBy([
+                    "predeterminado" => true
+                ]);
+
+                if($servicioDefault != null){
+                    $servicioDefault->setPredeterminado(false);
+                    $em->persist($servicioDefault);
+                    $servicio->setPredeterminado(true);
+                }else{
+                    $servicio->setPredeterminado(true);
+                }
+            }
+
+
             $em->persist($servicio);
             $em->flush();
 
@@ -117,6 +135,7 @@ class ServicioController extends Controller
      */
     public function editAction(Request $request, Servicio $servicio)
     {
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         if($user->getRole() == "ROLE_ADMIN"){
             $this->denyAccessUnlessGranted('ROLE_ADMIN', $user, 'No tiene acceso a esta página');
@@ -147,8 +166,24 @@ class ServicioController extends Controller
                 $foto->move($path, $file_name);
             }
 
-            $this->getDoctrine()->getManager()->persist($servicio);
-            $this->getDoctrine()->getManager()->flush();
+            //Validar el está selecciona la opción de predeterminado
+            $default = $editForm->get('predeterminado')->getData();
+            if($default){
+                $servicioDefault = $em->getRepository('LavandaBundle:Servicio')->findOneBy([
+                    "predeterminado" => 1
+                ]);
+
+                if($servicioDefault != null){
+                    $servicioDefault->setPredeterminado(false);
+                    $em->persist($servicioDefault);
+                    $servicio->setPredeterminado(true);
+                }else{
+                    $servicio->setPredeterminado(true);
+                }
+            }
+
+            $em->persist($servicio);
+            $em->flush();
 
             $status = "Servicio editado correctamente";
             $this->session->getFlashBag()->add("info","success");
@@ -204,5 +239,22 @@ class ServicioController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function listarServiciosAjaxAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $servicios = $em->getRepository('LavandaBundle:Servicio')->findAll();
+
+        $arrServicios = [];
+
+        foreach ($servicios as $servicio){
+            $arrServicios[] = [
+                "idservicio" => $servicio->getIdservicio(),
+                "nombre" => $servicio->getNombre()
+            ];
+        }
+
+        return new JsonResponse($arrServicios);
     }
 }

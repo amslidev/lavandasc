@@ -7,6 +7,36 @@
 
     <!-- NProgress -->
     <link href="{{ asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+
+    <style>
+        .selectize-control.movies .selectize-dropdown [data-selectable] {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 10px;
+
+            position: relative;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px 10px 10px 60px;
+        }
+        .selectize-control.movies .selectize-dropdown [data-selectable]:last-child {
+            border-bottom: 0 none;
+        }
+        .selectize-control.movies .selectize-dropdown{
+            font-size: 15px;
+        }
+        .selectize-input{
+            background-color: white;
+            color: black;
+            padding: 1px;
+            width: 100%;
+            border: groove;
+            font-size: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: textfield;
+            outline: none;
+        }
+    </style>
+
 {% endblock stylesheets %}
 
 {% block top_content_header %}
@@ -17,11 +47,15 @@
 
 {% block page_content %}
     <div class="col-lg-12">
-
-
+        <ul class="pull-right">
+            <li> <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#nuevoCliente">
+                    <i class="fa fa-plus" aria-hidden="true"> Cliente</i>
+                </button></li>
+        </ul>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>Registro de nueva cita</h2>
+
             </div>
             <div class="panel-body">
                 {{ form_start(form) }}
@@ -39,6 +73,32 @@
             </div>
         </div>
 
+        <div class="modal fade" id="nuevoCliente" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3>Registrar nuevo cliente</h3>
+                    </div>
+                    <div class="modal-body">
+                        <label for="txtnombre">Nombre del Cliente</label>
+                        <input  type="text" id="txtnombre" class="form-control">
+                        <label for="txtapellido">Apellido del Cliente</label>
+                        <input  type="text" id="txtapellido" class="form-control">
+                        <label for="txttelefono">Teléfono</label>
+                        <input  type="text" id="txttelefono" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-success" id="btnnuevocliente" onclick="nuevoCliente()">  Guardar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 
@@ -46,9 +106,22 @@
 
     {{ parent() }}
 
+    {{ summernote_init() }}
+
+
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#lavandabundle_citas_idserviciolongitud").html("");
+            $("#lavandabundle_citas_idcliente").selectize({
+                maxItems: 1,
+                placeholder: "Seleccione un cliente"
+            });
+            $("#lavandabundle_citas_servicio").selectize({
+               maxItems: 1,
+               placeholder: "Seleccione un servicio"
+            });
         });
     </script>
 
@@ -112,17 +185,18 @@
 
     <script type="text/javascript">
         function agendarCita() {
-            var idservicio = $("#lavandabundle_citas_servicio").val();
-            var idlongitud = $("#lavandabundle_citas_idserviciolongitud").val();
-            var idsucursal = $("#lavandabundle_citas_idsucursal").val();
-            var idempleado = $("#lavandabundle_citas_idempleado").val();
-            var fecha = $("#lavandabundle_citas_fechacita").val();
-            var horaSel = $("#lavandabundle_citas_horacita_hour").val();
-            var minutoSel = $("#lavandabundle_citas_horacita_minute").val();
-            var idcliente = $("#lavandabundle_citas_idcliente").val();
-            var datos = {};
+            let idservicio = $("#lavandabundle_citas_servicio").val();
+            let idlongitud = $("#lavandabundle_citas_idserviciolongitud").val();
+            let idsucursal = $("#lavandabundle_citas_idsucursal").val();
+            let idempleado = $("#lavandabundle_citas_idempleado").val();
+            let fecha = $("#lavandabundle_citas_fechacita").val();
+            let horaSel = $("#lavandabundle_citas_horacita_hour").val();
+            let minutoSel = $("#lavandabundle_citas_horacita_minute").val();
+            let idcliente = $("#lavandabundle_citas_idcliente").val();
+            let comentarios = $("#lavandabundle_citas_comentarios").val();
+            let datos = {};
 
-            if(idservicio !== "" && idsucursal !== "" && idempleado !== "" && fecha !== "" && horaSel !== ""){
+            if(idsucursal !== "" && idempleado !== "" && fecha !== "" && horaSel !== ""){
                 if(minutoSel >= "0" && minutoSel <= "9"){
                     minutoSel = "0"+minutoSel;
                 }
@@ -137,12 +211,13 @@
                 datos.hora = hora.getHours();
                 datos.minutos = hora.getMinutes();
                 datos.idcliente = idcliente;
+                datos.comentarios = comentarios;
 
                 $.ajax({
                     type: 'GET',
                     url: '{{ path('citas_proceso')}}',
                     data: datos,
-                    success: function () {
+                    success: function (response) {
                         swal({
                             title: "¡Éxito!",
                             text: "Cita registrada correctamente",
@@ -153,7 +228,7 @@
                             location.reload();
                         });
                     },
-                    error: function () {
+                    error: function (response) {
                         toastr.error("No es posible agendar la cita para el día y hora seleccionado", "¡Error!");
                     }
                 });
@@ -211,6 +286,40 @@
                 //Si llega hasta aca significa que pulsaron 2 veces el boton submit
                 toastr.info('Ya se enviaron los datos','¡Atención!');
                 return false;
+            }
+        }
+    </script>
+
+    <script>
+        function nuevoCliente(){
+            let nombre = $("#txtnombre").val();
+            let apellido = $("#txtapellido").val();
+            let telefono = $("#txttelefono").val();
+            let datos = {};
+
+
+            if(nombre !== "" && apellido !== "" && telefono !== ""){
+                datos.nombre = nombre;
+                datos.apellido = apellido;
+                datos.telefono = telefono;
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('cliente_new_ajax') }}',
+                    data: datos,
+                    success: function (response){
+                        $("#txtnombre").val("");
+                        $("#txtapellido").val("");
+                        $("#txttelefono").val("");
+                        toastr.success("Cliente registrado correctamente", "¡Éxito!");
+                        $("#nuevoCliente").modal('hide');
+                        location.reload();
+                    },
+                    error: function (response){
+                        toastr.error(response.message, "¡Error!");
+                    }
+                });
+            }else{
+                toastr.error("Faltan datos para registrar al cliente", "¡Error!");
             }
         }
     </script>

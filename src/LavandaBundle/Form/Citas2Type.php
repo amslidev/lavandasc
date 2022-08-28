@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,7 +25,6 @@ class Citas2Type extends AbstractType
             //->add('fechacita')
             //->add('horarioinicio')
             //->add('horariofin')
-            //->add('comentarios')
             ->add('idcliente', EntityType::class, array(
                 "label" => "Seleccione un cliente",
                 "class" => "LavandaBundle\Entity\Cliente",
@@ -34,7 +34,7 @@ class Citas2Type extends AbstractType
                         ->orderBy('c.nombre', 'ASC');
                 },
                 "choice_label" => function($cliente, $key, $index){
-                    return $cliente->getNombre(). " ".$cliente->getApellido(). " - " . $cliente->getEmail();
+                    return $cliente->getNombre(). " ".$cliente->getApellido(). " - " . $cliente->getTelefono();
                 },
                 "attr" => array("class" => "form-control")
             ))
@@ -44,7 +44,7 @@ class Citas2Type extends AbstractType
                 "placeholder" =>"Seleccione un elemento",
                 "mapped" => false,
                 "data_class" => null,
-                "attr" => $ccsClass
+                "attr" => $ccsClass,
             ))
             ->add('idserviciolongitud', EntityType::class, array(
                 "label" => "Longitud del cabello",
@@ -94,6 +94,12 @@ class Citas2Type extends AbstractType
                 "data_class" => null,
                 "hours" => ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
             ))
+            ->add('comentarios', TextareaType::class, [
+                "label" => "Aquí puede ingresar notas de la cita",
+                "attr"=>array(
+                    "class"=>"summernote",
+                )
+            ])
             /*->add('idcortesia', EntityType::class, array(
                 "label" => "Seleccione la cortesía",
                 "placeholder" => "Seleccione un elemento",

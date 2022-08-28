@@ -1,0 +1,14 @@
+paquetes_index:
+    path: /paquetes
+    defaults: { _controller: LavandaBundle:Paquetes:index }
+    methods: [GET]
+
+paquetes_new:
+    path: /paquetes/new
+    defaults: { _controller: LavandaBundle:Paquetes:new }
+    methods: [GET, POST]
+
+paquetes_edit:
+    path: /paquetes/edit/{idpaquete}
+    defaults: { _controller: LavandaBundle:Paquetes:edit }
+    methods: [GET, POST]

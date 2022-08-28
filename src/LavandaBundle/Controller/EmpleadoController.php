@@ -136,19 +136,19 @@ class EmpleadoController extends Controller
     public function listarEmpleadosSucursalAction(Request $request){
         $em = $this->getDoctrine()->getManager();
 
-        $idscursal = $request->get('idsucursal');
+        $idsucursal = $request->get('idsucursal');
 
         $empleados = $em->getRepository('LavandaBundle:Empleado')->findBy(array(
-            "idsucursal" => $idscursal
+            "idsucursal" => $idsucursal
         ));
 
         $arrEmpleados = array();
 
         foreach ($empleados as $empleado){
-            array_push($arrEmpleados, [
-               "idempleado" => $empleado->getIdempleado(),
-                "nombre" => $empleado->getNombre()." ".$empleado->getApellido()
-            ]);
+            $arrEmpleados[] = [
+                "idempleado" => $empleado->getIdempleado(),
+                "nombre" => $empleado->getNombre() . " " . $empleado->getApellido()
+            ];
         }
 
         return new JsonResponse($arrEmpleados);

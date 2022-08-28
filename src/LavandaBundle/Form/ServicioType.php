@@ -65,6 +65,11 @@ class ServicioType extends AbstractType
                 "attr" => array("class" => "form-control"),
                 "required" => false
             ))
+            ->add('predeterminado', CheckboxType::class, [
+                "label" => "Establecer como servicio predeterminado",
+                "attr" => ["class"=>"form-control"],
+                "required" => false
+            ])
             ->add('Guardar', SubmitType::class, array(
                 "label"=>"Guardar",
                 "attr"=>array("class"=>"form-submit btn btn-success")

@@ -22,3 +22,8 @@ servicio_delete:
     path:     /servicio/{idservicio}/delete
     defaults: { _controller: "LavandaBundle:Servicio:delete" }
     methods:  DELETE
+
+servicio_listar_ajax:
+    path:     /servicio/listar_ajax
+    defaults: { _controller: "LavandaBundle:Servicio:listarServiciosAjax" }
+    methods: [GET]

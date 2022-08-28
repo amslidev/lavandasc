@@ -44,12 +44,13 @@ class ClienteType extends AbstractType
             /* ->add('email', EmailType::class, array(
                  "label" => "Email",
                  "attr" => $cssClas
-             ))
+             ))*/
              ->add('fechanacimiento', DateType::class, array(
                  "label" => "Fecha de nacimiento",
                  "widget" => "single_text",
-                 "attr" => $cssClas
-             ))*/
+                 "attr" => $cssClas,
+                "required" => false
+             ))
             /*->add('username',TextType::class, array(
                 "label" => "Ingrese el nombre de usuario",
                 "attr" => array("class"=>"form-control"),

@@ -2,15 +2,15 @@ LavandaBundle\Entity\Barventa:
     type: entity
     table: barventa
     indexes:
+        clientes_barventa_fk_idx:
+            columns:
+                - idcliente
         estatusventa_barventa_fk_idx:
             columns:
                 - idestatus
         usuarios_barventa_fk_idx:
             columns:
                 - idusuario
-        clientes_barventa_fk_idx:
-            columns:
-                - idcliente
         sucursales_barventa_fk_idx:
             columns:
                 - idsucursal

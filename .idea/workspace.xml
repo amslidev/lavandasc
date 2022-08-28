@@ -8,43 +8,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="583e1fb9-ae55-4ef6-93c1-91814266a878" name="Default Changelist" comment="Creación del POS">
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/FormasPagoController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/formaspago.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/FormasPagoControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/jQuery.paginate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/jQuery.paginate.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/assets/js/pagination.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/compras/pdf-8_1656364178.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/compras/xml-8-1656364178.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/cortesias/Carajillo 2/1657753373.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Azúcar/1656354452.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Licor de hierbas/1656352215.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Químico para tratamiento capilar/1655228069.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/productos/Shampoo/1655144493.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bootstrap.php.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/PagosPaqueteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/PaquetesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Detallepaquete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Logs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Pagospaquetes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Paquetes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/PagospaquetesType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/PaquetesType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Detallepaquete.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Logs.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Pagospaquetes.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Paquetes.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/pagospaquetes.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/paquetes.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Pagospaquetes/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Pagospaquetes/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Services/LogsService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/PagosPaqueteControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/PaquetesControllerTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/app/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/BarVentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/BarVentaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Barventa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Barventa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ProductoType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ProductoType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/symfony_requirements" beforeDir="false" afterPath="$PROJECT_DIR$/bin/symfony_requirements" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/EmpleadoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/EmpleadoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Formaspago.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Formaspago.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Barventa.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Barventa.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Bitacoraventas.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Bitacoraventas.orm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Citas.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Citas.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Ciudad.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Ciudad.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cobranza.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cobranza.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Comprasproducto.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Comprasproducto.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cortesiaproducto.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Cortesiaproducto.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Detallebarventa.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Detallebarventa.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Expedientecliente.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Expedientecliente.orm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Producto.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Producto.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/barventa.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/barventa.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Bar/pos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Bar/pos.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Categorias/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Categorias/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/CortesiaProducto/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/CortesiaProducto/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Cortesias/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/servicio.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/servicio.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/new.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +89,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/new.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -373,9 +396,11 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dell/Downloads/PHP_Annotations-8.2.2.zip&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/usr/local/var/www/lavandasc/src/LavandaBundle/Resources/views/Pagospaquetes&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -387,17 +412,27 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Pagospaquetes" />
+      <recent name="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes" />
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\CortesiaProducto" />
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\ServicioProducto" />
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Compras" />
-      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\UnidadesMedida" />
-      <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Categorias" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Serviciolongitud" />
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\ServicioProducto" />
       <recent name="C:\xampp\htdocs\arsc\src\LavandaBundle\Resources\views\Procesos" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PagosPaqueteController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/src/LavandaBundle/Controller/PagosPaqueteController.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.PagosPaqueteController.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="StructuralSearchPlugin">
@@ -529,6 +564,17 @@
       <workItem from="1658761887513" duration="1191000" />
       <workItem from="1659368524377" duration="1766000" />
       <workItem from="1659386050073" duration="3000" />
+      <workItem from="1660003727456" duration="516000" />
+      <workItem from="1660004528502" duration="527000" />
+      <workItem from="1660005196580" duration="960000" />
+      <workItem from="1660006626348" duration="1029000" />
+      <workItem from="1661043016508" duration="2468000" />
+      <workItem from="1661103614479" duration="4378000" />
+      <workItem from="1661124239134" duration="1104000" />
+      <workItem from="1661129755296" duration="10670000" />
+      <workItem from="1661263564028" duration="3220000" />
+      <workItem from="1661385715195" duration="4381000" />
+      <workItem from="1661703829329" duration="13462000" />
     </task>
     <task id="LOCAL-00001" summary="Carga del proyecto">
       <created>1623787315265</created>
@@ -624,6 +670,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

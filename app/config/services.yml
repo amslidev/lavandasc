@@ -76,6 +76,10 @@ services:
         class: LavandaBundle\Services\ActualizarStockService
         arguments: ['@doctrine.orm.entity_manager']
 
+    arsc.logs_service:
+        class: LavandaBundle\Services\LogsService
+        arguments: ['@doctrine.orm.entity_manager']
+
     arsc.actualizar_totales_service:
         class: LavandaBundle\Services\ActualizarTotalesOrdenService
         arguments: [ '@doctrine.orm.entity_manager' ]

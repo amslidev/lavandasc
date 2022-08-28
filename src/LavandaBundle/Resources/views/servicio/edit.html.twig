@@ -23,6 +23,9 @@
                 <h2>Editar Servicio {{ servicio.nombre }}</h2>
             </div>
             <div class="panel-body">
+                <p>Nota: Si selecciona la opción de "Establecer como servicio predeterminado", en caso de no seleccionar un servicio en el apartado
+                    de citas, el sistema asignará este servicio en automático.</p>
+                <hr/>
                 {{ form_start(edit_form) }}
                 {{ form_widget(edit_form) }}
                 {{ form_end(edit_form) }}

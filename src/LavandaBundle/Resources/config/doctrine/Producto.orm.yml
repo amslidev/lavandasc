@@ -5,12 +5,12 @@ LavandaBundle\Entity\Producto:
         categoria_producto_fk_idx:
             columns:
                 - idcategoria
-        unidadmedida_producto_fk_idx:
-            columns:
-                - unidadmedida
         bodega_producto_fk_idx:
             columns:
                 - idbodega
+        unidadmedida_producto_fk_idx:
+            columns:
+                - unidadmedida
     id:
         idproducto:
             type: integer

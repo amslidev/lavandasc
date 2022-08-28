@@ -13,6 +13,34 @@
     <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.print.css') }}" rel="stylesheet" media="print">
 
+    <style>
+        .selectize-control.movies .selectize-dropdown [data-selectable] {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 10px;
+
+            position: relative;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px 10px 10px 60px;
+        }
+        .selectize-control.movies .selectize-dropdown [data-selectable]:last-child {
+            border-bottom: 0 none;
+        }
+        .selectize-control.movies .selectize-dropdown{
+            font-size: 15px;
+        }
+        .selectize-input{
+            background-color: white;
+            color: black;
+            padding: 1px;
+            width: 100%;
+            border: groove;
+            font-size: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: textfield;
+            outline: none;
+        }
+    </style>
 
 
 {% endblock stylesheets %}
@@ -55,7 +83,42 @@
                                 <div class="center-block">
                                     <button class="btn btn-success btnrealizada" id="btnrealizada">Cita realizada</button>
                                     <button class="btn btn-danger btncancelada" id="btncancelada">Cita cancelada</button>
+                                    <button class="btn btn-warning btneditar" id="btneditar">Editar</button>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="editarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="titleModalEditar"></h3>
+                                <h5 id="titleModalEditarServicio"></h5>
+                            </div>
+                            <div class="modal-body">
+                                <label for="selclientes">Cliente:</label>
+                                <select id="selclientes" class="form-control"></select>
+                                <label for="selservicios">Servicio:</label>
+                                <select id="selservicios" class="form-control"></select>
+                                <label for="sellongitudes">Longitud:</label>
+                                <select id="sellongitudes" class="form-control"></select>
+                                <label for="selsucursales">Sucursal:</label>
+                                <select id="selsucursales" class="form-control"></select>
+                                <label for="selempleados">Empleado:</label>
+                                <select id="selempleados" class="form-control"></select>
+                                <label for="fechaCita">Fecha de la cita:</label>
+                                <input type="date" id="fechaCita" class="form-control">
+                                <label for="horaCita">Hora de la cita:</label>
+                                <input type="time" id="horaCita" class="form-control">
+                                <label for="txtnotas">Notas: </label>
+                                <textarea id="txtnotas" class="summernote"></textarea>
+                                <button id="btnactualizarcita" class="btn btn-success"> Editar</button>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -74,6 +137,8 @@
 
     {{ parent() }}
 
+    {{ summernote_init() }}
+
     <!-- iCheck -->
     <script src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
 
@@ -88,36 +153,8 @@
     </script>
 
     <script type="text/javascript">
-        $("#lavandabundle_citas_idsucursal").change(function () {
-           var idsucursal = $(this).val();
-           var datos = {};
-           datos.idsucursal = idsucursal;
-           $.ajax({
-              type: 'GET',
-              url: '{{ path('empleado_sucursal') }}',
-              data: datos,
-              success: function (empleados) {
-                  console.log(empleados);
-                  $("#lavandabundle_citas_idempleado").html("");
-                  var emp = $("#lavandabundle_citas_idempleado");
-                  var total = empleados.length;
-                  if(total > 0){
-                      emp.append('<option value="">Seleccione un elemento</option>');
-                      for(var i =0;i<total;i++){
-                          emp.append('<option value="'+empleados[i].idempleado + '">'+empleados[i].nombre + '</option>');
-                      }
-                  }else{
-                      emp.append('<option value="">No se han registrado empleados para esta sucursal</option>');
-                  }
-              },
-              error: function () {
-                toastr.error("Error al intentar cargar la lista de empleados", "¡Error!");
-              }
-           });
-        });
-    </script>
+        var idlongitud = 0;
 
-    <script>
         $(function () {
             $('#calendar').fullCalendar({
                 themeSystem: 'bootstrap',
@@ -185,22 +222,22 @@
                         $("#btnrealizada").attr("idcita",event.id);
                         $("#btncancelada").show();
                         $("#btncancelada").attr("idcita", event.id);
+                        $("#btneditar").show();
+                        $("#btneditar").attr("idcita", event.id);
                     }else{
                         $("#btnrealizada").hide();
                         $("#btncancelada").hide();
+                        $("#btneditar").hide();
                     }
                 }
             });
         });
-    </script>
 
-    <script>
         $("#lavandabundle_citas_idsucursal").change(function () {
             $("#calendar").fullCalendar('refetchEvents');
+            $
         });
-    </script>
 
-    <script>
         $(".btnrealizada").unbind("click").click(function () {
             $("#datosCita").modal("hide");
             var idcita = $(this).attr("idcita");
@@ -239,6 +276,203 @@
                 }
             });
         });
+
+        $(".btneditar").unbind("click").click(function () {
+            $("#datosCita").modal("hide");
+            $("#editarCita").modal("show");
+            const idcita = $(this).attr("idcita");
+
+
+            datos = {};
+            datos.idcita = idcita;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('citas_detalle') }}',
+                data: datos,
+                success: function (detalleCita){
+                    let titulo = $("#titleModalEditar");
+                    let tituloServicio = $("#titleModalEditarServicio");
+                    titulo.html("");
+                    tituloServicio.html("");
+                    titulo.append("Editar Cita del Cliente: " + detalleCita.nombrecliente);
+                    tituloServicio.append("Servicio: " + detalleCita.nombreservicio);
+                    let idcliente = detalleCita.idcliente;
+                    let idservicio = detalleCita.idservicio;
+                    idlongitud = detalleCita.idlongitud;
+                    let idsucursal = detalleCita.idsucursal;
+                    let idempleado = detalleCita.idempleado;
+
+                    listarClientes(idcliente);
+                    listarServicios(idservicio);
+                    listarLongitudes(idservicio, idlongitud);
+                    listarSucursales(idsucursal);
+                    listarEmpleados(idsucursal, idempleado);
+                    let fechaCita = detalleCita.fecha;
+                    $("#fechaCita").val(fechaCita);
+                    let horaCita = detalleCita.hora;
+                    $("#horaCita").val(horaCita);
+                    $(".summernote").summernote('editor.insertText',detalleCita.notas);
+                },
+                error: function (){
+                    toastr.error("Error al cargar el detalle de la cita", "¡Error!");
+                }
+            });
+        });
+
+        function listarClientes(idcliente){
+            let selectClientes = $("#selclientes").selectize({
+                maxItems: 1,
+                placeholder: "Seleccione un cliente"
+            });
+            let clientes = [];
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('cliente_listado_pos') }}',
+                success: function (listaClientes){
+                    let selectize = selectClientes[0].selectize;
+                    selectize.clear();
+                    clientes = listaClientes;
+                    let total = clientes.length;
+                    if(total > 0){
+                        for (let i = 0; i < total; i++){
+                            selectize.addOption({
+                                value : clientes[i].idcliente,
+                                text : clientes[i].idcliente + " - " + clientes[i].nombre
+                            });
+                            selectize.refreshOptions();
+                        }
+                        selectize.setValue(selectize.search(idcliente).items[0].id);
+                        selectize.refreshOptions();
+                    }else{
+                        toastr.info("No se encontraron clientes registrados", "¡Atención!");
+                    }
+                },
+                error: function (){
+                    toastr.error("Error en la carga de los clientes", "¡Error!");
+                }
+            });
+        }
+
+        function listarSucursales(idsucursal){
+            let selectSucursales = $("#selsucursales");
+            selectSucursales.html("");
+            let sucursales = [];
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('sucursales_listado') }}',
+                success: function (listaSucursales) {
+                    sucursales = listaSucursales;
+                    let total = sucursales.length;
+                    if(total > 0){
+                        for(let i = 0; i < total; i ++){
+                            selectSucursales.append('<option value="'+ sucursales[i].idsucursal +'">' + sucursales[i].nombre + '</option>');
+                        }
+                        selectSucursales.val(idsucursal);
+                    }else{
+                        selectSucursales.append('<option value=""> No se encontraron sucursales registradas</option>');
+                    }
+                },
+                error: function (){
+                    toastr.error("Error en la carga de las sucursales", "¡Error!");
+                }
+            });
+        }
+
+        function listarServicios(idservicio){
+            let selectServicios = $("#selservicios").selectize({
+                maxItems: 1,
+                placeholder: "Seleccione un servicio"
+            });
+            let servicios = [];
+            $.ajax({
+               type: 'GET',
+               url: '{{ path('servicio_listar_ajax') }}',
+               success: function (listaServicios){
+                   let selectizeServicios = selectServicios[0].selectize;
+                   selectizeServicios.clear();
+                   servicios = listaServicios;
+                   let total = servicios.length;
+                   if(total > 0){
+                       for(let i = 0; i < total; i++){
+                           selectizeServicios.addOption({
+                              value: servicios[i].idservicio,
+                              text: servicios[i].nombre
+                           });
+                           selectizeServicios.refreshOptions();
+                       }
+                       selectizeServicios.setValue(idservicio);
+                       selectizeServicios.refreshOptions();
+                   }else{
+                       selectServicios.append('<option value=""> No se encontraron servicios registrados </option>');
+                   }
+               },
+               error: function (){
+                   toastr.error("Error en la carga de los servicios", "¡Error!");
+               }
+            });
+        }
+
+        function listarLongitudes(idservicio, idlongitud){
+            let datos = {};
+            datos.idservicio = idservicio;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('serviciolongitud_listar_longitudes') }}',
+                data: datos,
+                success: function (longitudes) {
+                    $("#sellongitudes").html("");
+                    let long = $("#sellongitudes");
+                    let total = longitudes.length;
+                    if(total > 0){
+                        $("#sellongitudes").attr("required", true);
+                        long.append('<option value="">Seleccione un elemento</option>');
+                        for (var i = 0; i<total; i++){
+                            long.append('<option value="'+longitudes[i].idserviciolongitud + '">'+ longitudes[i].longitud + ' cm' + '</option>');
+                        }
+                        if(idlongitud !== 0){
+                            long.val(idlongitud);
+                        }
+                    }else{
+                        long.append('<option value="">Este servicio no está asociado a registros de longitudes</option>');
+                    }
+                },
+                error: function () {
+                    toastr.error("Error al intentar recuperar la lista de longitudes", "¡Error!");
+                }
+            });
+        }
+
+        $("#selservicios").on('change', function (){
+           let idservicio = $(this).val();
+           listarLongitudes(idservicio, idlongitud);
+        });
+
+        function listarEmpleados(idsucursal, idempleado){
+            let datos = {};
+            datos.idsucursal = idsucursal;
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('empleado_sucursal') }}',
+                data: datos,
+                success: function (listaEmpleados){
+                    $("#selempleados").html();
+                    let empleados = $("#selempleados");
+                    let total = listaEmpleados.length;
+                    if(total > 0){
+                       for (let i = 0; i < total; i++){
+                           empleados.append('<option value="'+listaEmpleados[i].idempleado+'">' + listaEmpleados[i].nombre + '</option>');
+                       }
+                    }else{
+                        empleados.append('<option value="">No se encontraron empleados registrados</option>');
+                    }
+                    empleados.val(idempleado);
+                },
+                error: function () {
+                    toastr.error("Error al cargar los empleados", "¡Error!");
+                }
+            })
+        }
+
     </script>
 
     <!-- Custom Theme Scripts -->

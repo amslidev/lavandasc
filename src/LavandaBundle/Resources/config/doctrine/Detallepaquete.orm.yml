@@ -1,0 +1,32 @@
+LavandaBundle\Entity\Detallepaquete:
+    type: entity
+    table: detallepaquete
+    indexes:
+        paquetes_detallepaquete_fk_idx:
+            columns:
+                - idpaquete
+    id:
+        iddetallepaquete:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechaaplicacion:
+            type: datetime
+            nullable: true
+    manyToOne:
+        idpaquete:
+            targetEntity: Paquetes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idpaquete:
+                    referencedColumnName: idpaquete
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

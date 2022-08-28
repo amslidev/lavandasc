@@ -55,4 +55,7 @@ LavandaBundle\Entity\Servicio:
         activo:
             type: boolean
             nullable: true
+        predeterminado:
+            type: boolean
+            nullable: true
     lifecycleCallbacks: {  }

@@ -113,3 +113,11 @@ lavanda_detallebarventa:
 lavanda_formaspago:
     resource: "@LavandaBundle/Resources/config/routing/formaspago.yml"
     prefix: /
+
+lavanda_paquetes:
+    resource: "@LavandaBundle/Resources/config/routing/paquetes.yml"
+    prefix: /
+
+lavanda_pagospaquetes:
+    resource: "@LavandaBundle/Resources/config/routing/pagospaquetes.yml"
+    prefix: /

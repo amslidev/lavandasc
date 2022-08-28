@@ -1,0 +1,14 @@
+pagospaquetes_index:
+    path: /pagospaquetes/{idpaquete}
+    defaults: { _controller: LavandaBundle:PagosPaquete:index }
+    methods: [GET, POST]
+
+pagospaquetes_edit:
+    path: /pagospaquetes/edit/{idpagopaquete}
+    defaults: { _controller: LavandaBundle:PagosPaquete:edit }
+    methods: [GET, POST]
+
+pagospaquetes_delete:
+    path: /pagospaquetes/delete/{idpagopaquete}
+    defaults: { _controller: LavandaBundle:PagosPaquete:delete }
+    methods: [GET]
