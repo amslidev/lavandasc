@@ -7,59 +7,11 @@
     <bookmark url="file://$PROJECT_DIR$/src/APIBundle/Controller/APIClientesController.php" line="219" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="583e1fb9-ae55-4ef6-93c1-91814266a878" name="Default Changelist" comment="Creación del POS">
-      <change afterPath="$PROJECT_DIR$/app/bootstrap.php.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/PagosPaqueteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/PaquetesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Detallepaquete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Logs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Pagospaquetes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Paquetes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/PagospaquetesType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/PaquetesType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Detallepaquete.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Logs.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Pagospaquetes.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Paquetes.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/pagospaquetes.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/paquetes.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Pagospaquetes/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Pagospaquetes/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Paquetes/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Services/LogsService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/PagosPaqueteControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LavandaBundle/Tests/Controller/PaquetesControllerTest.php" afterDir="false" />
+    <list default="true" id="583e1fb9-ae55-4ef6-93c1-91814266a878" name="Default Changelist" comment="Actualización paquetes y citas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/app/sidebar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/symfony_requirements" beforeDir="false" afterPath="$PROJECT_DIR$/bin/symfony_requirements" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/CitasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/EmpleadoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/EmpleadoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/ServicioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Controller/UsuariosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Formaspago.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Formaspago.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Entity/Servicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/Citas2Type.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ClienteType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Form/ServicioType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Barventa.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Barventa.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Citas.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Citas.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Expedientecliente.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Expedientecliente.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Producto.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Producto.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/doctrine/Servicio.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/citas.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/servicio.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/config/routing/servicio.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Citas/registrar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/Clientes/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/LavandaBundle/Resources/views/servicio/new.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -574,7 +526,7 @@
       <workItem from="1661129755296" duration="10670000" />
       <workItem from="1661263564028" duration="3220000" />
       <workItem from="1661385715195" duration="4381000" />
-      <workItem from="1661703829329" duration="13462000" />
+      <workItem from="1661703829329" duration="24054000" />
     </task>
     <task id="LOCAL-00001" summary="Carga del proyecto">
       <created>1623787315265</created>
@@ -632,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658275572442</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Actualización paquetes y citas">
+      <created>1661729122412</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661729122412</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -689,7 +648,8 @@
     <MESSAGE value="Módulo de usuarios (Actualización)&#10;Construcción de la API" />
     <MESSAGE value="Actualización clientes" />
     <MESSAGE value="Creación del POS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creación del POS" />
+    <MESSAGE value="Actualización paquetes y citas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualización paquetes y citas" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/LavandaBundle/Resources/views/Usuarios/registrar.usuario.html.twig">

@@ -302,8 +302,7 @@ class CitasController extends Controller
                     if($flush == null){
                         $response->setStatusCode(200);
                     }else{
-                        //$response->setStatusCode(500);
-                        $response->setContent("El error fue aquí ");
+                        $response->setStatusCode(500);
                     }
                 }else{
                     //Validar si el horario seleccionado no fue previamente registrado
@@ -347,12 +346,11 @@ class CitasController extends Controller
                         if($flush == null){
                             $response->setStatusCode(200);
                         }else{
-                            //$response->setStatusCode(500);
-                            $response->setContent("El error fue aquí 2");
+                            $response->setStatusCode(500);
                         }
 
                     }else{
-                        //$response->setStatusCode(500);
+                        $response->setStatusCode(500);
                     }
                 }
 
@@ -404,8 +402,7 @@ class CitasController extends Controller
                         if($flush == null){
                             $response->setStatusCode(200);
                         }else{
-                            //$response->setStatusCode(500);
-                            $response->setContent("El error fue aquí 3");
+                            $response->setStatusCode(500);
                         }
 
                     }else{
@@ -414,25 +411,21 @@ class CitasController extends Controller
                         $arrHorario = explode("-",$arrOrdenado["horario"]);
                         $horaRecomendada = $arrHorario[1];
                         if($horaRecomendada >= "18:00"){
-                            //$response->setStatusCode(500);
-                            //$response->setContent("El error fue aquí 4");
+                            $response->setStatusCode(500);
                             $mensaje = "¡Horario no disponible! Se le recomienda agendar su cita para el día ".$oFecha->modify('+1 day')->format("Y-m-d");
                         }else{
-                            //$response->setStatusCode(500);
-                            $response->setContent("El error fue aquí 5");
+                            $response->setStatusCode(500);
+
                             $mensaje = "¡Horario no disponible! Se le recomienda seleccionar el horario de las ".$horaRecomendada." para agendar su cita";
                         }
                     }
                 }else{
-                    //$response->setStatusCode(500);
-                    $response->setContent("El error fue aquí 6");
-
+                    $response->setStatusCode(500);
                 }
             }
 
         }else{
-            //$response->setStatusCode(500);
-            $response->setContent("El error fue aquí 7");
+            $response->setStatusCode(500);
         }
 
         return $response;
@@ -492,10 +485,308 @@ class CitasController extends Controller
             "nombreempleado" => $empleado->getNombre()." ".$empleado->getApellido(),
             "fecha" => date_format($cita->getFechacita(), "Y-m-d"),
             "hora" => date_format($cita->getHorarioinicio(), "H:i"),
-            "notas" => $cita->getComentarios()
+            "comentarios" => $cita->getComentarios()
         ];
 
         return new JsonResponse($detalleCita);
+    }
+
+    public function editarCitaAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $idservicio = $request->request->get('idservicio');
+        $idlongitud = $request->request->get('idlongitud');
+        $comentarios = $request->request->get('comentarios');
+        $fecha = $request->request->get('fecha');
+        $hora = $request->request->get('hora');
+        $minuto = $request->request->get('minuto');
+        $idcita = $request->request->get('idcita');
+
+        $response = new Response();
+        if($fecha != "" && $hora != "" && $idcita != ""){
+            if($minuto >= 0 && $minuto <= 9){
+                $minuto = "0".$minuto;
+            }
+            $cita = $em->getRepository('LavandaBundle:Citas')->find($idcita);
+
+            $cliente = $em->getRepository('LavandaBundle:Cliente')->findOneBy(array(
+                "idcliente" => $cita->getIdcliente()->getIdcliente()
+            ));
+
+            $oFecha = new \DateTime($fecha);
+            $oHora = new \DateTime($hora.":".$minuto);
+
+            $empleado = $em->getRepository('LavandaBundle:Empleado')->find($cita->getIdempleado()->getIdempleado());
+
+            if($idservicio == ""){
+                $servicio = $em->getRepository('LavandaBundle:Servicio')->findOneBy([
+                    "predeterminado" => true
+                ]);
+            }else{
+                $servicio = $em->getRepository('LavandaBundle:Servicio')->find($idservicio);
+            }
+
+            $cliente = $em->getRepository('LavandaBundle:Cliente')->find($idcliente);
+
+            if($idlongitud != null){
+                $longitud = $em->getRepository('LavandaBundle:Serviciolongitud')->find($idlongitud);
+            }
+
+            $estatus = $em->getRepository('LavandaBundle:Estatuscita')->findOneBy(array(
+                "clave"=>"EC1"
+            ));
+
+            //Buscar si el empleado tiene citas registradas para la fecha seleccionada
+            $citas = $em->getRepository('LavandaBundle:Citas')->findBy(array(
+                "idempleado"=>$empleado->getIdempleado(),
+                "fechacita"=> $oFecha,
+            ));
+
+            $horaSel = $oHora->format("H:i");
+            $segundosHoraInicial = strtotime($horaSel);
+
+            //Agregar un minuto a la hora inicial
+            $addSecondTimeStart = 1 * 60;
+            $horaSel = date("H:i", $segundosHoraInicial+$addSecondTimeStart);
+
+            //Verificar el tiempo que dura el servicio
+            $tiempoServicio = $servicio->getTiempo();
+            $segundosAdd = $tiempoServicio * 60;
+            $horaFinal = date("H:i", $segundosHoraInicial+$segundosAdd);
+
+            $from = new \DateTime($oFecha->format("Y-m-d")." ".$horaSel);
+            $to = new \DateTime($oFecha->format("Y-m-d")." ".$horaFinal);
+
+            if($citas == null){
+                //Validar si el cliente no tiene citas previamente registradas para ese día
+                $citasCliente = $em->getRepository('LavandaBundle:Citas')->findBy(array(
+                    "idcliente" => $cliente->getIdcliente(),
+                    "fechacita"=> $oFecha,
+                ));
+
+                if($citasCliente == null){
+                    $cita->setIdcliente($cliente);
+                    $cita->setIdempleado($empleado);
+                    $cita->setIdservicio($servicio);
+                    $cita->setFechacita($oFecha);
+                    $cita->setHorarioinicio($from);
+                    $cita->setHorariofin($to);
+                    $cita->setIdestatus($estatus);
+                    $cita->setComentarios($comentarios);
+                    //$info["idcortesia"] != "" ? $nuevaCita->setIdcortesia($cortesia) : null;
+                    $idlongitud != null ? $cita->setIdserviciolongitud($longitud) : "";
+
+                    $em->persist($cita);
+                    $flush = $em->flush();
+                    if($flush == null){
+                        $response->setStatusCode(200);
+                    }else{
+                        $response->setStatusCode(500);
+                    }
+                }else{
+                    //Validar si el horario seleccionado no fue previamente registrado
+
+                    $flag = false;
+                    $arrHoras = array();
+                    for($i = 0; $i < count($citasCliente); $i ++){
+                        $hInicio = date_format($citasCliente[$i]->getHorarioinicio(), "H:i");
+                        $hFin = date_format($citasCliente[$i]->getHorariofin(), "H:i");
+
+                        $arrHoras[] = [
+                            "horario" => $hInicio . "-" . $hFin,
+                        ];
+                    }
+
+                    for ($i = 0; $i < count($arrHoras); $i++){
+                        $arrHorario = explode("-",$arrHoras[$i]["horario"]);
+                        $horaInicio = $arrHorario[0];
+                        $horaFinalizado = $arrHorario[1];
+
+                        if($this->validadorHoras($horaSel, $horaFinal, $horaInicio) || $this->validadorHoras($horaSel, $horaFinal, $horaFinalizado)){
+                            $flag = true;
+                        }
+                    }
+
+                    if(!$flag){
+                        $cita->setIdcliente($cliente);
+                        $cita->setIdempleado($empleado);
+                        $cita->setIdservicio($servicio);
+                        $cita->setFechacita($oFecha);
+                        $cita->setHorarioinicio($from);
+                        $cita->setHorariofin($to);
+                        $cita->setIdestatus($estatus);
+                        $cita->setComentarios($comentarios);
+                        //$info["idcortesia"] != "" ? $nuevaCita->setIdcortesia($cortesia) : null;
+                        $idlongitud != null ? $cita->setIdserviciolongitud($longitud) : "";
+
+                        $em->persist($cita);
+                        $flush = $em->flush();
+
+                        if($flush == null){
+                            $response->setStatusCode(200);
+                        }else{
+                            $response->setStatusCode(500);
+                        }
+
+                    }else{
+                        $response->setStatusCode(500);
+                    }
+                }
+            }else{
+                $citasCliente = $em->getRepository('LavandaBundle:Citas')->findBy(array(
+                    "idcliente" => $cliente->getIdcliente(),
+                    "fechacita"=> $oFecha,
+                ));
+
+                if($citasCliente == null){
+                    $flag = false;
+                    $arrHoras = array();
+                    for($i = 0; $i < count($citas); $i ++){
+                        $hInicio = date_format($citas[$i]->getHorarioinicio(), "H:i");
+                        $hFin = date_format($citas[$i]->getHorariofin(), "H:i");
+
+                        $arrHoras[] = [
+                            "horario" => $hInicio . "-" . $hFin,
+                        ];
+                    }
+
+                    for ($i = 0; $i < count($arrHoras); $i++){
+                        $arrHorario = explode("-",$arrHoras[$i]["horario"]);
+                        $horaInicio = $arrHorario[0];
+                        $horaFinalizado = $arrHorario[1];
+
+                        if($this->validadorHoras($horaSel, $horaFinal, $horaInicio) || $this->validadorHoras($horaSel, $horaFinal, $horaFinalizado)){
+                            $flag = true;
+                        }
+                    }
+
+                    if(!$flag){
+                        $cita->setIdcliente($cliente);
+                        $cita->setIdempleado($empleado);
+                        $cita->setIdservicio($servicio);
+                        $cita->setFechacita($oFecha);
+                        $cita->setHorarioinicio($from);
+                        $cita->setHorariofin($to);
+                        $cita->setIdestatus($estatus);
+                        $cita->setComentarios($comentarios);
+                        //$info["idcortesia"] != "" ? $nuevaCita->setIdcortesia($cortesia) : null;
+                        $idlongitud != null ? $cita->setIdserviciolongitud($longitud) : "";
+
+                        $em->persist($cita);
+                        $flush = $em->flush();
+
+                        if($flush == null){
+                            $response->setStatusCode(200);
+                        }else{
+                            $response->setStatusCode(500);
+                        }
+
+                    }else{
+                        sort($arrHoras);
+                        $arrOrdenado = end($arrHoras);
+                        $arrHorario = explode("-",$arrOrdenado["horario"]);
+                        $horaRecomendada = $arrHorario[1];
+                        if($horaRecomendada >= "18:00"){
+                            $response->setStatusCode(500);
+                            $mensaje = "¡Horario no disponible! Se le recomienda agendar su cita para el día ".$oFecha->modify('+1 day')->format("Y-m-d");
+                        }else{
+                            $response->setStatusCode(500);
+
+                            $mensaje = "¡Horario no disponible! Se le recomienda seleccionar el horario de las ".$horaRecomendada." para agendar su cita";
+                        }
+                    }
+                }else{
+                    //Validar si el horario seleccionado es el mismo que el que ya está asignado
+                    $horaInicioCitaActual = $cita->getHorarioinicio();
+                    $horaFinCitaActual = $cita->getHorariofin();
+
+
+                    if($horaSel == $horaInicioCitaActual->format("H:i") && $idservicio == $cita->getIdservicio()->getIdservicio()){
+                        $cita->setIdcliente($cliente);
+                        $cita->setIdempleado($empleado);
+                        $cita->setIdservicio($servicio);
+                        $cita->setFechacita($oFecha);
+                        $cita->setHorarioinicio($from);
+                        $cita->setHorariofin($to);
+                        $cita->setIdestatus($estatus);
+                        $cita->setComentarios($comentarios);
+                        //$info["idcortesia"] != "" ? $nuevaCita->setIdcortesia($cortesia) : null;
+                        $idlongitud != null ? $cita->setIdserviciolongitud($longitud) : "";
+
+                        $em->persist($cita);
+                        $flush = $em->flush();
+
+                        if($flush == null){
+                            $response->setStatusCode(200);
+                        }else{
+                            $response->setStatusCode(500);
+                        }
+
+                    }else{
+                        $flag = false;
+                        $arrHoras = array();
+                        for($i = 0; $i < count($citas); $i ++){
+                            $hInicio = date_format($citas[$i]->getHorarioinicio(), "H:i");
+                            $hFin = date_format($citas[$i]->getHorariofin(), "H:i");
+
+                            $arrHoras[] = [
+                                "horario" => $hInicio . "-" . $hFin,
+                            ];
+                        }
+
+                        for ($i = 0; $i < count($arrHoras); $i++){
+                            $arrHorario = explode("-",$arrHoras[$i]["horario"]);
+                            $horaInicio = $arrHorario[0];
+                            $horaFinalizado = $arrHorario[1];
+
+                            if($this->validadorHoras($horaSel, $horaFinal, $horaInicio) || $this->validadorHoras($horaSel, $horaFinal, $horaFinalizado)){
+                                $flag = true;
+                            }
+                        }
+
+                        if(!$flag){
+                            $cita->setIdcliente($cliente);
+                            $cita->setIdempleado($empleado);
+                            $cita->setIdservicio($servicio);
+                            $cita->setFechacita($oFecha);
+                            $cita->setHorarioinicio($from);
+                            $cita->setHorariofin($to);
+                            $cita->setIdestatus($estatus);
+                            $cita->setComentarios($comentarios);
+                            //$info["idcortesia"] != "" ? $nuevaCita->setIdcortesia($cortesia) : null;
+                            $idlongitud != null ? $cita->setIdserviciolongitud($longitud) : "";
+
+                            $em->persist($cita);
+                            $flush = $em->flush();
+
+                            if($flush == null){
+                                $response->setStatusCode(200);
+                            }else{
+                                $response->setStatusCode(500);
+                            }
+
+                        }else{
+                            sort($arrHoras);
+                            $arrOrdenado = end($arrHoras);
+                            $arrHorario = explode("-",$arrOrdenado["horario"]);
+                            $horaRecomendada = $arrHorario[1];
+                            if($horaRecomendada >= "18:00"){
+                                $response->setStatusCode(500);
+                                $mensaje = "¡Horario no disponible! Se le recomienda agendar su cita para el día ".$oFecha->modify('+1 day')->format("Y-m-d");
+                            }else{
+                                $response->setStatusCode(500);
+
+                                $mensaje = "¡Horario no disponible! Se le recomienda seleccionar el horario de las ".$horaRecomendada." para agendar su cita";
+                            }
+                        }
+                    }
+
+                }
+            }
+        }else{
+            $response->setStatusCode(500);
+        }
+        return $response;
     }
 
 

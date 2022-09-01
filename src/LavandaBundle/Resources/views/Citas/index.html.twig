@@ -93,7 +93,6 @@
                     </div>
                 </div>
 
-
                 <div class="modal fade" id="editarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -102,16 +101,10 @@
                                 <h5 id="titleModalEditarServicio"></h5>
                             </div>
                             <div class="modal-body">
-                                <label for="selclientes">Cliente:</label>
-                                <select id="selclientes" class="form-control"></select>
                                 <label for="selservicios">Servicio:</label>
                                 <select id="selservicios" class="form-control"></select>
                                 <label for="sellongitudes">Longitud:</label>
                                 <select id="sellongitudes" class="form-control"></select>
-                                <label for="selsucursales">Sucursal:</label>
-                                <select id="selsucursales" class="form-control"></select>
-                                <label for="selempleados">Empleado:</label>
-                                <select id="selempleados" class="form-control"></select>
                                 <label for="fechaCita">Fecha de la cita:</label>
                                 <input type="date" id="fechaCita" class="form-control">
                                 <label for="horaCita">Hora de la cita:</label>
@@ -126,7 +119,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -147,13 +139,8 @@
     <script src="{{ asset('assets/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#lavandabundle_citas_idempleado").html("");
-        });
-    </script>
-
-    <script type="text/javascript">
         var idlongitud = 0;
+        var idcitaactualizar = 0;
 
         $(function () {
             $('#calendar').fullCalendar({
@@ -235,7 +222,7 @@
 
         $("#lavandabundle_citas_idsucursal").change(function () {
             $("#calendar").fullCalendar('refetchEvents');
-            $
+
         });
 
         $(".btnrealizada").unbind("click").click(function () {
@@ -281,7 +268,7 @@
             $("#datosCita").modal("hide");
             $("#editarCita").modal("show");
             const idcita = $(this).attr("idcita");
-
+            idcitaactualizar = idcita;
 
             datos = {};
             datos.idcita = idcita;
@@ -296,22 +283,19 @@
                     tituloServicio.html("");
                     titulo.append("Editar Cita del Cliente: " + detalleCita.nombrecliente);
                     tituloServicio.append("Servicio: " + detalleCita.nombreservicio);
-                    let idcliente = detalleCita.idcliente;
                     let idservicio = detalleCita.idservicio;
                     idlongitud = detalleCita.idlongitud;
                     let idsucursal = detalleCita.idsucursal;
-                    let idempleado = detalleCita.idempleado;
 
-                    listarClientes(idcliente);
                     listarServicios(idservicio);
                     listarLongitudes(idservicio, idlongitud);
-                    listarSucursales(idsucursal);
-                    listarEmpleados(idsucursal, idempleado);
+
                     let fechaCita = detalleCita.fecha;
                     $("#fechaCita").val(fechaCita);
                     let horaCita = detalleCita.hora;
                     $("#horaCita").val(horaCita);
-                    $(".summernote").summernote('editor.insertText',detalleCita.notas);
+                    let comentarios = detalleCita.comentarios;
+                    $(".summernote").code(comentarios);
                 },
                 error: function (){
                     toastr.error("Error al cargar el detalle de la cita", "¡Error!");
@@ -319,63 +303,64 @@
             });
         });
 
-        function listarClientes(idcliente){
-            let selectClientes = $("#selclientes").selectize({
-                maxItems: 1,
-                placeholder: "Seleccione un cliente"
-            });
-            let clientes = [];
-            $.ajax({
-                type: 'GET',
-                url: '{{ path('cliente_listado_pos') }}',
-                success: function (listaClientes){
-                    let selectize = selectClientes[0].selectize;
-                    selectize.clear();
-                    clientes = listaClientes;
-                    let total = clientes.length;
-                    if(total > 0){
-                        for (let i = 0; i < total; i++){
-                            selectize.addOption({
-                                value : clientes[i].idcliente,
-                                text : clientes[i].idcliente + " - " + clientes[i].nombre
-                            });
-                            selectize.refreshOptions();
-                        }
-                        selectize.setValue(selectize.search(idcliente).items[0].id);
-                        selectize.refreshOptions();
-                    }else{
-                        toastr.info("No se encontraron clientes registrados", "¡Atención!");
-                    }
-                },
-                error: function (){
-                    toastr.error("Error en la carga de los clientes", "¡Error!");
-                }
-            });
-        }
+        $("#btnactualizarcita").on('click', function () {
+            agendarCita();
+        });
 
-        function listarSucursales(idsucursal){
-            let selectSucursales = $("#selsucursales");
-            selectSucursales.html("");
-            let sucursales = [];
-            $.ajax({
-                type: 'GET',
-                url: '{{ path('sucursales_listado') }}',
-                success: function (listaSucursales) {
-                    sucursales = listaSucursales;
-                    let total = sucursales.length;
-                    if(total > 0){
-                        for(let i = 0; i < total; i ++){
-                            selectSucursales.append('<option value="'+ sucursales[i].idsucursal +'">' + sucursales[i].nombre + '</option>');
-                        }
-                        selectSucursales.val(idsucursal);
-                    }else{
-                        selectSucursales.append('<option value=""> No se encontraron sucursales registradas</option>');
+        function agendarCita() {
+            let idservicio = $("#selservicios").val();
+            let idlongitud = $("#sellongitudes").val();
+            let idsucursal = $("#selsucursales").val();
+            let fecha = $("#fechaCita").val();
+            let horaSel = $("#horaCita").val();
+            //let minutoSel = $("#lavandabundle_citas_horacita_minute").val();
+            let idcliente = $("#selclientes").val();
+            let comentarios = $("#txtnotas").val();
+            let datos = {};
+
+            if(idsucursal !== "" && fecha !== "" && horaSel !== ""){
+                /*if(minutoSel >= "0" && minutoSel <= "9"){
+                    minutoSel = "0"+minutoSel;
+                }*/
+
+                //let horaSeleccionada = horaSel+":"+minutoSel;
+                let hora = new Date("1970/01/01 " + horaSel);
+                datos.idservicio = idservicio;
+                datos.idlongitud = idlongitud;
+                datos.idsucursal = idsucursal;
+                datos.fecha = fecha;
+                datos.hora = hora.getHours();
+                datos.minutos = hora.getMinutes();
+                datos.idcliente = idcliente;
+                datos.comentarios = comentarios;
+                datos.idcita = idcitaactualizar;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path('citas_editar')}}',
+                    data: datos,
+                    success: function (response) {
+                        swal({
+                            title: "¡Éxito!",
+                            text: "Cita editada correctamente",
+                            icon: "success",
+                            button: "Aceptar",
+                        }).then((result) => {
+                            //window.location=URL+"referencias/"+respuesta;
+                            //location.reload();
+                            $("#editarCita").modal("hide");
+                            $("#calendar").fullCalendar('refetchEvents');
+                        });
+                    },
+                    error: function (response) {
+                        toastr.error("No es posible agendar la cita para el día y hora seleccionado", "¡Error!");
                     }
-                },
-                error: function (){
-                    toastr.error("Error en la carga de las sucursales", "¡Error!");
-                }
-            });
+                });
+
+            }else{
+                $("#lavandabundle_citas_horacita_hour").val("");
+                toastr.error("Para agendar la cita debe seleccionar el servicio, la sucursal, el empleado, la fecha y la hora de la cita", "¡Error!");
+            }
         }
 
         function listarServicios(idservicio){
@@ -446,32 +431,6 @@
            let idservicio = $(this).val();
            listarLongitudes(idservicio, idlongitud);
         });
-
-        function listarEmpleados(idsucursal, idempleado){
-            let datos = {};
-            datos.idsucursal = idsucursal;
-            $.ajax({
-                type: 'GET',
-                url: '{{ path('empleado_sucursal') }}',
-                data: datos,
-                success: function (listaEmpleados){
-                    $("#selempleados").html();
-                    let empleados = $("#selempleados");
-                    let total = listaEmpleados.length;
-                    if(total > 0){
-                       for (let i = 0; i < total; i++){
-                           empleados.append('<option value="'+listaEmpleados[i].idempleado+'">' + listaEmpleados[i].nombre + '</option>');
-                       }
-                    }else{
-                        empleados.append('<option value="">No se encontraron empleados registrados</option>');
-                    }
-                    empleados.val(idempleado);
-                },
-                error: function () {
-                    toastr.error("Error al cargar los empleados", "¡Error!");
-                }
-            })
-        }
 
     </script>
 

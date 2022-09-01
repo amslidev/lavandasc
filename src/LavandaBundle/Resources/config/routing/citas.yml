@@ -46,3 +46,9 @@ citas_detalle:
     defaults: { _controller: LavandaBundle:Citas:buscarDetalleCita }
     methods: [GET]
     condition: "request.isXmlHttpRequest()"
+
+citas_editar:
+    path: /citas/editar
+    defaults: { _controller: LavandaBundle:Citas:editarCita }
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
